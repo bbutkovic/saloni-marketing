@@ -1,0 +1,1362 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700&subset=latin-ext');
+
+html {
+    font-size: 16px;
+}
+
+.header-wrap {
+    width: 750px;
+    margin: 0 auto;
+}
+
+.header-navigation {
+    height: 60px;
+    padding: 13px;
+    background: #fff;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
+
+}
+
+.navbar-default .navbar-nav>li>a {
+    text-transform: uppercase;
+    color: #aaaaaa;
+    font-family: 'Raleway';
+    letter-spacing: 0.05rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding-top: 10px;
+}
+
+.navbar-default .navbar-nav>.active>a {
+    background: none;
+}
+
+.dropdown-link a {
+    color: #aaaaaa !important;
+}
+
+.navbar-default {
+    border: none;
+}
+
+.header-logo img {
+    width: 100px;
+    height: auto;
+}
+
+.navbar-right i {
+    font-size: 1.2rem;
+}
+
+.navbar-toggle {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    margin-top: 0;
+    border: none;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-collapse {
+        background: #fff;
+    }
+    
+    .navbar-collapse {
+        margin-left: -15px !important;
+        -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
+        -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
+    }
+    
+    .navbar-collapse .navbar-right li {
+        display: inline-block !important;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .navbar-nav.nav-header {
+        float: none;
+    }
+    
+    .navbar-right.nav-header {
+        float: none !important;
+    }
+    
+    .navbar-main li:nth-child(2) a {
+        padding-left: 39px !important;
+    }
+    
+    .navbar-main li:last-of-type a {
+        padding-right: 39px !important;
+    }
+    
+    .header-logo {
+        position: relative;
+        width: 120px;
+        padding-right: 20px;
+    }
+    
+    .header-logo::after {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        display: block;
+        height: 30px;
+        content: '';
+        border-right: 1px solid rgba(0,0,0,.1);
+    }
+    
+    .navbar-main {
+        position: relative;
+    }
+    
+    .navbar-main::after {
+        display: block;
+        position: absolute;
+        content: '';
+        top: 4px;
+        right: 185px;
+        height: 30px;
+        clear: both;
+    }
+}
+
+
+@media screen and (min-width: 1200px) {
+    .header-wrap {
+        width: 900px;
+    }
+    
+    .header-logo {
+        width: 120px;
+    }
+    
+    .navbar-main li a {
+        padding: 10px 30px !important;
+    }
+    
+    .navbar-main li:nth-child(2) a {
+        padding-left: 42px !important;
+    }
+    
+    .navbar-main li:last-of-type a {
+        padding-right: 42px !important;
+    }
+    
+    .header-logo::after {
+        right: -10px;
+    }
+    
+    .navbar-main::after {
+        right: 240px;
+    }
+    
+    .navbar-right li a {
+        padding: 10px 20px !important;
+    }
+    
+}
+
+#headerSlider {
+    margin-top: 60px;
+}
+
+.carousel-caption-alt p {
+    color: #aaa;
+    line-height: 1.5rem;
+    margin: 0;
+}
+
+.carousel-caption-alt {
+    position: relative;
+    top: 100%;
+    background: #fff;
+    padding: 1.5rem 4rem;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+@media screen and (max-width: 1049px) {
+    .carousel-caption-alt {
+        height: 220px;
+    }
+}
+
+@media screen and (min-width: 1050px) {
+    .carousel-caption-alt {
+        width: 30rem;
+        position: absolute;
+        top: 4%;
+        left: 9%;
+        padding: 1.8rem;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .carousel-caption-alt {
+        width: 35rem;
+        top: 20%;
+        padding: 2.5rem;
+    }
+}
+
+.carousel-caption-alt h3 {
+    font-family: 'Noto Serif';
+    font-weight: 700;
+    margin-top: 0.315rem;
+}
+
+.carousel-inner .item img {
+    width: 100%;
+}
+
+.book-now-btn {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    border: none;
+    padding: 1rem 2.75rem;
+}
+
+section {
+    padding: 3rem 0;
+}
+
+.section-line {
+    width: 10%;
+    height: 0.125rem;
+    background: #333;
+    margin: 2rem auto 0.5rem;
+}
+
+.section-heading {
+    font-family: 'Raleway';
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.section-heading.alt {
+    color: #fff;
+}
+
+.section-alt {
+    background: #333;
+}
+
+#salonLocationsMap {
+    height: 400px;
+}
+
+.about-salon-text {
+    width: 70%;
+    max-width: 400px;
+}
+
+.about-salon-text p {
+    font-family: 'Raleway';
+    font-size: 1rem;
+}
+
+.about-salon-image {
+    text-align: right;
+    padding-right: 5%;
+}
+
+.about-salon-image img {
+    width: 60%;
+    max-width: 250px;
+    min-width: 180px;
+    -webkit-box-shadow: 21px 20px 0px 4px rgba(0,0,0,.5);
+    -moz-box-shadow: 21px 20px 0px 4px rgba(0,0,0,.5);
+    box-shadow: 21px 20px 0px 4px rgba(0,0,0,.5);
+}
+
+.about-salon-desc {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.about-salon-desc h4 {
+    font-size: 1.2rem;
+}
+
+.popup-location-info {
+    font-size: 20px;
+}
+
+@media screen and (max-width: 550px) {
+    .about-salon-image {
+        display: none;
+    }
+
+    .about-salon-desc {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .about-salon-text {
+        margin: 0.315rem auto;
+    }
+}
+
+.section-news-heading {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    margin-bottom: 3.125rem;
+    margin-top: 0;
+}
+
+.btn-wrap {
+    margin-top: 3rem;
+}
+
+.btn-wrap a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.news-all-btn {
+    margin: 2rem auto 0;
+    text-transform: uppercase;
+    color: #fff;
+    background: #333;
+    padding: 1rem 3rem;
+    border: none;
+}
+
+.news-item .item-info a {
+    color: #333;
+}
+
+.news-item {
+    background: rgba(0,0,0,.01);
+}
+
+.news-item .item-info {
+    height: 200px;
+}
+
+@media screen and (max-width: 768px) {
+    
+    .latest-news-container {
+        padding: 0 1.35rem;
+    }
+    
+    .section-news-heading {
+        text-align: center;
+    }
+    
+    .news-item {
+        margin: 1rem 0;
+    }
+    
+    .news-item .item-info {
+        padding: 1rem 2rem;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .news-item {
+        width: 100%;
+        height: 200px;
+        float: none;
+        margin: 1rem 0;
+    }
+    
+    .news-item .item-info {
+        width: 60%;
+        float: left;
+        padding-left: 5%;
+    }
+    
+    .news-item:first-of-type .item-image {
+        width: 40%;
+        height: 200px;
+        float: left;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .news-item:nth-child(2) .item-image {
+        width: 40%;
+        height: 200px;
+        float: left;
+        background-size: cover;
+        background-position: 80%;
+    }
+    
+    .news-item:last-of-type .item-image {
+        width: 40%;
+        height: 200px;
+        float: left;
+        background-size: cover;
+        background-position: 80%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    
+    .latest-news-container::after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+    
+    .news-item {
+        width: 50%;
+        float: left;
+    }
+    
+    .item-info {
+        padding: 1% 5%;
+    }
+    
+    .news-item:first-of-type .item-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .news-item:nth-child(2) .item-image {
+        width: 40%;
+        height: 200px;
+        float: right;
+    }
+    
+    .news-item:nth-child(2) .item-info {
+        width: 60%;
+        height: 200px;
+        float: left;
+    }
+    
+    .news-item:last-of-type .item-image {
+        width: 40%;
+        height: 200px;
+        float: left;
+    }
+    
+    .news-item:last-of-type .item-info {
+        width: 60%;
+        height: 200px;
+        float: right;
+    }
+    
+    .news-item:not(:first-of-type) .item-info h2 {
+        font-family: 'Raleway';
+        font-weight: 700;
+        font-size: 1.4rem;
+        margin-top: 0;
+        margin-bottom: 0.45rem;
+    }
+    
+}
+
+.section-footer {
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+
+#contact {
+    color: #fff;
+}
+
+footer {
+    color: #fff;
+}
+
+footer p {
+    margin: 0;
+    padding: 1rem 0;
+}
+
+.btn-send-message {
+    margin-bottom: 2rem;
+    margin-right: 15px;
+    text-transform: uppercase;
+    background: #fff;
+    color: #333;
+    padding: .5rem 1rem;
+    border: none;
+}
+
+@media screen and (min-width: 768px) {
+    #sendEmail {
+        width: 65%;
+        margin: 0 auto;
+    }
+}
+
+#locationInfo {
+    padding: 0;
+}
+
+#locationInfo .col-sm-6 {
+    padding: 0;
+}
+
+#locationMap {
+    width: 100%;
+    height: 250px;
+}
+
+.section-open-hours::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.location-info-container {
+    margin-top: 3.75rem;
+}
+
+.open-hours-wrap {
+    margin-bottom: 2rem;
+}
+
+.location-hours {
+    display: block;
+    width: 210px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.location-hours h2,
+.location-hours h3 {
+    display: inline-block;
+    font-family: 'Raleway';
+}
+
+.location-hours h2 {
+    text-transform: uppercase;
+    font-size: .8rem;
+}
+
+.location-hours h3 {
+    margin-left: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+    #locationMap {
+        height: 450px;
+    }
+}
+
+.top-navbar {
+    height: 30px;
+    background: #333;
+    color: #fff;
+}
+
+.top-navbar .container {
+    height: 30px;
+}
+
+.top-navbar span {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.contact-number {
+    float: right;
+    margin-top: 0.3125rem;
+}
+
+.location-navbar.navbar-fixed-top {
+    top: 30px;
+}
+
+.phone-spacing {
+    margin: 0 .5rem;
+}
+
+.section-services {
+    background: #F5F5F5;
+}
+
+.services-heading-wrap::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.service-category-btn {
+    text-transform: uppercase;
+    display: inline-block;
+    border: 1px solid #333;
+    color: #333;
+    background: none;
+    font-family: 'Montserrat';
+    font-size: 1rem;
+    margin: 0 .3rem;
+    padding: .5rem .8rem;
+}
+
+.service-category-btn.active {
+    background: #fff;
+}
+
+.service-category-btn:hover {
+    background: #fff;
+    transition: 150ms all ease-in-out;
+}
+
+.services-wrap {
+    width: 90%;
+    margin: 1rem auto 0;
+    padding: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+    .services-wrap {
+        width: 75%;
+        max-width: 600px;
+    }
+}
+
+.service {
+    display: none;
+    width: 100%;
+    padding: .3rem 0;
+}
+
+.service.active {
+    display: block;
+}
+
+.service span {
+    display: block;
+    background-color: #F5F5F5;
+    z-index: 99;
+}
+
+.service-dotted {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.service-dotted::after {
+    border-bottom: 2px dotted #333;
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 13px;
+    left: 0;
+}
+
+.services-description {
+    margin-bottom: 1.2rem;
+}
+
+.service-name {
+    text-transform: uppercase;
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+    padding-right: .3rem;
+}
+
+.service-price {
+    font-family: 'Raleway';
+    font-size: .9rem;
+    font-weight: 700;
+    padding-left: .3rem;
+}
+
+.service-description {
+    font-family: 'Montserrat';
+    color: rgba(0,0,0,.7);
+    line-height: 1rem;
+    margin-bottom: 0.7rem;
+}
+
+.services-description {
+    font-family: 'Raleway';
+    font-size: 1rem;
+    color: rgba(0,0,0,.7);
+}
+
+.location-info-wrap {
+    display: flex;
+    justify-content: space-around;
+}
+
+.location-info-wrap i {
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.benefit {
+    text-align: center;
+}
+
+.benefit-desc {
+    text-transform: uppercase;
+    font-family: 'Raleway';
+    font-size: .7rem;
+    color: rgba(255,255,255,.8);
+    margin-top: .3rem;
+}
+
+.gallery-section {
+    background: #F5F5F5;
+}
+
+.masonry {
+  -moz-transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -moz-column-gap: 30px;
+  -webkit-column-gap: 30px;
+  column-gap: 30px;
+  -moz-column-fill: initial;
+  -webkit-column-fill: initial;
+  column-fill: initial;
+}
+.masonry .brick {
+  margin-bottom: 30px;
+}
+.masonry .brick img {
+  -moz-transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  width: 100%;
+}
+
+.masonry.bordered {
+  -moz-column-rule: 1px solid #eee;
+  -webkit-column-rule: 1px solid #eee;
+  column-rule: 1px solid #eee;
+  -moz-column-gap: 50px;
+  -webkit-column-gap: 50px;
+  column-gap: 50px;
+}
+.masonry.bordered .brick {
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #eee;
+}
+.masonry.gutterless {
+  -moz-column-gap: 0;
+  -webkit-column-gap: 0;
+  column-gap: 0;
+}
+.masonry.gutterless .brick {
+  margin-bottom: 0;
+}
+
+.span {
+  -moz-column-span: all;
+  -webkit-column-span: all;
+  column-span: all;
+  *margin: 30px 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .desc {
+    font-size: 1.25em;
+  }
+
+  .intro {
+    letter-spacing: 1px;
+  }
+
+  .wrapper {
+    width: 80%;
+    padding: 2em;
+  }
+
+  .masonry {
+    -moz-column-count: 5;
+    -webkit-column-count: 5;
+    column-count: 5;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+    .wrapper {
+        width: 85%;
+        padding: 1.5em;
+    }
+
+    .masonry {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .wrapper {
+    width: 85%;
+    padding: 1.5em;
+  }
+
+  .masonry {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
+}
+
+#blogPost {
+    background: #F5F5F5;
+}
+
+#blogPost::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+#blogPost .container {
+    margin: 3rem auto 0;
+}
+
+.blog-single-post {
+    background: #fff;
+    padding: 0 1.5rem 1.5rem;
+    -webkit-box-shadow: 4px 4px 9px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 9px -4px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 9px -4px rgba(0,0,0,0.75);
+}
+
+.blog-single-post img {
+    max-width: 100% !important;
+}
+
+.post-heading {
+    padding-top: 1rem;
+    font-family: 'Raleway';
+    font-weight: 700;
+    margin: 0;
+}
+
+.post-date {
+    font-family: 'Montserrat';
+    color: rgba(0,0,0,.7);
+}
+
+.all-posts {
+    background: #fff;
+    -webkit-box-shadow: 4px 4px 9px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 9px -4px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 9px -4px rgba(0,0,0,0.75);
+}
+
+.all-posts h1 {
+    font-size: 1.1rem;
+    background: #333;
+    color: #fff;
+    margin-top: 0;
+    padding: .8rem 1rem;
+}
+
+.all-posts h3 {
+    font-size: .9rem;
+    padding-bottom: 1rem;
+}
+
+.blog-post-heading {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    margin: 0;
+}
+
+.blog-post-date {
+    font-family: 'Raleway';
+    font-weight: 400;
+    color: rgba(0,0,0,.5);
+}
+
+.all-posts ul {
+    padding: .7rem 2rem;
+}
+
+.all-posts ul li {
+    margin: .7rem 0;
+}
+
+.all-posts ul li a {
+    font-family: 'Raleway';
+    font-size: 1rem;
+}
+
+.featured-image {
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+.post-content::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.blog-post-image {
+    width: 30%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    float: left;
+}
+
+.blog-post-info {
+    width: 70%;
+    float: left;
+    padding: .8rem;
+}
+
+.blog-post-info h4 {
+    font-family: 'Raleway';
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.6rem;
+    margin-top: .4rem;
+    margin-bottom: .8rem;
+}
+
+.blog-post-info .post-date {
+    font-size: .8rem;
+    margin: .3rem 0;
+}
+
+.recent-posts-heading {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-size: 1.5rem;
+    color: rgba(0,0,0,.5);
+}
+
+.blog-post-wrap .inner-wrapper::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.blog-post-wrap .inner-wrapper {
+    height: 190px;
+    background: #fff;
+    margin: 1rem 0;
+    -webkit-box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.25);
+    -moz-box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.25);
+    box-shadow: 10px 10px 5px -8px rgba(0,0,0,0.25);
+}
+
+.blog-post-info p {
+    font-family: 'Montserrat';
+    font-size: .8rem;
+}
+
+@media screen and (max-width: 768px) {
+    
+    .inner-wrapper {
+        height: auto !important;
+        min-height: 150px !important;
+    }
+    
+    .blog-post-image {
+        width: 100%;
+        height: 150px;
+    }
+    
+    .blog-post-info {
+        width: 100%;
+    }
+    
+}
+
+.button-load-more button {
+    display: inline-block;
+    text-transform: uppercase;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-family: 'Raleway';
+    font-size: 1rem;
+    margin-top: 1.85rem;
+    padding: 1rem 1.3rem;
+}
+
+.button-load-more button:hover {
+    background: rgba(0,0,0,.5);
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.post-link {
+    color: #333;
+    text-decoration: none;
+}
+
+.post-link:hover {
+    color: rgba(0,0,0,.6);
+}
+
+#bookNowBtn {
+    padding: .5rem 2rem !important;
+    margin-right: 1rem !important;
+}
+
+.client-web-booking {
+    padding: .3rem 0;
+    background: #fff;
+    -webkit-box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+    box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+}
+
+.client-web-booking .step-wrap h2 {
+    font-family: 'Raleway';
+    font-size: 1.5rem;
+}
+
+.step-wrap:last-of-type {
+    padding-right: 0;
+}
+
+#clientBookingProcess #bookingOptions {
+    position: relative;
+    width: 100% !important;
+}
+
+#clientBookingProcess #serviceList {
+    margin-top: 3rem;
+}
+
+#clientBookingProcess #serviceList .group-heading h1 {
+    font-family: 'Raleway';
+}
+
+#clientBookingProcess .service-price h2 {
+    font-weight: 700;
+}
+
+#clientBookingProcess #servicesSelectedButton {
+    text-transform: uppercase;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    margin-top: 2rem;
+    padding: .5rem 1.3rem;
+    border-radius: 0;
+}
+
+html {
+    height: 100%;
+}
+
+.client-booking-page  {
+    height: 100%;
+    background: rgba(0,0,0,.03);
+}
+
+.accordionTwo .wrapper {
+    width: 100% !important;
+    padding: 0;
+}
+
+.client-booking-page .booking-step-time .collapse-link h5 {
+    margin: 0 auto;
+    padding: 1rem;
+    background: #fff;
+    font-family: 'Raleway';
+}
+
+.client-booking-page .booking-step-time .collapse-link:hover {
+    text-decoration: none;
+}
+
+.client-booking-page .booking-step-time .collapse-link:focus {
+    text-decoration: none;
+}
+
+#collapseOne {
+    background: #fff;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+#selectBookingTime {
+    margin-top: 1.5rem;
+    background: #fff;
+    -webkit-box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+    box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+}
+
+.accordionTwo {
+    background: #fff;
+    margin-top: 1.5rem;
+}
+
+.client-submit-info {
+    display: none;
+    background: #fff;
+    padding: 2rem;
+    -webkit-box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+    box-shadow: 0px 6px 14px -4px rgba(0,0,0,0.42);
+}
+
+.booking-account-buttons {
+    margin: 1.5rem 0;
+}
+
+#clientRequiredFields {
+    margin-top: 1.5rem;
+}
+
+#clientInsertData {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.register-button,
+.login-button,
+.guest-button,
+.go-back-btn {
+    text-transform: uppercase;
+    border: none;
+    font-family: 'Montserrat';
+    margin: 1rem;
+    padding: .5rem 1.4rem;
+}
+
+.register-button {
+    border: 1px solid #333;
+    background: #fff;
+    color: #333;
+}
+
+.login-register-row .fa {
+    margin-right: .3rem;
+}
+
+.register-button:hover {
+    background: rgba(0,0,0,.5);
+    border: 1px solid rgba(0,0,0,.5);
+    color: #fff;
+    transition: all 250ms ease-in-out;
+}
+
+.login-button {
+    background: #337ab7;
+    color: #fff;
+}
+
+.login-button:hover {
+    background: rgba(51, 122, 183, .5);
+    transition: all 250ms ease-in-out;
+}
+
+.go-back-btn {
+    background: #d9534f;
+    color: #fff;
+}
+
+.form-section {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.form-section input {
+    border-radius: 0;
+}
+
+@media screen and (min-width: 550px) {
+    .form-section {
+        width: 350px;
+    }
+}
+
+#staffSelectedButton {
+    margin-top: 0;
+}
+
+.action-buttons-wrap {
+    margin-top: 2rem !important;
+    padding-bottom: 2rem;
+}
+
+.action-buttons-wrap button {
+    text-transform: uppercase;
+    font-family: 'Raleway';
+    border-radius: 0;
+    padding: .5rem 1.3rem;
+    border: none;
+}
+
+.action-buttons-wrap #staffSelectedButton,
+.submit-booking-btn {
+    background: #333;
+    margin-left: 1.5rem;
+}
+
+.datepicker-days {
+    margin: 0 auto;
+}
+
+.table-available-hours {
+    background: #fff;
+}
+
+.collapse-link h5 {
+    -webkit-box-shadow: 0px 5px 1px -3px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0px 5px 1px -3px rgba(0,0,0,0.22);
+    box-shadow: 0px 5px 1px -3px rgba(0,0,0,0.22);
+}
+
+.points-awarded {
+    margin-bottom: 0 !important;
+}
+
+.submit-booking-btn:hover,
+.submit-booking-btn:active,
+.submit-booking-btn:focus {
+    background: #333 !important;
+}
+
+.booking-confirm .row {
+    margin: 0;
+}
+
+button, input, checkbox, select,
+.btn:focus, .bootstrap-select .btn:focus, input:focus, checkbox:focus, select:focus, ul:focus, .dropdown-menu:focus,
+li:focus, a:focus, span:focus,
+button::before, input::before, checkbox::before, select::before,
+.checkbox label::before {
+    outline: none !important;
+}
+
+select,
+button {
+    border-radius: 0 !important;
+}
+
+.client-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+}
+
+.loader {
+    position: absolute;
+    top: 80%;
+    border: 16px solid #fff;
+    border-top: 16px solid #333;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+.client-loader h2 {
+    margin-bottom: 2rem;
+    font-family: 'Raleway';
+    color: rgba(0,0,0,.9);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#clientBookingProcess {
+    position: relative;
+}
+
+.muted {
+    opacity: 0.1;
+}
+
+#totalPriceCalc {
+    background: #fff;
+    font-family: 'Raleway';
+    font-size: 1.3rem;
+    padding: .5rem 0;
+}
+
+.booking-steps {
+    width: 100%;
+}
+
+.client-web-booking .booking-steps h1 {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1875rem;
+}
+
+.client-web-booking .booking-steps h2 {
+    font-size: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    #totalPriceCalc {
+        width: 500px;
+        margin: 1.3rem auto;
+    }
+}
+
+#headerSlider .item {
+    height: 500px;
+}
+
+.about-salon-noimg {
+    margin: 0 auto;
+}
+
+#serviceList {
+    border-left: 1px solid rgba(0,0,0,.05);
+}
+
+.client-loyalty-container {
+    margin-top: 3rem;
+}
+
+.loyalty-promo-text {
+    font-size: 1rem;
+}
+
+#freeServices, #discountList {
+    width: 150px;
+}
+
+.available-time.selected-time .time-from, .active.day {
+    color: #fff !important;
+}
+
+.single-staff .bootstrap-select button {
+    height: 34px;
+}
+
+.bootstrap-select.select-alt {
+    margin-bottom: -7px !important;
+}
+
+.gdpr-consent .i-checks {
+    margin-left: 15px;
+}

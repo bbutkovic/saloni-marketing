@@ -1,0 +1,158 @@
+/* Admin custom css */
+
+.image-div {
+    float: left;
+    margin-right: 10px;
+    position: relative;
+}
+.image-div-over {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.58);
+    color: #CC0C20;
+    cursor: pointer;
+}
+.image-div:hover .image-div-over {
+    display: block;
+}
+.image-item {
+    width: 150px;
+    height: 130px;
+}
+.btn-mt22 {
+    margin-top: 22px;
+}
+.title-spinner {
+    display: inline-block;
+}
+.gallery-loader {
+    display: none;
+    vertical-align: top;
+    margin-top: 12px !important;
+    margin-left: 15px !important;
+}
+
+/* Admin calendar css */
+
+.calendar-days {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 14px;
+}
+.select-hours {
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: white;
+    margin-left: -15px;
+}
+.days, .time {
+    width: 14.2857142857% !important;
+    text-align: center;
+}
+.days span {
+    font-size: 10px;
+    display: block;
+    letter-spacing: 0;
+
+}
+.days span.name {
+    font-size: 12px;
+}
+.time .hours {
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+}
+.week-day {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #ECF0F1;
+}
+
+.booking-calendar h1 {
+    margin-bottom: 20px;
+}
+#booking_calendar {
+    border: 1px solid #ccc;
+    overflow: auto;
+    border-radius: 3px;
+}
+.booked, .not-booked, .not-work {
+    padding: 10px 0;
+    text-align: center;
+}
+.booked {
+    background-color:#fcf8e3;
+    cursor: default;
+    color: #ccc;
+}
+.not-booked {
+    cursor: pointer;
+}
+.not-booked:hover {
+    background-color: #eee;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.not-work {
+    color: #ccc;
+}
+.not-work i {
+    display: none;
+}
+.selected-time, .selected-time:hover {
+    background-color: #1ab394;
+    color: white;
+}
+.booking-time {
+    padding: 20px 0 10px;
+}
+.calendar-loader {
+    display: none;
+    vertical-align: text-top;
+    margin-top: 4px !important;
+    margin-left: 15px !important;
+}
+.loader-opacity {
+    opacity: 0.3;
+    pointer-events: none;
+}
+.week-calendar-time {
+    position: relative;
+    height: 428px;
+}
+.week-calendar-days {
+    color: #ed5565;
+    font-weight: bold;
+}
+.previous-arrow {
+    top: 0;
+    left: 15px;
+    position: absolute;
+    height: 57px;
+    background: #1ab394;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    z-index: 9999;
+}
+.next-arrow {
+    top: 0;
+    right: 15px;
+    position: absolute;
+    height: 57px;
+    background: #1ab394;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    z-index: 9999;
+}
+#booking_calendar_content {
+    padding: 10px 15px;
+    overflow: hidden;
+}

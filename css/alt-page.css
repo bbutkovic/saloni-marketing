@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+#altPageBody {
+    display: flex;
+    background-color: #f3f3f4;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+#privacyPolicy {
+    background-color: #f3f3f4;
+}
+
+.policy-header {
+    background: rgba(147,206,222,1);
+    background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(121,191,211,1) 36%, rgba(117,189,209,1) 42%, rgba(73,165,191,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(36%, rgba(121,191,211,1)), color-stop(42%, rgba(117,189,209,1)), color-stop(100%, rgba(73,165,191,1)));
+    background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(121,191,211,1) 36%, rgba(117,189,209,1) 42%, rgba(73,165,191,1) 100%);
+    background: -o-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(121,191,211,1) 36%, rgba(117,189,209,1) 42%, rgba(73,165,191,1) 100%);
+    background: -ms-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(121,191,211,1) 36%, rgba(117,189,209,1) 42%, rgba(73,165,191,1) 100%);
+    background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(121,191,211,1) 36%, rgba(117,189,209,1) 42%, rgba(73,165,191,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
+    padding: 50px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    color: #fff;
+}
+
+.privacy-policy-wrapper {
+    width: 70%;
+    margin: 20px auto;
+    font-family: 'Roboto';
+    font-size: 16px;
+    line-height: 27px;
+    color: rgba(0,0,0,.6);
+}
+
+.privacy-policy-app .policy-header {
+    margin-top: 0 !important;
+}

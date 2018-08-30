@@ -1,0 +1,1715 @@
+.checkbox {
+  padding-left: 20px;
+}
+.checkbox label {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 5px;
+}
+.checkbox label::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 0;
+  margin-left: -20px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  background-color: #fff;
+  -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+  -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+.checkbox label::after {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 0;
+  top: 0;
+  margin-left: -20px;
+  padding-left: 3px;
+  padding-top: 1px;
+  font-size: 11px;
+  color: #555555;
+}
+.checkbox input[type="checkbox"],
+.checkbox input[type="radio"] {
+  opacity: 0;
+  z-index: 1;
+}
+.checkbox input[type="checkbox"]:focus + label::before,
+.checkbox input[type="radio"]:focus + label::before {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.checkbox input[type="checkbox"]:checked + label::after,
+.checkbox input[type="radio"]:checked + label::after {
+  font-family: "FontAwesome";
+  content: "\f00c";
+}
+.checkbox input[type="checkbox"]:disabled + label,
+.checkbox input[type="radio"]:disabled + label {
+  opacity: 0.65;
+}
+.checkbox input[type="checkbox"]:disabled + label::before,
+.checkbox input[type="radio"]:disabled + label::before {
+  background-color: #eeeeee;
+  cursor: not-allowed;
+}
+.checkbox.checkbox-circle label::before {
+  border-radius: 50%;
+}
+.checkbox.checkbox-inline {
+  margin-top: 0;
+}
+
+.checkbox-primary input[type="checkbox"]:checked + label::before,
+.checkbox-primary input[type="radio"]:checked + label::before {
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.checkbox-primary input[type="checkbox"]:checked + label::after,
+.checkbox-primary input[type="radio"]:checked + label::after {
+  color: #fff;
+}
+
+.checkbox-danger input[type="checkbox"]:checked + label::before,
+.checkbox-danger input[type="radio"]:checked + label::before {
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+.checkbox-danger input[type="checkbox"]:checked + label::after,
+.checkbox-danger input[type="radio"]:checked + label::after {
+  color: #fff;
+}
+
+.checkbox-info input[type="checkbox"]:checked + label::before,
+.checkbox-info input[type="radio"]:checked + label::before {
+  background-color: #5bc0de;
+  border-color: #5bc0de;
+}
+.checkbox-info input[type="checkbox"]:checked + label::after,
+.checkbox-info input[type="radio"]:checked + label::after {
+  color: #fff;
+}
+
+.checkbox-warning input[type="checkbox"]:checked + label::before,
+.checkbox-warning input[type="radio"]:checked + label::before {
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
+}
+.checkbox-warning input[type="checkbox"]:checked + label::after,
+.checkbox-warning input[type="radio"]:checked + label::after {
+  color: #fff;
+}
+
+.checkbox-success input[type="checkbox"]:checked + label::before,
+.checkbox-success input[type="radio"]:checked + label::before {
+  background-color: #5cb85c;
+  border-color: #5cb85c;
+}
+.checkbox-success input[type="checkbox"]:checked + label::after,
+.checkbox-success input[type="radio"]:checked + label::after {
+  color: #fff;
+}
+
+.radio {
+  padding-left: 20px;
+  focus: none;
+}
+.radio label {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  padding-left: 5px;
+}
+.radio label::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 0;
+  margin-left: -20px;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-transition: border 0.15s ease-in-out;
+  -o-transition: border 0.15s ease-in-out;
+  transition: border 0.15s ease-in-out;
+}
+.radio label::after {
+  display: inline-block;
+  position: absolute;
+  content: " ";
+  width: 11px;
+  height: 11px;
+  left: 3px;
+  top: 3px;
+  margin-left: -20px;
+  border-radius: 50%;
+  background-color: #555555;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+}
+.radio input[type="radio"] {
+  opacity: 0;
+  z-index: 1;
+}
+
+.radio input[type="radio"]:checked + label::after {
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
+.radio input[type="radio"]:disabled + label {
+  opacity: 0.65;
+}
+.radio input[type="radio"]:disabled + label::before {
+  cursor: not-allowed;
+}
+.radio.radio-inline {
+  margin-top: 0;
+}
+
+.radio-primary input[type="radio"] + label::after {
+  background-color: #337ab7;
+}
+
+.radio-primary input[type="radio"]:checked + label::after {
+  background-color: #337ab7;
+}
+
+.radio-danger input[type="radio"] + label::after {
+  background-color: #d9534f;
+}
+
+.radio-danger input[type="radio"]:checked + label::after {
+  background-color: #d9534f;
+}
+
+.radio-info input[type="radio"] + label::after {
+  background-color: #5bc0de;
+}
+
+.radio-info input[type="radio"]:checked + label::after {
+  background-color: #5bc0de;
+}
+
+.radio-warning input[type="radio"] + label::after {
+  background-color: #f0ad4e;
+}
+.radio-warning input[type="radio"]:checked + label::before {
+  border-color: #f0ad4e;
+}
+.radio-warning input[type="radio"]:checked + label::after {
+  background-color: #f0ad4e;
+}
+
+.radio-success input[type="radio"] + label::after {
+  background-color: #5cb85c;
+}
+.radio-success input[type="radio"]:checked + label::after {
+  background-color: #5cb85c;
+}
+input[type="radio"].styled:checked + label:after {
+  font-family: 'FontAwesome';
+  content: "\f00c";
+}
+input[type="radio"] .styled:checked + label::before {
+  color: #fff;
+}
+input[type="radio"] .styled:checked + label::after {
+  color: #fff;
+}
+
+.permission-checkbox {
+  display: inline;
+}
+
+.social-login {
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    display: block;
+    width: 20%;
+    max-width: 130px;
+    min-width: 90px;
+    margin: 20px auto;
+}
+
+.ibox-title h5 {
+    text-align: center;
+    display: block;
+    float: none;
+}
+
+.image-container {
+    text-align: center;
+}
+
+#new-image-label {
+    display: block;
+}
+
+.image-change {
+  padding: 14px 25px;
+  background: #1ab394;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+
+.image-file {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+
+.image-file:hover + .image-change,
+.image-file:focus + .image-change,
+.image-change:hover,
+.image-change:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.image-path {
+  margin: 0;
+}
+
+.image-path:not(:empty) {
+  margin: 1em 0;
+}
+
+.image-path {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+
+.image-path:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+#add-new-user {
+  margin-top: 20px;
+  margin-left: 13px;
+}
+
+.table-delete,
+.table-signin,
+.table-profile,
+.table-pay {
+  font-size: 19px;
+  margin: 10px;
+}
+
+.table-pay {
+  color: green;
+}
+
+.table-delete {
+  color: red;
+}
+
+.user-options {
+  text-align: center;
+}
+
+.section-heading {
+  margin-top: 35px;
+}
+
+#register-salon {
+  margin: 50px 0;
+}
+
+#edit-salon-info {
+  margin-top: 26px;
+}
+
+.time-format {
+  display: block;
+}
+
+.radio-time .radio-inline {
+  font-weight: 700;  
+}
+
+#switch-lang {
+  margin: 13px 20px;
+  padding: 4px 12px;
+}
+
+.ibox-title {
+  border: none;
+}
+
+.ibox-content {
+  border: none;
+}
+
+.location-additional-info label {
+  display: block;
+}
+
+#switch-location {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.new-location-btn {
+  margin-top: 32px;
+  margin-left: 30px;
+  padding: 7px 12px;
+  float: right;
+}
+
+input[type="radio"]:focus{
+  outline:0;
+}
+
+.flatpickr-input[readonly] {
+  background: #fff;
+  text-align: center;
+}
+
+#update-birthday.flatpickr-input[readonly] {
+  text-align: left;
+}
+
+.table-working-hours {
+  min-width: 300px !important;
+  margin: 0 auto;
+}
+
+.table-working-hours tr {
+  margin: 10px 0;
+}
+
+.table-working-hours tr td {
+  vertical-align: middle !important;
+  border-top: none !important;
+}
+
+.update-timetable {
+  margin: 20px 0;
+}
+
+.social-login {
+  margin-top: 30px;
+}
+
+.social-login i {
+  margin-right: 10px;
+}
+
+#login-form {
+  padding: 20px 30px;
+}
+
+#login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginscreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.middle-box {
+  padding: 0;
+}
+
+.login-wrapper {
+  -webkit-box-shadow: 0px 0px 226px -74px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 226px -74px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 226px -74px rgba(0,0,0,0.75);
+}
+
+@media screen and (min-width: 800px) {
+  .loginscreen.middle-box {
+    width: 50%;
+  }
+}
+
+.logo-name {
+  font-size: 50px !important;
+  letter-spacing: 2px;
+}
+
+.salon-logo-img {
+  display: block;
+  margin: 20px auto;
+}
+
+#location-options .panel-body {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+#location-options .nav-tabs {
+  border: none;
+}
+
+#location-options .col-lg-12 {
+  padding: 0 !important;
+}
+
+#location-options a {
+  border: none;
+}
+
+#salon-location-map {
+  width: 100%;
+  height: 330px;
+}
+
+.delete-block{
+  margin-top:23px;
+}
+
+.required-fields {
+  display: block;
+  margin: 15px 0;
+}
+
+.new-location-wrapper .ibox-title{
+  padding: 25px 25px 15px 25px;
+}
+
+.staff-photo {
+  width: 50px;
+  display: block;
+  margin: 0 auto;
+}
+
+.staff-table tr td {
+  vertical-align: middle !important;
+  text-align: center !important;
+  cursor: pointer;
+}
+
+.services-label {
+  display: block;
+}
+
+.general-settings label {
+  display: block;
+  margin-top: 20px;
+}
+
+#emailDay select,
+#emailTime select {
+  width: 200px;
+  display: inline;
+}
+
+#email_time input {
+  width: 200px;
+  display: inline;
+}
+
+.select-weekend-hours {
+  margin-top: 25px;
+}
+
+.select-hours-type {
+  width: 150px;
+  margin: 0 auto;
+}
+
+.edit-salon::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#DataTables_Table_0_filter label {
+  margin-left: 20px !important;
+}
+
+#edit-schedule-modal .flatpickr-calendar {
+  top: 60px !important;
+  left: 20px !important;
+}
+
+#edit-schedule-modal thead tr th {
+  border: none;
+}
+
+.add-note {
+  padding: 8px;
+}
+
+.second-option {
+  margin-top: 25px;
+}
+
+.table-schedule td {
+  vertical-align: middle !important;
+}
+
+#email_staff_rosters {
+  padding-bottom: 8px;
+}
+
+.salon-services .wrapper-content {
+  padding: 20px 10px;
+}
+
+.user-avatar-menu {
+  width: 50px;
+}
+
+.limits-select {
+  max-width: 300px;
+  margin-left: 20px;
+  margin: 0 auto;
+}
+
+.policies-settings {
+  padding: 40px 0 60px 0;
+  margin-bottom: 20px;
+}
+
+.policies-settings .form-group {
+  margin-bottom: 0;
+}
+
+.policies-settings .form-group label {
+  margin-top: 10px;
+}
+
+.policies-settings::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.time-limits {
+  padding: 40px 0 100px 0;
+}
+
+.select-location {
+  margin-top: 40px !important;
+}
+
+#serviceSelection,
+#arrowService,
+#staffSelection,
+#dateCalendar,
+#changeStaff,
+#switchDate {
+  display: none;
+}
+
+#serviceSelection.active,
+#arrowService.active,
+#staffSelection.active,
+#dateCalendar.active,
+#changeStaff.active,
+#switchDate.active {
+  display: inline-block;
+}
+
+.copy-salon {
+  margin-top: 30px;
+  margin-right: 20px;
+}
+
+.repeating-schedule {
+  line-height: 37px;
+}
+
+#scheduleDesc {
+  display: block;
+}
+
+.description-small {
+  font-size: 12px !important;
+}
+
+.pick-date {
+  display: inline-block;
+  width: 150px;
+}
+
+.table-available-hours {
+  width: 300px;
+  height: 300px;
+  overflow-y: visible;
+  margin: 0 auto;
+}
+
+.available-time {
+  cursor: pointer;
+}
+
+.available-time:hover {
+  background-color: #605292 !important;
+  color: #fff;
+}
+
+.selected-time {
+  background-color: #605292 !important;
+}
+
+#availableForBooking,
+#selectedBookingTime {
+  display: none;
+}
+
+
+#waitingList {
+  min-width: 0;
+  margin-right: 10px;
+}
+
+#availableForBooking.active,
+#selectedBookingTime.active {
+  display: block;
+}
+
+.calendar-title {
+  margin-top: 40px !important;
+}
+
+.booking-fields {
+  margin-bottom: 35px;
+}
+
+.update-calendar input {
+  margin: 0 auto;
+}
+
+.calendar-colors {
+  margin: 20px 0;
+}
+
+.calendar-colors label {
+  display: block;
+}
+
+.sp-replacer {
+  border: none;
+  background: none;
+}
+
+.sp-preview {
+  border: none;
+}
+
+.radio-options {
+  margin: 30px 0;
+}
+
+.select-options select {
+  min-width: 100px;
+  margin: 0 auto;
+}
+
+.optional-fields,
+.customer-info {
+  margin: 30px 0;
+}
+
+.booking-confirm input {
+  min-width: 200px;
+  margin: 0 auto;
+}
+
+.appointment-actions button,
+.appointment-status button {
+  display: block;
+  width: 200px;
+  margin: 10px auto;
+}
+
+.actions-wrap {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.customer-name {
+  margin-top: -5px !important;
+}
+
+.fc-time-grid-event p {
+  margin: 2px 0;
+}
+
+.color-shape {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 1199px) {
+  .colors-wrap {
+    width: 150px;
+    margin: 0 auto;
+  }
+}
+
+.color-status {
+  vertical-align: super;
+  margin-left: 10px;
+}
+
+.edit-colors-btn {
+  display: table;
+  margin: 15px auto;
+}
+
+.additional-action-required {
+  margin: 35px 0;
+}
+
+#switchLocation {
+  margin: 13px 20px;
+  padding: 4px 12px;
+}
+
+.booking-info-wrap {
+  position: absolute;
+  padding: 10px 30px;
+  background-color: #f2dcdb;
+  width: auto;
+  height: auto;
+  z-index: 10001;
+}
+
+.booking-info-wrap h2 {
+  margin: 0;
+}
+
+.booking-info-wrap hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top: .5px solid rgba(47, 64, 80, 0.5) !important;
+}
+
+.booking-info-wrap h4 {
+  margin-top: 12px;
+}
+
+.pace-done {
+  padding-right: 0 !important;
+}
+
+#editBookingModal .modal-content {
+  height: 400px;
+  overflow: auto;
+}
+
+#selectedBookingTime .wrapper.wrapper-content {
+  padding: 0 !important;
+}
+
+#collapseBookingInfo {
+  margin-bottom: 0 !important;
+}
+
+#collapseBookingInfo.border-bottom {
+  border-bottom: none !important;
+}
+
+.category-block a {
+  display: block;
+}
+
+.services-options .ibox-content::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.list-group-item {
+  padding: 5px 15px !important;
+}
+
+.modal-select {
+  width: 180px;
+  margin: 0 auto;
+}
+
+.group-block,
+.subgroup-block {
+  display: none;
+}
+
+.group-block.active,
+.subgroup-block.active {
+  display: block;
+}
+
+.service-overview .dd-handle::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.service-overview .dd-handle p {
+  margin: 0;
+}
+
+.service-overview .dd-handle a {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.edit-input {
+  width: 230px;
+  margin: 5px auto;
+}
+
+.bootstrap-duallistbox-container label {
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+
+.drag-indicator {
+  margin-right: 10px;
+}
+
+.js-sortable-inner-connected {
+  list-style-type: none;
+}
+
+.booking-step {
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  background: #676a6c;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 24px;
+  padding-top: 11px;
+  cursor: not-allowed;
+}
+
+.booking-step-info {
+  cursor: not-allowed;
+}
+
+.booking-step-info.active {
+  cursor: pointer;
+}
+
+.booking-step.active {
+  cursor: pointer;
+  background: #605292;
+}
+
+.step-wrap {
+  margin-top: 15px;
+}
+
+.booking-step-staff,
+.booking-step-time {
+  display: none;
+}
+
+.booking-step-time h4 {
+  margin: 30px 0;
+}
+
+.service-info {
+  font-size: 22px;
+}
+
+.disabled {
+  pointer-events:none;
+}
+
+.service-wrap {
+  margin: 0 auto;
+  padding: 10px 0 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.service-wrap::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.service-wrap h2 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.service-wrap input {
+  vertical-align: super;
+}
+
+.service-name {
+  text-align: left;
+}
+
+.group-heading {
+  box-shadow: 0 0 1px 1px rgba(108, 122, 137, 0.1);
+}
+
+.services-list-container hr {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.services-list-container hr:last-of-type {
+  display: none;
+}
+
+@media screen and(max-width: 550px) {
+  .service-subgroup {
+    display: none;
+  }
+}
+
+.group-heading {
+  background: #fff;
+  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+.group-heading h1 {
+  margin: 0 !important;
+  padding: 8px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+@media screen and (min-width: 768px) {
+  .group-heading,
+  .service-wrap,
+  .services-list-container hr {
+    width: 400px;
+  }
+}
+
+.staff-container::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.staff-wrap::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.staff-wrap {
+  width: 350px;
+  margin: 15px auto;
+}
+
+.staff-wrap:first-of-type {
+  margin-top: 30px;
+}
+
+.staff-wrap:last-of-type {
+  margin-bottom: 30px;
+}
+
+.staff-wrap h2 {
+  font-size: 19px !important;
+  font-weight: 400 !important;
+}
+
+.staff-container select {
+  display: block;
+  margin: 15px 0;
+}
+
+#selectSingleStaff {
+  width: 150px;
+  margin: 40px auto;
+}
+
+#datepicker table {
+  margin: 0 auto;
+}
+
+.single-staff button {
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 10px;
+}
+
+.single-staff select {
+  display: inline-block;
+  height: auto;
+}
+
+.checkbox-notify {
+  display: block;
+  margin: 0 auto !important;
+}
+
+.sk-spinner {
+  display: none;
+}
+
+.get-staff-schedule {
+  margin: 30px 0;
+}
+
+.booking-process .ibox-content.alt {
+  background: none;
+}
+
+.staff-wrap select {
+  margin: 0;
+}
+
+.staff-wrap h2 {
+  margin: 0;
+  margin-top: 5px;
+}
+
+#bookingOptions::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+#bookingOptions {
+  margin-bottom: 50px;
+}
+
+#selectRandomStaff {
+  margin-right: 0px !important;
+}
+
+a.fc-time-grid-event {
+  margin: 1px 0 !important;
+  padding: 1px 6px;
+}
+
+.fc-time-grid-event p {
+  margin: 0 !important;
+}
+
+.datepicker td.day {
+  color: #282626 !important;
+}
+
+td.day.disabled {
+  color: #ACABAB !important;
+}
+
+.booking-step-time .datepicker {
+  margin-bottom: 50px;
+}
+
+#staffSelectedButton {
+  margin-left: 2rem;
+}
+
+#datepicker .table-condensed {
+  width: 300px;
+  height: 300px;
+}
+
+.subgroup-wrap {
+  margin-bottom: 30px;
+}
+
+.subgroup-heading {
+  width: 500px;
+  margin: 0 auto;
+  margin-bottom: -10px;
+  text-align: left;
+}
+
+.subgroup-heading h1 {
+  font-size: 20px !important;
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+#clientNameFormat {
+  width: 200px !important;
+  margin: 0 auto;
+}
+
+#updateClientSettings .table-responsive {
+  width: 70%;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+}
+
+#updateClientSettings button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+@media screen and (max-width: 991px) {
+  .name-format {
+    margin: 20px 0;
+  }
+}
+
+.client-labels small {
+  display: block;
+  margin: 10px 0;
+}
+
+.client-labels ul {
+  margin: 20px 0;
+  padding: 0;
+}
+
+.client-labels ul li {
+  margin: 5px;
+}
+
+.website-options-heading h2 {
+  font-size: 19px;
+}
+
+.website-options-heading a {
+  display: block;
+}
+
+.template {
+  display: block;
+  width: 90%;
+  height: 200px;
+  max-width: 450px;
+  background: grey;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.url-input {
+  text-align: center;
+  width: 90%;
+  margin: 10px auto;
+}
+
+.input-url {
+  text-align: center;
+}
+
+@media screen and (min-width: 769px) {
+  .url-input {
+    width: 50%;
+    max-width: 500px;
+  }
+}
+
+.website-options-heading {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.datepicker-days {
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 991px) {
+  #datepicker .datepicker-days {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  #datepicker .datepicker-days {
+    width: 290px;
+    height: 290px;
+  }
+}
+
+.points-needed.input-group {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+.total-price-section {
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.discount-block {
+  width: 50%;
+  min-width: 200px;
+  margin: 0 auto;
+}
+
+.new-price {
+  margin: 0;
+}
+
+.new-price strong {
+  display: block;
+  font-size: 20px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+#selectHour {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.waiting-list-label {
+  display: block;
+}
+
+#selectedDate .datepicker {
+  margin: 0 auto;
+}
+
+.starting-date-wrap,
+.shift-select-wrap,
+.add-schedule-wrap {
+  display: none;
+}
+
+.starting-date-wrap.active,
+.shift-select-wrap.active,
+.add-schedule-wrap.active {
+  display: block;
+}
+
+#repeatFor {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.affected-booking {
+  display: block;
+  margin: 3px 0;
+  list-style-type: none;
+}
+
+#modal-edit-schedule .input-wrap {
+  width: 45%;
+  margin: 0 auto;
+}
+
+#modal-edit-schedule .input-wrap:last-of-type {
+  margin-bottom: 20px;
+}
+
+#workingStatus {
+  width: 15px;
+  margin: 0 auto;
+}
+
+#fieldsHolder .form-group {
+  text-align: left;
+}
+
+.percent-button {
+  margin-bottom: -23px;
+}
+
+.staff-img {
+  display: block;
+  width: 20%;
+  margin: 20px auto;
+}
+
+.dz-filename,
+.dz-progress,
+.dz-error-message,
+.dz-success-mark,
+.dz-error-mark {
+    display: none !important;
+}
+
+.dz-preview {
+  display: inline-block;
+  width: 22%;
+  margin: .4rem 1.5%;
+}
+
+.location-photo {
+  position: relative;
+  display: inline-block;
+  width: 22%;
+  margin: .6rem 1.2%;
+}
+
+.location-photo:hover .overlay{
+  display: block;
+}
+
+.photo-container {
+  width: 100%;
+  padding-top: 100%;
+  background-size: cover;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  background: rgba(0,0,0,.5);
+  width: 100%;
+  padding-top: 100%;
+  z-index: 9999;
+}
+
+.overlay a {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.overlay a i {
+  font-size: 2rem;
+  color: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  .location-photo {
+    width: 10%;
+    margin: .6rem 1%;
+  }
+  
+  .slider-image {
+    width: 15%;
+    margin: .6rem 1.5%;
+  }
+  
+  .slider-image .photo-container {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+#mceu_92,
+#mceu_93 {
+  display: none;
+}
+
+.submit-socials {
+  margin-left: 1px;
+}
+
+.bootstrap-select img {
+  width: 50px;
+}
+
+.book-now-checkbox {
+  height: 13px;
+}
+
+#fieldsHolder .input-group {
+  float: left;
+}
+
+.happy_hour_label {
+  display: block;
+}
+
+#slowDayHourForm .form-group {
+  width: 40%;
+  margin: 0 auto;
+}
+
+#loyaltyTypeSelect,
+#numberOfArrivals1,
+#numberOfArrivals2 {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.booking-type-wrap {
+  display: none;
+}
+
+.booking-type-wrap.active {
+  display: block;
+}
+
+.action-buttons-wrap {
+  margin-top: 2rem;
+}
+
+.client-loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+}
+
+.loader {
+  position: absolute;
+  top: 55%;
+  border: 16px solid #fff;
+  border-top: 16px solid #333;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+.client-loader h2 {
+  margin-top: -20px;
+  margin-bottom: 2rem;
+  font-family: 'Raleway';
+  color: rgba(0,0,0,.9);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#clientBookingProcess {
+  position: relative;
+}
+
+.muted {
+  opacity: 0.1;
+}
+
+.booking-steps {
+  width: 100%;
+}
+
+.booking-steps h2 {
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+#appointmentSelectModal .service-name h2 {
+  font-size: 1.85rem;
+}
+
+#appointmentSelectModal .service-wrap {
+  padding: 0;
+}
+
+.fields-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.fields-wrap .template-field {
+  margin: 2px 5px 2px 0;
+}
+
+.reminders-hr {
+  margin: 0 !important;
+}
+
+.reminders-form .checkbox-primary {
+  margin-left: 3px;
+}
+
+.template-selection-wrap {
+  margin: 10px 0;
+}
+
+.vouchers-row h4 {
+  margin-top: 12px;
+  margin-left: -15px;
+}
+
+.reminders-form select {
+  width: 200px;
+}
+
+.edit-date #datepicker .table-condensed {
+  width: 200px;
+  height: auto;
+}
+
+.payment-option img {
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.today-bookings-wrap h1,
+.new-clients-wrap h1 {
+  font-size: 50px;
+  font-weight: 500;
+  margin: 34px 0;
+}
+
+.next-booking-wrap h2 {
+  margin: 48px 0;
+}
+
+.payment-logo {
+  margin-top: 20px;
+}
+
+.payment-logo img {
+  width: 100px;
+  height: auto;
+}
+
+#paypalPayment, #stripePayment, #wspayPayment, .payment-keys {
+  margin-top: 20px;
+}
+
+#exportToCalendar {
+  cursor: pointer;
+  text-align: center;
+}
+
+.calendar-icon {
+  display: block;
+  width: 50px;
+  height: auto;
+  margin: 0 auto;
+}
+
+#exportToCalendar h3 {
+  margin-bottom: 0;
+}
+
+.calendar-export-options {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.calendar-export-options a {
+  display: block;
+  margin: 15px auto;
+}
+
+.calendar-export-options a button {
+  width: 100%;
+}
+
+#servicesSelectedButton {
+  margin-bottom: 15px;
+}
+
+.html5buttons, #DataTables_Table_0_length, #DataTables_Table_0_filter {
+  text-align: center;
+}
+
+.about-salon-image, .about-image-placeholder.active {
+  width: 250px;
+  height: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.services-discounts-container {
+  border-left: 1px solid rgba(0,0,0,.05);
+}
+
+.block-label {
+  display: block;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus, .dropdown-menu>.active>a:hover,
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover{
+  background: #337ab7 !important;
+}
+
+.single-staff .bootstrap-select {
+  width: 200px !important;
+  margin-top: -5px !important;
+  margin-left: 5px !important;
+}
+
+.single-staff .bootstrap-select button {
+  height: 36px;
+}
+
+.delete-photo {
+  display: block;
+  text-align: center;
+}
+
+.delete-photo i {
+  font-size: 20px;
+  color: red;
+}
+
+#startStatsDate, #endStatsDate {
+  width: 230px;
+  text-align: center;
+}
+
+.voucher-select {
+  width: 150px;
+}
+
+.date-picker {
+  margin-left: 0px;
+}
+
+.date-group {
+  width: 300px;
+}
+
+.option-icons {
+  font-size: 18px;
+}
+
+.modal-lg {
+  width: 80% !important;
+}
+
+#gdprConsent {
+  margin-right: 10px;
+}
+
+.gdpr-consent {
+  margin-bottom: 20px;
+}
+
+.payment-logo {
+  margin-right: 10px;
+}
+
+.payment-options-wrap input {
+  width: 50%;
+  max-width: 500px;
+}
+
+#newFacebookAdCampaign {
+  width: 50%;
+  margin: 0 auto;
+}
