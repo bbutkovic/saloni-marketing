@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('.new-group').on('click', function() {
         var category = $(this).data('id');
         $('#groupCatId').val(category);
@@ -473,7 +472,6 @@ function updateServiceLoyalty() {
     });
 
     $.ajax({
-
         type: 'post',
         url: ajax_url + 'loyalty/update/services',
         dataType: 'json',
@@ -490,4 +488,66 @@ function updateServiceLoyalty() {
         }
 
     });
+}
+
+$(document).on('change', '#importFromLocation', function() {
+    var location = $(this).val();
+
+    $.ajax({
+        type: 'get',
+        url: ajax_url + 'ajax/location/' + location + '/services',
+        success: function(data) {
+            if(data.status === 1) {
+                $.each(data.services, function(index, value) {
+                    $.each(value, function(i, v) {
+                        $('.services-list').append('<div class="col-xs-1 checkbox checkbox-primary appended-content">' +
+                            '<input type="checkbox" id="checkbox' + v.id + '" class="service-checkbox"  name="' + v.id + '">' +
+                            '<label for="checkbox' + v.id + '"></label></div><div class="col-xs-11 service-name-container service-name appended-content"><h2>' + v.name + ' - ' + v.category_name + ' ' + v.subgroup_name + '</h2></div></div>'
+                        )
+                    });
+                });
+            } else {
+                toastr.error(data.message);
+            }
+        }
+    });
+
+    $('#importServicesModal').modal('show');
+});
+
+$(document).on('hidden.bs.modal', '#importServicesModal', function() {
+    $('.appended-content').each(function() {
+        $(this).remove();
+    });
+    $('#importFromLocation').val(0);
+});
+
+function submitServices() {
+    var selected_services = [];
+    $('.service-checkbox').each(function() {
+        if($(this).is(':checked')) {
+            var service_id = $(this).attr('name');
+            selected_services.push(service_id);
+        }
+    });
+
+    if(typeof selected_services != 'undefined' && selected_services.length != 0) {
+        $.ajax({
+            type: 'post',
+            url: ajax_url + 'location/services/import',
+            dataType: 'json',
+            beforeSend: function(request) {
+                return request.setRequestHeader('X-CSRF-Token', $("meta[name='_token']").attr('content'));
+            },
+            data: {'services':selected_services},
+            success: function(data) {
+                console.log(data);
+                if(data.status === 1) {
+                    window.location.reload();
+                } else {
+                    toastr.error(data.message);
+                }
+            }
+        });
+    }
 }

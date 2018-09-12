@@ -106,6 +106,11 @@
 
 <script>
     var location_count = {{ count($location_list) }};
+    @if($location != null)
+        var section = {{ $location->id }};
+    @else
+        var section = null;
+    @endif
     var first_location = {{ $first_location }};
     var confirm_booking = '{{ trans('salon.confirm_booking') }}';
     var staff_selection = {{ $booking_options->staff_selection }};
@@ -141,12 +146,10 @@
     var services_not_selected = '{{ trans('salon.services_not_selected') }}';
     var points_trans = '{{ trans('salon.points_trans') }}';
     var trans_accept_gdpr = '{{ trans('salon.gdpr_trans') }}';
-    var privacy_policy = '{{ trans('salon.terms_and_conditions') }}';
-    @if($salon->country != 'hr')
-        var privacy_policy_route = '{{ route('privacyPolicyEN', $salon->unique_url) }}';
-    @else
-        var privacy_policy_route = '{{ route('privacyPolicyHR', $salon->unique_url) }}';
-    @endif
+    var privacy_policy_route = '{{ route('privacyPolicy', $salon->unique_url) }}';
+    var privacy_policy = '{{ trans('salon.gdpr_trans') . ' ' . trans('salon.terms_and_conditions') }}';
+    var select_category = '{{ trans('salon.select_category_s') }}';
+
     toastr.options = {
       "positionClass": "toast-bottom-right",
       "onclick": null,

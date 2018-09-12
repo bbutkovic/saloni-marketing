@@ -1,5 +1,5 @@
 $(document).ready(function() {
-   
+
     var about_img_height = $('.about-salon-image img').height();
     
     if($(window).width() > 550) {   
@@ -9,9 +9,9 @@ $(document).ready(function() {
     $('.carousel-indicators li:first-child').addClass('active');
     $('.carousel-inner .item:first-child').addClass('active');
 
-    /*if(typeof location_id != undefined && location_id != null) {
+    if(typeof location_id != undefined && location_id != null) {
         getServicesForLocation(location_id);
-    }*/
+    }
     
     $('.service-category-btn').on('click', function() {
         var category = $(this).data('category');
@@ -30,8 +30,19 @@ $(document).ready(function() {
         
     });
 
-    initializeMap(locations_lat_lng);
-    
+    if(typeof locations_lat_lng != 'undefined' && locations_lat_lng.length > 0) {
+        initializeMap(locations_lat_lng);
+    } else {
+        initializeMap();
+    }
+});
+
+$(document).on('click', 'a[href^="#"]', function (event) {
+    event.preventDefault();
+
+    $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top
+    }, 500);
 });
 
 function initializeMap(locations_lat_lng) {
@@ -172,16 +183,16 @@ function initializeMap(locations_lat_lng) {
             };
         })(marker,content,infowindow));
     }
-
 }
 
 function getServicesForLocation(location_id) {
     $.ajax({
         type: 'get',
-        url: ajax_url + '/ajax/services/' + location_id,
+        url: ajax_url + 'ajax/location/' + location_id + '/services',
         success: function(data) {
-
+            console.log(data);
             $.each(data.services, function(index, value) {
+                console.log(value.name);
                $('.services-wrap').append('<div id="service' + index + '" class="service" data-category="' + index + '"></div>');
 
                $.each(value, function(i, v) {

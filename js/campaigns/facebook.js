@@ -1,13 +1,32 @@
 var accessToken = '';
 
 $(document).ready(function() {
+
+    $("#campaignAgeRange").ionRangeSlider({
+        type: "double",
+        grid: true,
+        min: 0,
+        max: 90,
+        from: 0,
+        to: 90,
+        prefix: trans_age,
+        max_postfix: "+"
+    });
+
     var campaignForm = $('#newFacebookAdCampaign');
     campaignForm.on('submit', function(e) {
         e.preventDefault();
 
-        var campaign_name = $('#campaignName').val();
-        var campaign_objective = $('#campignObjective').val();
-        var campaign_status = $('#campaignStatus').val();
+        var form = new FormData();
+        form.append('name', $('#campaignName').val());
+        form.append('start', $('#campaignStart').val());
+        form.append('end', $('#campaignEnd').val());
+        form.append('budget', $('#campaignBudget').val());
+        form.append('bid', $('#campaignBids').val());
+        form.append('audience_location', $('#campaignName').val());
+        form.append('audience_age_range', $('#campaignAgeRange').val());
+        form.append('audience_gender', $('#campaignGender').val());
+        form.append('ad_image', $('#adImage')[0].files[0]);
 
         var checkFacebookApi = new Promise(
             function (resolve, reject) {
@@ -16,9 +35,7 @@ $(document).ready(function() {
                         var data = [];
 
                         accessToken = response.authResponse.accessToken;
-                        FB.api('/'+accessToken, function(response) {
-                            console.log(response);
-                        });
+
                         uid = response.authResponse.userID;
 
                         data.push({'token':accessToken,'uid':uid});
@@ -38,18 +55,24 @@ $(document).ready(function() {
                             } else {
                                 reject('User cancelled login or did not fully authorize.');
                             }
-                        }, {scope: 'email,user_likes,ads_management,business_management'});
+                        }, {scope: 'email,user_likes,ads_management,business_management,manage_pages'});
                     }
                 });
             }
         ).then(function (fulfilled) {
+            form.append('access_token', fulfilled[0]['token']);
+            form.append('uid', fulfilled[0]['uid'])
             $.ajax({
                 type: 'post',
                 url: ajax_url + 'campaigns/facebook/new',
-                beforeSend: function (request) {
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function(request) {
                     return request.setRequestHeader('X-CSRF-Token', $("meta[name='_token']").attr('content'));
                 },
-                data: {'name':campaign_name,'objective':campaign_objective,'status':campaign_status,'access_token':fulfilled},
+                data: form,
                 success: function(data) {
                     console.log(data);
                     if(data.status != 1) {

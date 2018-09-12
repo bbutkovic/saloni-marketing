@@ -277,7 +277,7 @@
                                                     <tbody>
                                                     @foreach($services as $service)
                                                         <tr>
-                                                            <td>{{ $service->service_details->name }}</td>
+                                                            <td>{{ $service->service_details->name }} ({{ $service->service_category->name }})</td>
                                                             <td><input class="service-selection" type="checkbox" name="{{ $service->id }}" @foreach($service_staff as $service_st) @if($service_st->service_id === $service->id) checked @endif @endforeach></td>
                                                         </tr>
                                                     @endforeach

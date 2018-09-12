@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWebsiteImages extends Migration
+class CreateLocationSliderImages extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateWebsiteImages extends Migration
      */
     public function up()
     {
-        Schema::create('website_images', function (Blueprint $table) {
+        Schema::create('location_slider', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('salon_id');
-            $table->string('image_name');
+            $table->foreign('salon_id')->references('id')->on('salons')->onDelete('cascade');
+            $table->unsignedInteger('image_id');
+            $table->foreign('image_id')->references('id')->on('website_images')->onDelete('cascade');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateWebsiteImages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('website_images');
+        Schema::dropIfExists('location_slider');
     }
 }

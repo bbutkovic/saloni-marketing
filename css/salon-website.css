@@ -1360,3 +1360,8 @@ button {
 .gdpr-consent .i-checks {
     margin-left: 15px;
 }
+
+.container-text {
+    width: 50%;
+    margin: 0 auto;
+}

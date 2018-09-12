@@ -18,7 +18,7 @@ class CreateCronjobChecks extends Migration
             $table->integer('salon_id');
             $table->string('cronjob_type');
             $table->unsignedInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('client_id');
             $table->boolean('finished');
             $table->timestamps();
         });

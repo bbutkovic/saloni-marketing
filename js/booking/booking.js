@@ -27,7 +27,12 @@ var discount_code = '';
 
 $(document).ready(function() {
     if(typeof location_count != 'undefined' && location_count >= 1) {
-        clientSelectLocation(first_location);
+        if(section === null) {
+            clientSelectLocation(null);
+        } else {
+            clientSelectLocation(first_location);
+        }
+
     }
 
     var booking_process_height = $('.booking-process').height();
@@ -250,13 +255,14 @@ function clientSelectLocation(id) {
         var location = $('#clientSelectLocation').val();
     }
 
+    $('#selectCategory').html('<option value="default" selected disabled>' + select_category + '</option>');
+
     $('#locationId').val(location);
     $.ajax({
        type: 'get',
        url: ajax_url + 'ajax/client-booking/categories/' + location,
        success: function(data) {
            if(data.status === 1) {
-               console.log(data);
                if(data.client_loyalty != null && data.client_loyalty.status != 0 && data.client_loyalty.type != 0) {
                     $('#clientLoyaltyPoints').text(data.client_loyalty.points);
                     $('.loyalty-promo-text').text(data.client_loyalty.message);
@@ -317,6 +323,7 @@ function selectCategory() {
         type: 'get',
         url: ajax_url + 'ajax/services/' + locationId + '/' + category,
         success: function(data) {
+
             if(data.status === 1) {
                 $.each(data.services, function(index,val) {
                     var subgroup_services = [];
@@ -362,6 +369,8 @@ function selectCategory() {
                     }
                 });
                 $('#serviceList').append('<button type="button" id="servicesSelectedButton" class="btn btn-success" onclick="servicesSelected()">' + next + '</button>');
+            } else {
+                toastr.error('No data available');
             }
         }
     });
@@ -372,7 +381,8 @@ function servicesSelected() {
     var location_id = $('#locationId').val();
     
     $('.staff-wrap').remove();
-    $('#staffSelectedButton').remove();
+    $('.action-buttons-wrap').css('display', 'none');
+
     $('.booking-step.step-1').html('<i class="fa fa-check"></i>');
     $('.step-2').removeClass('disabled');
     
@@ -646,7 +656,7 @@ function selectTime(id) {
     var service = [];
 
     $.each($('.appended-value'), function() {
-       $(this).remove(); 
+        $(this).remove();
     });
     
     $.each($('#serviceList input:checked'), function(index,val) {
@@ -846,6 +856,7 @@ function bookingProceed() {
         $('.booking-step.step-3').html('<i class="fa fa-check"></i>');
         $('.client-submit-info').css('display', 'block');
         $('.appended-value').each(function() {
+            console.log(849);
             $(this).css('display', 'none');
         });
         if(!$('.booking-custom-field').length) {
@@ -1145,13 +1156,14 @@ formSubmit.on('submit', function(ev) {
 });
 
 function returnToPreviousTab(index) {
-    $('.action-buttons-wrap').remove();
     if(index === 1) {
         $('.booking-step-service').css('display', 'block');
         $('.booking-step-staff').css('display', 'none');
+        $('#datepicker').datepicker('remove');
     } else if (index === 2) {
         $('.booking-step-staff').css('display', 'block');
         $('.booking-step-time').css('display', 'none');
+        $('.action-buttons-wrap').css('display', 'block');
     } else if (index === 3) {
         $('.booking-step-time').css('display', 'block');
         $('.client-submit-info').css('display', 'none');

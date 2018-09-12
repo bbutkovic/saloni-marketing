@@ -36,7 +36,7 @@
                     <td>{{ $weekday['name'] }}</td>
                     <td class="text-center">
                         <div class="checkbox checkbox-primary">
-                            <input class="input-schedule working-class" type="checkbox" id="checkbox{{ $weekday['en'] }}" name="select_{{ $weekday['en'] }}" checked>
+                            <input class="input-schedule working-class" type="checkbox" id="checkbox{{ $weekday['en'] }}" name="select_{{ $weekday['en'] }}">
                             <label for="checkbox{{ $weekday['en'] }}"></label>
                         </div>
                     </td>
@@ -55,7 +55,7 @@
                         </select>
                     </td>
                     <td>
-                        <select id="lunch_start_{{$weekday['en']}}" data-weekday="{{$weekday['en']}}" name="lunch_start_{{$key}}" class="form-control time-select input-schedule lunch-start-class" required>
+                        <select id="lunch_start_{{$weekday['en']}}" data-weekday="{{$weekday['en']}}" name="lunch_start_{{$key}}" class="form-control alt-select time-select input-schedule lunch-start-class" required>
                             <option value="0" selected default>{{ trans('salon.not_defined') }}</option>
                             <option value="12:00">12:00</option>
                             @foreach($time_list as $mtime=>$time)
@@ -63,7 +63,7 @@
                             @endforeach
                         </select>
                     <td>
-                        <select id="lunch_end_{{$weekday['en']}}" name="lunch_end_{{$key}}" class="form-control time-select input-schedule lunch-end-class" required>
+                        <select id="lunch_end_{{$weekday['en']}}" name="lunch_end_{{$key}}" class="form-control alt-select time-select input-schedule lunch-end-class" required>
                             <option value="0" selected default>{{ trans('salon.not_defined') }}</option>
                             <option value="12:45">12:45</option>
                             @foreach($time_list as $mtime=>$time)

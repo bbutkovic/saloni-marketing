@@ -35,6 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                @if($selected_location->location_extras->location_photo != null)
                 <div class="header-logo">
                     <a href="{{ URL::to('/').'/'.$salon->unique_url . '/' . $selected_location->unique_url }}">
                         @if(isset($selected_location->location_extras->location_photo))
@@ -44,6 +45,7 @@
                         @endif
                     </a>
                 </div>
+                @endif
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-main nav-header">
@@ -55,20 +57,6 @@
                     </li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right nav-header">
-                    @if($salon->website_content->facebook_link != null)
-                        <li><a href="{{ $salon->website_content->facebook_link }}"><i class="fa fa-facebook-f"></i></a></li>
-                    @endif
-                    @if($salon->website_content->twitter_link != null)
-                        <li><a href="{{ $salon->website_content->twitter_link }}"><i class="fa fa-twitter"></i></a></li>
-                    @endif
-                    @if($salon->website_content->instagram_link != null)
-                        <li><a href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
-                    @endif
-                    @if($salon->website_content->pinterest_link != null)
-                        <li><a href="{{ $salon->website_content->pinterest_link }}"><i class="fa fa-pinterest-p"></i></a></li>
-                    @endif
-                </ul>
             </div>
           </div>
         </div>
@@ -82,7 +70,7 @@
             <div class="col-sm-6 col-sm-pull-6 open-hours-wrap">
                 <h3 class="text-center">{{ trans('salon.open_hours') }}</h3>
                 @foreach($open_hours as $hour)
-                <span class="location-hours"><h2>{{ trans('salon.'.$hour->dayname) }}</h2><h3>{{ $hour->start_time }} - {{ $hour->closing_time }}</h3></span>
+                <span class="location-hours"><h2>{{ trans('salon.'.$hour->dayname) }}</h2><h3>@if($hour->start_time != '00:00' && $hour->closing_time != '00:00'){{ $hour->start_time }} - {{ $hour->closing_time }}@else {{ trans('salon.salon_closed') }}@endif</h3></span>
                 @endforeach
             </div>
         </div>
@@ -99,7 +87,7 @@
                 </div>
             </div>
             <p class="services-description">
-                {{ $website_content->website_service_text }}
+                {!! $website_content->website_service_text !!}
             </p>
             <div class="services-wrap">
             </div>

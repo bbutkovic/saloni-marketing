@@ -25,11 +25,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                @if($salon->logo != null)
                 <div class="header-logo">
                     <a href="{{ URL::to('/').'/'.$salon->unique_url }}">
                         <img src="{{ URL::to('/').'/images/salon-logo/'.$salon->logo }}" alt="{{ $salon->business_name }}">
                     </a>
                 </div>
+                @endif
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-main nav-header">
@@ -47,26 +49,13 @@
                         </ul>
                     </li>
                     @else
-                        <li><a class="page-scroll" href="{{ URL::to('/').'/'.$salon->unique_url.'/'.$salon->locations[0]['unique_url'] }}">{{ trans('salon.about_salon') }}</a></li>
+                        <li><a class="page-scroll" href="#about">{{ trans('salon.about_salon') }}</a></li>
+                        <li><a class="page-scroll" href="#services">{{ trans('salon.services') }}</a></li>
+                        <li><a class="page-scroll" href="#contact">{{ trans('salon.contact') }}</a></li>
                     @endif
                     <li>
                         <a href="{{ route('clientBooking', $salon->unique_url) }}" id="bookNowBtn" style="background-color: {{ $salon->website_content->book_btn_bg }}; color: {{ $salon->website_content->book_btn_color }}">{{ $salon->website_content->book_btn_text }}</a>
                     </li>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right nav-header">
-                    @if($salon->website_content->facebook_link != null)
-                    <li><a href="{{ $salon->website_content->facebook_link }}"><i class="fa fa-facebook-f"></i></a></li>
-                    @endif
-                    @if($salon->website_content->twitter_link != null)
-                    <li><a href="{{ $salon->website_content->twitter_link }}"><i class="fa fa-twitter"></i></a></li>
-                    @endif
-                    @if($salon->website_content->instagram_link != null)
-                    <li><a href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
-                    @endif
-                    @if($salon->website_content->pinterest_link != null)
-                    <li><a href="{{ $salon->website_content->pinterest_link }}"><i class="fa fa-pinterest-p"></i></a></li>
-                    @endif
                 </ul>
             </div>
           </div>
@@ -75,14 +64,14 @@
 
     <div id="headerSlider" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            @foreach($salon->website_images as $key=>$website_image)
+            @foreach($salon->slider_images as $key=>$website_image)
             <li data-target="#headerSlider" data-slide-to="{{ $key }}"></li>
             @endforeach
         </ol>
         <div class="carousel-inner">
-            @foreach($salon->website_images as $key=>$web_image)
+            @foreach($salon->slider_images as $key=>$web_image)
             <div class="item">
-                <img src="{{ URL::to('/').'/images/salon-websites/slider-images/'.$web_image->image_name }}" alt="Slider">
+                <img src="{{ URL::to('/').'/images/salon-websites/slider-images/'.$web_image->image->image_name }}" alt="Slider">
                 @if(isset($salon->slider_promos[$key]) && $salon->slider_promos[$key]['active'])
                 <div class="carousel-caption-alt">
                     <h3>{{ $salon->slider_promos[$key]->title }}</h3>
@@ -106,22 +95,57 @@
                 <img src="{{ URL::to('/').'/images/salon-websites/about-image/'.$salon->website_content->about_image }}" alt="About salon" />
             </div>
             @endif
-            <div class="@if(isset($salon->website_content) && $salon->website_content->about_image != null) col-xs-7 col-sm-6 text-left @else text-center @endif about-salon-desc">
+            <div class="@if(isset($salon->website_content) && $salon->website_content->about_image != null) col-xs-7 col-sm-6 text-left @else text-center container-text @endif about-salon-desc">
                 <h1 class="section-heading">{{ trans('salon.about') }}</h1>
-                @if(isset($website_content->company_introduction))<h4>{{ $website_content->company_introduction }}</h4>@endif
+                @if(isset($website_content->company_introduction)){!! $website_content->company_introduction !!}@endif
                 @if(isset($website_content->website_about_text))
                 <div class="about-salon-text @if(isset($salon->website_content) && $salon->website_content->about_image === null) about-salon-noimg @endif">
-                    <p class="m-t m-b">{{ $website_content->website_about_text }}</p>
+                    <p class="m-t m-b">{!! $website_content->website_about_text !!}</p>
                 </div>
                 @endif
             </div>
         </div>
     </section>
 
+    @if(count($salon->locations) < 2)
+    <section id="locationInfo" class="section-open-hours">
+        <div class="location-info-container">
+            <div class="col-sm-6 col-sm-push-6">
+                <div id="salonLocationsMap"></div>
+            </div>
+            <div class="col-sm-6 col-sm-pull-6 open-hours-wrap">
+                <h3 class="text-center">{{ trans('salon.open_hours') }}</h3>
+                @foreach($open_hours as $hour)
+                    <span class="location-hours"><h2>{{ trans('salon.'.$hour->dayname) }}</h2><h3>@if($hour->start_time != '00:00' && $hour->closing_time != '00:00'){{ $hour->start_time }} - {{ $hour->closing_time }}@else {{ trans('salon.salon_closed') }}@endif</h3></span>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-services">
+        <div class="container">
+            <div class="services-heading-wrap">
+                <h1 class="section-heading pull-left text-uppercase">{{ trans('salon.services') }}</h1>
+                <div class="category-selection pull-right">
+                    @foreach($categories as $category)
+                        <button type="button" class="service-category-btn" data-category="{{ $category->id }}">{{ $category->name }}</button>
+                    @endforeach
+                </div>
+            </div>
+            <p class="services-description">
+                {{ $website_content->website_service_text }}
+            </p>
+            <div class="services-wrap">
+            </div>
+        </div>
+    </section>
+    @else
     <section id="locations" class="gray-section">
         <div id="salonLocationsMap"></div>
     </section>
+    @endif
 
+    @if($latest_news->isNotEmpty())
     <section id="news" class="news-section">
         <div class="container">
             <div class="row">
@@ -147,6 +171,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     <section id="contact" class="section-alt section-footer">
         <div class="container">
@@ -185,7 +210,7 @@
                         </div>
                         <div class="row gdpr-consent">
                             <div class="i-checks m-l">
-                                <label><input type="checkbox" name="consent" id="gdprConsent"><i></i> {{ trans('salon.gdpr_trans') }}<a href="'+privacy_policy_route+'">{{ trans('salon.terms_and_conditions') }}</a></label>
+                                <label><input type="checkbox" name="consent" id="gdprConsent"><i></i> {{ trans('salon.gdpr_trans') }}<a href="{{ route('privacyPolicy', $salon->unique_url) }}">{{ trans('salon.terms_and_conditions') }}</a></label>
                             </div>
                         </div>
                         <div class="btn-wrap-mail text-right">
@@ -229,8 +254,8 @@
 
     <script>
         var locations_lat_lng = [];
-        var privacy_policy_hr = '{{ route('privacyPolicyHR', $salon->unique_url) }}';
-        var privacy_policy_en = '{{ route('privacyPolicyEN', $salon->unique_ur) }}';
+        var location_id = null;
+        var privacy_policy = '{{ route('privacyPolicy', $salon->unique_ur) }}';
         var ajax_url = '<?php echo URL::to('/'); ?>/';
 
         @foreach($location_markers as $marker)

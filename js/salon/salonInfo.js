@@ -94,7 +94,7 @@ function submitLocationInfo() {
     form.append('location_city', $('#locationCity').val());
     form.append('location_zip', $('#locationZip').val());
     form.append('location_country', $('#locationCountry').val());
-    form.append('parking', $('#parkingRadio1').is('checked') ? 1 : 0);
+    form.append('parking', $('#parkingRadio1').is(':checked') ? 1 : 0);
     form.append('credit_cards', $('#creditCards1').is(':checked') ? 1 : 0);
     form.append('disabled_access', $('#disabled1').is(':checked') ? 1 : 0);
     form.append('wifi', $('#wifi1').is(':checked') ? 1 : 0);

@@ -77,4 +77,8 @@ class Salons extends Model
     public function salon_staff() {
         return $this->hasMany('App\User', 'salon_id', 'id');
     }
+
+    public function slider_images() {
+        return $this->hasMany('App\Models\Website\LocationSlider', 'salon_id', 'id');
+    }
 }

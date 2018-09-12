@@ -36,6 +36,7 @@ class CoreController extends Controller
     }
     
     public function addPermission() {
+
         /*$perm = new Permission();
         $perm->name = 'manage-salon';
         $perm->display_name = 'Manage salon';
@@ -100,7 +101,7 @@ class CoreController extends Controller
         $perm11->name = 'manage-loyalty';
         $perm11->display_name = 'Manage loyalty';
         $perm11->description = 'Can manage loyalty';
-        $perm11->save();*/
+        $perm11->save();
 
         $perm12 = new Permission();
         $perm12->name = 'manage-marketing';
@@ -113,7 +114,7 @@ class CoreController extends Controller
         $perm13->display_name = 'Manage POS';
         $perm13->description = 'Can edit POS settings';
         $perm13->save();
-        
+        */
     }
 
     public function getSignIn() {
@@ -342,32 +343,18 @@ class CoreController extends Controller
         return view('gdpr.privacyPolicyAPP');
     }
 
-    public function getPrivacyPolicyHR($unique_url) {
+    public function getPrivacyPolicy($unique_url) {
         $salon = Salons::where('unique_url', $unique_url)->first();
 
         if($salon != null) {
 
             App::setLocale($salon->country);
 
-            return view('gdpr.privacyPolicyHR', ['salon' => $salon]);
-
-        }
-
-        return view('website.404', ['message' => trans('salon.website_not_found')]);
-    }
-
-    public function getPrivacyPolicyEN($unique_url) {
-        $salon = Salons::where('unique_url', $unique_url)->first();
-
-        if($salon != null) {
-
-            App::setLocale($salon->country);
-
-            $website_content = WebsiteContent::where('salon_id', $salon->id)->first();
+            $website_content = App\Models\Website\WebsiteContent::where('salon_id', $salon->id)->first();
 
             $location_markers = [];
 
-            $blog_posts = BlogPost::where('salon_id', $salon->id)->take(4)->orderBy('id', 'DESC')->get();
+            $blog_posts = App\Models\Salon\BlogPost::where('salon_id', $salon->id)->take(4)->orderBy('id', 'DESC')->get();
 
             foreach($salon->locations as $location) {
                 $location_markers[] = [
@@ -382,7 +369,7 @@ class CoreController extends Controller
                 ];
             }
 
-            return view('gdpr.privacyPolicyEN', ['salon' => $salon, 'website_content' => $website_content, 'location_markers' => $location_markers, 'latest_news' => $blog_posts]);
+            return view('gdpr.privacyPolicy', ['salon' => $salon, 'website_content' => $website_content, 'location_markers' => $location_markers, 'latest_news' => $blog_posts]);
 
         }
         return view('website.404', ['message' => trans('salon.website_not_found')]);

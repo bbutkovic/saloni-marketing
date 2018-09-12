@@ -150,7 +150,7 @@ class SalonController extends Controller
     public function updateLocation(Request $request) {
 
         $location = $this->salon_repo->updateLocation($request->all(), $request->location_id);
-
+        return $location;
         return ['status' => $location['status'], 'message' => $location['message']];
 
     }
@@ -678,14 +678,16 @@ class SalonController extends Controller
     }
 
     public function getLocationServices($id) {
-
         if($location = Location::find($id)) {
 
             $services_by_category = $this->salon_repo->getServicesByCategory($location);
 
-            return ['services' => $services_by_category];
-        }
+            if($services_by_category['status'] != 1) {
+                return ['status' => 0, 'message' => $services_by_category['message']];
+            }
 
+            return ['status' => 1, 'services' => $services_by_category['services']];
+        }
     }
 
     public function uploadLocationImages(Request $request) {
@@ -731,5 +733,16 @@ class SalonController extends Controller
 
         return view('superadmin.salonsManagement', ['salons' => $salons]);
 
+    }
+
+    public function importServices(Request $request) {
+
+        $import = $this->salon_repo->importServices($request->all());
+        return $import;
+        if($import['status'] === 1) {
+            return redirect()->back()->with('success_message', trans('salon.services_imported'));
+        }
+
+        return redirect()->back()->with('error_message', trans('salon.import_failed'));
     }
 }

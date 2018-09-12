@@ -8,6 +8,7 @@
 @section('scripts')
 {{ HTML::script('js/plugins/dropzone/dropzone.js') }}
 {{ HTML::script('js/plugins/spectrum/spectrum.js') }}
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=944zbcd6b70j3spki3txrzecsz6n99ua5dapocup4abxci3c"></script>
 @endsection
 
 @section('scripts-footer')
@@ -54,23 +55,23 @@
                                 <div class="row" id="insertContent">
                                     {{ Form::open(array('id' => 'contentForm', 'class' => 'm-t m-l')) }}
                                     <div class="row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                             <label for="companyIntroduction">{{ trans('salon.company_introduction') }}</label>
                                             {{ Form::textarea('company_introduction', isset($salon->website_content->company_introduction) ? $salon->website_content->company_introduction : null, array('id' => 'companyIntroduction', 'size' => '30x4', 'class' => 'form-control', 'required')) }}
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                             <label for="websiteServiceText">{{ trans('salon.website_service_text') }}</label>
                                             {{ Form::textarea('website_service_text', isset($salon->website_content->website_service_text) ? $salon->website_content->website_service_text : null, array('id' => 'websiteServiceText', 'size' => '30x4', 'class' => 'form-control', 'required')) }}
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                             <label for="websiteBookingText">{{ trans('salon.website_booking_text') }}</label>
                                             {{ Form::textarea('website_booking_text', isset($salon->website_content->website_booking_text) ? $salon->website_content->website_booking_text : null, array('id' => 'websiteBookingText', 'size' => '30x4', 'class' => 'form-control', 'required')) }}
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                             <label for="websiteAboutText">{{ trans('salon.website_about_text') }}</label>
                                             {{ Form::textarea('website_about_text', isset($salon->website_content->website_about_text) ? $salon->website_content->website_about_text : null, array('id' => 'websiteAboutText', 'size' => '30x4', 'class' => 'form-control', 'required')) }}
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group">
                                             <label for="termsAndConditions">{{ trans('salon.terms_and_conditions') }}</label>
                                             {{ Form::textarea('terms_and_conditions', isset($salon->website_content->terms_and_conditions) ? $salon->website_content->terms_and_conditions : null, array('id' => 'termsAndConditions', 'size' => '30x4', 'class' => 'form-control', 'required')) }}
                                         </div>
@@ -133,12 +134,20 @@
                                 </div>
                                 <div class="slider-images">
                                     <h3 class="text-muted">{{ trans('salon.slider_images') }}</h3>
-                                    <small class="text-muted">{{ trans('salon.slider_images_desc') }}</small>
+                                    <small>{{ trans('salon.available_images') }}. {{ trans('salon.slider_images_desc') }}</small>
                                     <div class="uploaded-images">
+                                        @foreach($global_images as $web_image_global)
+                                            <div class="location-photo slider-image text-center" id="webImage{{$web_image_global->id}}">
+                                                <div class="photo-container" style="background-image: url({{ URL::to('/').'/images/salon-websites/slider-images/'.$web_image_global->image_name }})"></div>
+                                                <input name="slider_image" type="checkbox" class="select-global-image" data-id="{{ $web_image_global->id }}" @if(isset($slider_arr[$web_image_global->id])) checked @endif>
+                                            </div>
+                                        @endforeach
+
                                         @foreach($salon->website_images as $web_image)
-                                        <div class="location-photo slider-image" id="webImage{{$web_image->id}}">
+                                        <div class="location-photo slider-image text-center" id="webImage{{$web_image->id}}">
                                             <div class="photo-container" style="background-image: url({{ URL::to('/').'/images/salon-websites/slider-images/'.$web_image->image_name }})"></div>
-                                            <a href="#" class="delete-photo" onclick="deleteSliderImage({{ $web_image->id }})"><i class="fa fa-trash"></i></a>
+                                            <input name="slider_image" type="checkbox" class="select-global-image" data-id="{{ $web_image->id }}" @if(isset($slider_arr[$web_image->id])) checked @endif>
+                                            <a href="#" class="delete-photo delete-slider-image" onclick="deleteSliderImage({{ $web_image->id }})"><i class="fa fa-trash"></i></a>
                                         </div>
                                         @endforeach
                                     </div>
@@ -166,7 +175,7 @@
                                 @endif
                                 <hr>
                                 {{ Form::open(array('id' => 'sliderPromoForm')) }}
-                                    @for($i = 1; $i <= count($salon->website_images); $i++)
+                                    @for($i = 1; $i <= count($salon->slider_images); $i++)
                                     <?php $index = $i-1; ?>
                                     <div class="col-lg-6 slider-content-container">
                                         <h3 class="text-muted">{{ trans('salon.slider_promo') . ' ' . $i }}</h3>

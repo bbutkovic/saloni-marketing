@@ -21,7 +21,7 @@ class CreateWebsiteContent extends Migration
             $table->text('website_service_text')->nullable();
             $table->text('website_booking_text')->nullable();
             $table->text('website_about_text')->nullable();
-            $table->mediumText('terms_and_conditions')->nullable();
+            $table->text('terms_and_conditions')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('twitter_link')->nullable();
             $table->string('instagram_link')->nullable();

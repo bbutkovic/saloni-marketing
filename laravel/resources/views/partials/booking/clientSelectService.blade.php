@@ -1,6 +1,6 @@
 @if(isset($website_content) && $website_content->website_booking_text != null)
     <div class="row m-b">
-        <h3 class="text-muted">{{ $website_content->website_booking_text }}</h3>
+        <h3 class="text-muted">{!! $website_content->website_booking_text !!}</h3>
     </div>
 @endif
 

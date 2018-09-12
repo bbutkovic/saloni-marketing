@@ -59,6 +59,13 @@ class SalonRepository {
             $salon = Salons::max('id');
             $salon_id = $salon + 1;
 
+            $unique_url = strtolower(str_replace(' ', '-', $data['business_name']));
+            $check_url = Salons::where('unique_url', $unique_url)->first();
+            if($check_url != null) {
+                $extra_string = substr(md5(rand()), 0, 10);
+                $unique_url = $unique_url . '-' . $extra_string;
+            }
+
             DB::beginTransaction();
 
             $salon = new Salons;
@@ -73,7 +80,7 @@ class SalonRepository {
             $salon->country = $data['salon_country'];
             $salon->week_starting_on = 1;
             $salon->currency = 'EUR';
-            $salon->unique_url = strtolower(str_replace(' ', '-', $data['business_name']));
+            $salon->unique_url = $unique_url;
             $salon->save();
 
             $salon_billing = new BillingSalon;
@@ -139,7 +146,7 @@ class SalonRepository {
                 $location->city = $data['salon_city'];
                 $location->zip = $data['salon_zip'];
                 $location->country = $data['salon_country'];
-                $location->unique_url = strtolower(str_replace(' ', '-', $data['business_name']));
+                $location->unique_url = $unique_url;
                 $location->save();
 
                 $location_id = $location->id;
@@ -381,6 +388,13 @@ class SalonRepository {
         try {
             
             $salon = Salons::where('id', $salon_id)->first();
+
+            $unique_url = strtolower(str_replace(' ', '-', $location_data['location_name']));
+            $check_url = Location::where('unique_url', $unique_url)->first();
+            if($check_url != null) {
+                $extra_string = substr(md5(rand()), 0, 10);
+                $unique_url = $unique_url . '-' . $extra_string;
+            }
     
             $location = new Location;
             $location->salon_id = $salon_id;
@@ -393,7 +407,7 @@ class SalonRepository {
             $location->zip = $location_data['location_zip'];
             $location->country = $location_data['location_country'];
             $location->time_format = $salon->time_format;
-            $location->unique_url = strtolower(str_replace(' ', '-', $location_data['location_name']));
+            $location->unique_url = $unique_url;
             $location->save();
             
             $location_id = $location->id;
@@ -428,7 +442,6 @@ class SalonRepository {
         } catch (Exception $exc) {
             return ['status' => 0, 'message' => $exc->getMessage()];
         }
-        
         
     }
     
@@ -575,7 +588,6 @@ class SalonRepository {
 
             }
 
-
             DB::beginTransaction();
 
             $location->location_name = $location_data['location_name'];
@@ -591,8 +603,9 @@ class SalonRepository {
             $location->save();
 
             $location_extras = LocationExtras::where('location_id', $location->id)->first();
-
-            $location_extras->location_photo = isset($image_name) ? $image_name : null;
+            if(isset($image_name)) {
+                $location_extras->location_photo = $image_name;
+            }
             $location_extras->parking = $location_data['parking'];
             $location_extras->credit_cards = $location_data['credit_cards'];
             $location_extras->accessible_for_disabled = $location_data['disabled_access'];
@@ -1460,26 +1473,33 @@ class SalonRepository {
     }
     
     public function getServicesByCategory($location) {
-        
-        $service_arr = [];
-        $salon = Salons::find($location->salon_id);
-        
-        foreach($location->services as $service) {
-            
-            if($service->service_details->description != null) {
-                $service_details = $service->service_details->description;
-            } else {
-                $service_details = ' ';
+
+        try {
+            $service_arr = [];
+            $salon = Salons::find($location->salon_id);
+
+            foreach($location->services as $service) {
+                if($service->service_details->description != null) {
+                    $service_details = $service->service_details->description;
+                } else {
+                    $service_details = ' ';
+                }
+
+                $service_arr[$service->category][] = [
+                    'id' => $service->id,
+                    'name' => $service->service_details->name,
+                    'category_name' => $service->service_category->name,
+                    'subgroup_name' => isset($service->service_subgroup->name) ? $service->service_subgroup->name : '',
+                    'desc' => $service_details,
+                    'price' => $service->service_details->base_price . ' ' . $salon->currency
+                ];
             }
-            
-            $service_arr[$service->category][] = [
-                'name' => $service->service_details->name,
-                'desc' => $service_details,
-                'price' => $service->service_details->base_price . ' ' . $salon->currency
-            ];
+
+
+            return ['status' => 1, 'services' => $service_arr];
+        } catch (Exception $exc) {
+            return ['status' => 0, 'message' => $exc->getMessage()];
         }
-        
-        return $service_arr;
         
     }
 
@@ -1570,6 +1590,131 @@ class SalonRepository {
             }
 
             return ['status' => 1, 'message' => trans('salon.salon_deleted')];
+
+        } catch (Exception $exc) {
+            return ['status' => 0, 'message' => $exc->getMessage()];
+        }
+    }
+
+    public function importServices($services) {
+
+        try {
+
+            $current_location = Location::find(Auth::user()->location_id);
+
+            foreach($services['services'] as $service_id) {
+                $check = false;
+                $service = Service::find($service_id);
+                $service_cat = $service->service_category;
+                $service_group = $service->service_group;
+                $service_subgroup = $service->service_subgroup;
+
+                //check if category, group and subgroup with the same name exist in current location
+                $current_location_cat = Category::where('location_id', $current_location->id)->where('name', $service_cat->name)->first();
+                $current_location_subgroup = null;
+                if($current_location_cat != null) {
+                    $cat_id = $current_location_cat->id;
+                    $current_location_group = Group::where('category_id', $current_location_cat->id)->where('name', $service_group->name)->first();
+                } else {
+                    $cat_id = null;
+                    $current_location_group = null;
+                }
+                if($current_location_group != null) {
+                    $group_id = $current_location_group->id;
+                    if($service_subgroup != null) {
+                        $current_location_subgroup = SubCategory::where('group_id', $current_location_group->id)->where('name', $service_subgroup->name)->first();
+                    }
+                } else {
+                    $group_id = null;
+                }
+                if($current_location_subgroup != null) {
+                    $subgroup_id = $current_location_subgroup->id;
+                } else {
+                    $subgroup_id = null;
+                }
+
+                $check_services = Service::where('location_id', $current_location->id)
+                    ->where('category', $cat_id)
+                    ->where('group', $group_id)
+                    ->where('sub_group', $subgroup_id)
+                    ->get();
+
+                if($check_services->isNotEmpty()) {
+                    foreach($check_services as $check_service) {
+                        if($check_service->service_details->name == $service->service_details->name) {
+                            $check = true;
+                        }
+                    }
+                }
+
+                if(!$check) {
+                    if($current_location_cat === null) {
+                        $current_location_cat = new Category;
+                        $current_location_cat->location_id = $current_location->id;
+                        $current_location_cat->name = $service_cat->name;
+                        $current_location_cat->description = $service_cat->description;
+                        $current_location_cat->cat_color = $service_cat->cat_color;
+                        $current_location_cat->active = $service_cat->active;
+                        $current_location_cat->save();
+
+                        $cat_id = $current_location_cat->id;
+                    }
+
+                    if($current_location_group === null) {
+                        $current_location_group = new Group;
+                        $current_location_group->category_id = $cat_id;
+                        $current_location_group->name = $service_group->name;
+                        $current_location_group->description = $service_group->description;
+                        $current_location_group->group_color = $service_group->group_color;
+                        $current_location_group->active = $service_group->active;
+                        $current_location_group->save();
+
+                        $group_id = $current_location_group->id;
+                    }
+
+                    if($current_location_subgroup === null && $service_subgroup != null) {
+                        $current_location_subgroup = new SubCategory;
+                        $current_location_subgroup->group_id = $group_id;
+                        $current_location_subgroup->name = $service_subgroup->name;
+                        $current_location_subgroup->description = $service_subgroup->description;
+                        $current_location_subgroup->subgroup_color = $service_subgroup->subgroup_color;
+                        $current_location_subgroup->active = $service_subgroup->active;
+                        $current_location_subgroup->save();
+
+                        $subgroup_id = $current_location_subgroup->id;
+                    }
+
+                    $new_service = new Service;
+                    $new_service->location_id = $current_location->id;
+                    $new_service->category = $cat_id;
+                    $new_service->group = $group_id;
+                    $new_service->sub_group = $subgroup_id;
+                    $new_service->order = $service->order;
+                    $new_service->award_points = $service->award_points;
+                    $new_service->allow_discounts = $service->allow_discounts;
+                    $new_service->points_awarded = $service->points_awarded;
+                    $new_service->points_needed = $service->points_needed;
+                    $new_service->discount = $service->discount;
+                    $new_service->save();
+
+                    $new_service_details = new ServiceDetails;
+                    $new_service_details->service_id = $new_service->id;
+                    $new_service_details->name = $service->service_details->name;
+                    $new_service_details->description = $service->service_details->description;
+                    $new_service_details->code = $service->service_details->code;
+                    $new_service_details->barcode = $service->service_details->barcode;
+                    $new_service_details->service_length = $service->service_details->service_length;
+                    $new_service_details->price_no_vat = $service->service_details->price_no_vat;
+                    $new_service_details->vat = $service->service_details->vat;
+                    $new_service_details->base_price = $service->service_details->base_price;
+                    $new_service_details->available = $service->service_details->available;
+                    $new_service_details->save();
+
+                }
+
+            }
+
+            return ['status' => 1];
 
         } catch (Exception $exc) {
             return ['status' => 0, 'message' => $exc->getMessage()];

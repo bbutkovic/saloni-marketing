@@ -41,7 +41,7 @@ class StaffController extends Controller {
         
         if($locations['status'] != 0) {
         
-            $users = User::where('salon_id', $salon_id)->get();
+            $users = User::where('location_id', Auth::user()->location_id)->get();
             $user_roles = $this->info_repo->getUserRoles();
 
             return view('staff.staffManagement', ['employees' => $users, 'user_roles' => $user_roles, 'locations' => $locations['location_list']]);
@@ -88,7 +88,7 @@ class StaffController extends Controller {
             $days = $this->staff_repo->getCalendarDays();
             
             $weekly_roster = $this->staff_repo->getWeeklySchedule($staff);
-            
+
             $week_dates = $this->info_repo->getWeekDates($salon_id);
 
             return view('staff.staffRosters', ['staff_roster' => $weekly_roster, 'user_list' => $staff, 'days' => $days, 'week_dates' => $week_dates]);

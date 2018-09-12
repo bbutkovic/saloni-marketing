@@ -22,9 +22,14 @@ class WebsiteController extends Controller {
     }
     
     public function websiteSettings() {
+
         $salon = Salons::find(Auth::user()->salon_id);
-    
-        return view('website.websiteSettings', ['salon' => $salon]);
+
+        $global_images = $this->website_repo->getGlobalImages();
+
+        $location_slider = $this->website_repo->getSliderImages();
+
+        return view('website.websiteSettings', ['salon' => $salon, 'global_images' => $global_images, 'slider_arr' => $location_slider]);
     }
     
     public function getSalonWebsite($unique_url) {
@@ -40,7 +45,13 @@ class WebsiteController extends Controller {
             $location_markers = [];
             
             $blog_posts = BlogPost::where('salon_id', $salon->id)->take(4)->orderBy('id', 'DESC')->get();
-            
+
+            $location = Location::where('salon_id', $salon->id)->first();
+
+            $location_hours = LocalHours::where('location_id', $location->id)->get();
+
+            $cat_list = $this->salon_repo->getActiveCategories($location);
+
             foreach($salon->locations as $location) {
                 $location_markers[] = [
                     'location_name' => $location->location_name,
@@ -54,7 +65,7 @@ class WebsiteController extends Controller {
                 ];
             }
     
-            return view('website.websiteIndex', ['salon' => $salon, 'website_content' => $website_content, 'location_markers' => $location_markers, 'latest_news' => $blog_posts]);
+            return view('website.websiteIndex', ['salon' => $salon, 'location' => $location, 'open_hours' => $location_hours, 'categories' => $cat_list, 'website_content' => $website_content, 'location_markers' => $location_markers, 'latest_news' => $blog_posts]);
             
         }
         
@@ -74,9 +85,7 @@ class WebsiteController extends Controller {
     }
     
     public function saveWebsiteContent(Request $request) {
-        
-        $salon = Salons::find(Auth::user()->salon_id);
-        
+
         $content = $this->website_repo->saveContent($request->all());
 
         if($content['status'] === 1) {
@@ -88,7 +97,7 @@ class WebsiteController extends Controller {
     }
     
     public function getLocationWebsite($salon, $location) {
-        
+
         $salon = Salons::where('unique_url', $salon)->first();
         
         $location = Location::where('salon_id', $salon->id)->where('unique_url', $location)->first();
@@ -230,7 +239,7 @@ class WebsiteController extends Controller {
     }
     
     public function deleteSliderImage(Request $request) {
-        
+
         $delete = $this->website_repo->deleteSliderImage($request->id);
         
         if($delete['status'] === 1) {
@@ -323,14 +332,40 @@ class WebsiteController extends Controller {
             $category_list = Category::where('location_id', $location->id)->where('active', 1)->get();
             $loyalty_program = LoyaltyPrograms::where('location_id', $location->id)->first();
 
-            return view('website.clientBooking', ['salon' => $salon, 'website_content' => $website_content, 'booking_options' => $booking_options, 'location_list' => $location_list, 'first_location' => $first_location, 'week_start' => $week_start, 'client_loyalty' => $loyalty_message,
+            return view('website.clientBooking', ['salon' => $salon, 'location' => $location, 'website_content' => $website_content, 'booking_options' => $booking_options, 'location_list' => $location_list, 'first_location' => $first_location, 'week_start' => $week_start, 'client_loyalty' => $loyalty_message,
                 'currency' => $currency, 'calendar_options' => $calendar_options, 'calendar_settings' => $calendar_settings, 'category_list' => $category_list, 'client_check' => 1, 'loyalty_program' => $loyalty_program]);
         }
 
-        return view('website.clientBooking', ['salon' => $salon, 'website_content' => $website_content, 'booking_options' => $booking_options, 'location_list' => $location_list,
+        return view('website.clientBooking', ['salon' => $salon, 'location' => $location, 'website_content' => $website_content, 'booking_options' => $booking_options, 'location_list' => $location_list,
                                              'first_location' => $first_location, 'week_start' => $week_start, 'client_loyalty' => $loyalty_message,
                                              'currency' => $currency, 'calendar_options' => $calendar_options, 'calendar_settings' => $calendar_settings, 'client_check' => 0]);
         
+    }
+
+    public function getWebsiteSliderSettings() {
+
+        $images = $this->website_repo->getGlobalImages();
+
+        return view('website.admin.websiteSlider', ['images' => $images]);
+    }
+
+    public function uploadGlobalSliderImages(Request $request) {
+
+        $images = $this->website_repo->uploadGlobalImages($request->all());
+
+        if($images['status'] != 1) {
+            return ['status' => 0, 'message' => $images['message']];
+        }
+
+        return ['status' => 1, 'message' => $images['message']];
+    }
+
+    public function updateSliderImages(Request $request) {
+
+        $images = $this->website_repo->updateSliderImages($request->all());
+
+        return ['status' => $images['status'], 'message' => $images['message']];
+
     }
     
 }

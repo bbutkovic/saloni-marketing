@@ -145,7 +145,7 @@ $("#resetFormBtn").on("click",function() {
 });
 
 function clearHours() {
-    $('.time-select').val("");
+    $('.time-select:not(.alt-select)').val("");
 }
 
 function deleteLocation() {

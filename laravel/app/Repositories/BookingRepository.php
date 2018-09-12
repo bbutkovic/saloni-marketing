@@ -931,7 +931,6 @@ class BookingRepository {
     }
     
     public function getAvailableTimes($selected_date, $user_selection, $employees, $services, $start_time, $end_time, $available_times_array) {
-
         $service_end = '';
         $check_time = true;
         
@@ -1007,16 +1006,15 @@ class BookingRepository {
         $salon = Salons::find($location_obj->salon_id);
 
         foreach($groups as $group) {
-            
+
             $subgroups_array = [];
             $services_array = [];
             
             $group_services = Service::where('location_id', $location)->where('category', $category->id)->where('group', $group->id)->orderBy('order', 'ASC')->get();
 
             foreach($group_services as $group_service) {
-                
+
                 if($group_service->service_staff->isNotEmpty()) {
-                
                     if($group->id === $group_service->group) {
 
                         if ($location_obj->happy_hour === 1) {

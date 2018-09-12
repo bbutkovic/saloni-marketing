@@ -1406,7 +1406,7 @@ td.day.disabled {
   }
   
   .slider-image {
-    width: 15%;
+    width: 10%;
     margin: .6rem 1.5%;
   }
   
@@ -1710,6 +1710,19 @@ td.day.disabled {
 }
 
 #newFacebookAdCampaign {
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
+}
+
+.import-services-btn {
+  margin-top: 32px;
+}
+
+.service-name-container h2 {
+  margin-top: 5px;
+}
+
+.delete-slider-image {
+  display: inline;
+  margin-left: 10px;
 }

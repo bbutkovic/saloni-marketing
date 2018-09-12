@@ -345,8 +345,11 @@ function copyLocationHours(id) {
                var day = getDays(index);
                if(val.status != null) {
                   if(day == val.dayname) {
-                     $('#work_start_' + day).val(val.start_time);
-                     $('#work_end_' + day).val(val.closing_time);
+                      if(val.status == 'on') {
+                          $('#checkbox'+day).prop('checked', true);
+                      }
+                      $('#work_start_' + day).val(val.start_time);
+                      $('#work_end_' + day).val(val.closing_time);
                   }
                } else {
                   if(day == val.dayname) {

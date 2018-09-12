@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     tinymce.init({
         selector: ".text-campaign",
         theme: "modern",

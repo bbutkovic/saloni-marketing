@@ -139,6 +139,7 @@
                                                 <div class="form-group">
                                                     <label for="timeZone">{{ trans('salon.salon_time_zone') }}</label>
                                                     <select name="time_zone" id="timeZone" class="form-control">
+                                                        <option value="0" default selected>{{ trans('salon.select_time_zone') }}</option>
                                                         @foreach($time_zones as $key=>$zone)
                                                         <option value="{{ $key }}" @if(isset($salon->time_zone) && $salon->time_zone === $key) selected @endif>{{ $key }} - {{ $zone }}</option>
                                                         @endforeach

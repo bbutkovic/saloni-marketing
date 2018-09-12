@@ -19,7 +19,15 @@
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
             <h2 class="section-heading pull-left">{{ trans('salon.location_services') }}</h2>
-            <a href="#" class="btn btn-default new-location-btn new-service-btn"><i class="fa fa-plus"></i> {{ trans('salon.add_new_service') }}</a>
+            <a href="#" class="btn btn-default new-location-btn new-service-btn pull-right"><i class="fa fa-plus"></i> {{ trans('salon.add_new_service') }}</a>
+            <select id="importFromLocation" class="btn btn-default import-services-btn pull-right">
+                <option value="0" disabled selected>{{ trans('salon.import_services') }}</option>
+                @foreach($salon->locations as $single_location)
+                    @if($single_location->id != $location->id)
+                        <option value="{{ $single_location->id }}">{{ $single_location->location_name }}</option>
+                    @endif
+                @endforeach
+            </select>
         </div>
     </div>
     
@@ -212,6 +220,7 @@
 @include('partials.services.newCategory')
 @include('partials.services.newSubCategory')
 @include('partials.services.newGroup')
+@include('partials.services.importServices')
 
 <script>
 

@@ -91,7 +91,6 @@ function submitSchedule(schedule, repeats, counter) {
     var date_arr = [];
 
     $('.day-class').each(function() {
-
         var element = $(this);
         var working_el = element.find('.working-class').val();
         if(element.find('.working-class').is(':checked')) {

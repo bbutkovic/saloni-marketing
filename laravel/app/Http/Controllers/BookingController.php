@@ -281,7 +281,7 @@ class BookingController extends Controller
 
         $schedule_list = [];
         $selected_days = [];
-        if($request->staff != 'all' && count($request->staff) > 1) {
+        if($request->staff != 'all' && count($request->staff) > 0) {
             foreach($request->staff as $staff_id) {
                 if($user = User::find($staff_id)) {
 
@@ -336,7 +336,6 @@ class BookingController extends Controller
             return $selected_day;
 
         } else {
-
             $user = null;
             $schedule = $this->staff_repo->getLocationSchedule($request->location, $duration);
             $selected_day = $this->booking_repo->getBookingSchedule($request->location, $user = null, $request->selected_date, $schedule, $request->service);

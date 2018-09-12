@@ -38,60 +38,50 @@ class Kernel extends ConsoleKernel
     {
         //schedule for updating the weekly working hours for each staff member
         $schedule->call(function () {
-            
-            $this->staff_repo = new StaffRepository;
-
             $salon_list = Salons::where('time_zone', '!=', null)->get();
 
             foreach($salon_list as $salon) {
-                
+
                 $current_date = new \DateTime("now", new \DateTimeZone($salon->time_zone));
-                $salon_week_start = $salon->week_starting_on;
-                $cron_check = CronjobChecks::where('salon_id', $salon->id)->where('cronjob_type', 'weekly_sch')->first();
-                $salon_extras = $salon->salon_extras;
+                $cron_check = App\Models\CronjobChecks::where('salon_id', $salon->id)->where('cronjob_type', 'weekly_sch')->first();
                 $current_day = $current_date->format('l');
-                
+
                 if($salon->week_starting_on != 1) {
                     $day_name = 'Sunday';
                 } else {
                     $day_name = 'Monday';
                 }
-                    
+
                 if($current_day == $day_name) {
-                        
+
                     if(!$cron_check) {
-                        
+
                         $salon_staff = User::where('salon_id', $salon->id)->get();
-                        
+
                         foreach($salon_staff as $staff) {
-                            if($staff->staff_hours->isNotEmpty() && $staff->weekly_schedule->isNotEmpty()) {
-                                foreach($staff->weekly_schedule as $schedule) {
-                                    $schedule->delete();
+                            if($staff->staff_hours->isNotEmpty()) {
+                                if($staff->weekly_schedule->isNotEmpty()) {
+                                    foreach($staff->weekly_schedule as $schedule) {
+                                        $schedule->delete();
+                                    }
                                 }
-                                
                                 $this->staff_repo->addToWeeklySchedule($staff);
                             }
                         }
-                        
-                        $new_cron = new CronjobChecks;
+
+                        $new_cron = new App\Models\CronjobChecks();
                         $new_cron->salon_id = $salon->id;
                         $new_cron->cronjob_type = 'weekly_sch';
                         $new_cron->finished = 1;
                         $new_cron->save();
-                        
+
                     } else {
-                    
                         if($cron_check) {
                             $cron_check->delete();
                         }
-                    
                     }
-                    
-                } 
+                }
             }
-            
-            Log::info('ok');
-            
         })->hourly();
         
         $schedule->call(function () {
@@ -107,7 +97,6 @@ class Kernel extends ConsoleKernel
                     $cron_check = CronjobChecks::where('salon_id', $salon->id)->where('cronjob_type', 'weekly_to_email')->first();
 
                     $current_date = new \DateTime("now", new \DateTimeZone($salon->time_zone));
-                    $salon_week_start = $salon->week_starting_on;
                     $salon_extras = $salon->salon_extras;
                     $current_day = $current_date->format('l');
 

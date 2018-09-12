@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Website\LocationSlider;
 use Illuminate\Support\Facades\{Auth,Validator,Hash,URL};
 use App\{User,Permission,Role,PermissionRole};
 use App\Models\Salon\{BlogPost,BlogImages};
@@ -423,5 +424,83 @@ class WebsiteRepository {
         }
         
     }
-    
+
+    public function getGlobalImages() {
+
+        $images = WebsiteImages::where('salon_id', 0)->get();
+
+        return $images;
+
+    }
+
+    public function uploadGlobalImages($data) {
+
+        try {
+
+            $mime_type = $data['file']->getClientOriginalExtension();
+            $image_name = substr(md5(rand()), 0, 15). '.' . $mime_type;
+            $data['file']->move(public_path() . '/images/salon-websites/slider-images/', $image_name);
+
+            //upload the new image
+            $website_image = new WebsiteImages;
+            $website_image->salon_id = 0; //0 for global images
+            $website_image->image_name = $image_name;
+            $website_image->save();
+
+            return ['status' => 1, 'message' => trans('salon.upload_successful')];
+
+        } catch (Exception $exc) {
+            return ['status' => 0, 'message' => $exc->getMessage()];
+        }
+    }
+
+    public function addSliderImage($data) {
+        $slider_image = new LocationSlider;
+        $slider_image->salon_id = Auth::user()->salon_id;
+        $slider_image->image_id = $data['image'];
+        $slider_image->save();
+    }
+
+    public function updateSliderImages($data) {
+
+        try {
+
+            $slider_images = LocationSlider::where('salon_id', Auth::user()->salon_id)->get();
+            if($slider_images != null) {
+                if($data['status'] == 0) {
+                    foreach($slider_images as $image) {
+                        if($image->image_id == $data['image']) {
+                            $image->delete();
+                        }
+                    }
+                } else {
+                    if(count($slider_images) >= 3) {
+                        return ['status' => 0, 'message' => trans('salon.max_number_of_images')];
+                    } else {
+                        $this->addSliderImage($data);
+                    }
+                }
+            } else {
+                $this->addSliderImage($data);
+            }
+
+            return ['status' => 1, 'message' => trans('salon.updated_successfuly')];
+
+        } catch (Exception $exc) {
+            return ['status' => 0, 'message' => $exc->getMessage()];
+        }
+    }
+
+    public function getSliderImages() {
+        $slider_images = LocationSlider::where('salon_id', Auth::user()->salon_id)->get();
+        $slider_arr = [];
+        if($slider_images->isNotEmpty()) {
+            foreach($slider_images as $image) {
+                $slider_arr[$image->image_id][] = [
+                    'id' => $image->id
+                ];
+            }
+        }
+        return $slider_arr;
+    }
 }
