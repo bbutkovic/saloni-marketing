@@ -7,6 +7,62 @@ $(document).ready(function() {
         readIMG(this);
     });
 
+    $('#deleteSalonImage').on('click', function() {
+        swal({
+            title: swal_alert,
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: swal_cancel,
+            confirmButtonColor: "#52B3D9",
+            confirmButtonText: swal_confirm,
+            closeOnConfirm: true,
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    method: 'get',
+                    url: ajax_url + 'salon/salon-image/delete',
+                    success: function(data) {
+                        if(data.status === 1) {
+                            toastr.success(data.message);
+                            $('.salon-logo-img').remove();
+                            $('.fileinput-filename').html('');
+                        } else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    $('#deleteLocationImage').on('click', function() {
+        swal({
+            title: prompt,
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: swal_cancel,
+            confirmButtonColor: "#52B3D9",
+            confirmButtonText: swal_confirm,
+            closeOnConfirm: true,
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    method: 'get',
+                    url: ajax_url + 'salon/location-image/delete',
+                    success: function(data) {
+                        if(data.status === 1) {
+                            toastr.success(data.message);
+                            $('.salon-logo-img').remove();
+                            $('.fileinput-filename').html('');
+                        } else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            }
+        });
+    });
+
 });
 
 function submitSalonInfo() {
@@ -179,8 +235,8 @@ function readIMG(input) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('.salon-logo-img').attr('src', e.target.result);
-        }
+            $('.salon-logo-img').attr('src', e.target.result).removeClass('hidden');
+        };
 
         reader.readAsDataURL(input.files[0]);
     }

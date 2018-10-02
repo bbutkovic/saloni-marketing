@@ -1,6 +1,12 @@
 var accessToken = '';
 
 $(document).ready(function() {
+    $('#campaignStart').datepicker({
+        startDate: new Date()
+    });
+    $('#campaignEnd').datepicker({
+        startDate: new Date()
+    });
 
     $("#campaignAgeRange").ionRangeSlider({
         type: "double",
@@ -19,14 +25,23 @@ $(document).ready(function() {
 
         var form = new FormData();
         form.append('name', $('#campaignName').val());
+        form.append('objective', $('#campaignObjective').val());
+        form.append('status', $('#campaignStatus').val());
+        form.append('adset_name', $('#adSetName').val());
         form.append('start', $('#campaignStart').val());
         form.append('end', $('#campaignEnd').val());
         form.append('budget', $('#campaignBudget').val());
         form.append('bid', $('#campaignBids').val());
-        form.append('audience_location', $('#campaignName').val());
+        form.append('audience_countries', $('#audienceCountries').val());
+        form.append('audience_cities', $('#audienceCities').val());
         form.append('audience_age_range', $('#campaignAgeRange').val());
+        form.append('audience_interests', $('#audienceInterests').val());
         form.append('audience_gender', $('#campaignGender').val());
         form.append('ad_image', $('#adImage')[0].files[0]);
+        form.append('facebook_page_id', $('#facebookPageID').val());
+        form.append('ad_title', $('#adTitle').val());
+        form.append('ad_message', $('#adMsg').val());
+        form.append('redirect_link', $('#redirectLink').val());
 
         var checkFacebookApi = new Promise(
             function (resolve, reject) {
@@ -61,7 +76,7 @@ $(document).ready(function() {
             }
         ).then(function (fulfilled) {
             form.append('access_token', fulfilled[0]['token']);
-            form.append('uid', fulfilled[0]['uid'])
+            form.append('uid', fulfilled[0]['uid']);
             $.ajax({
                 type: 'post',
                 url: ajax_url + 'campaigns/facebook/new',
@@ -74,9 +89,10 @@ $(document).ready(function() {
                 },
                 data: form,
                 success: function(data) {
-                    console.log(data);
                     if(data.status != 1) {
                         toastr.error(data.message);
+                    } else {
+                        toastr.success(data.message);
                     }
                 },
             });

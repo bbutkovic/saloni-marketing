@@ -64,4 +64,8 @@ class Location extends Model
     public function stats_date() {
         return $this->hasOne('App\Models\Payments\StatsDate');
     }
+
+    public function work_hours() {
+        return $this->hasMany('App\Models\LocalHours', 'location_id', 'id');
+    }
 }

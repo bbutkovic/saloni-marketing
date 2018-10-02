@@ -404,22 +404,22 @@ class ClientRepository {
 
     }
 
-    public function getNewClients() {
+    public function getNewClients($date) {
         try {
-
             $new_clients = [];
             $male = 0;
             $female = 0;
             $undefined = 0;
 
             $clients = Clients::where('location_id', Auth::user()->location_id)
-                ->whereRaw('year(`created_at`) = ? && month(`created_at`) = ?', array(date('Y'), date('m')))
+                ->where('created_at', '>=', $date['start_date'])
+                ->where('created_at', '<=', $date['end_date'])
                 ->get();
 
             foreach($clients as $client) {
-                if($client->gender === 1) {
+                if($client->gender == 1) {
                     $male++;
-                } else if($client->gender === 2) {
+                } else if($client->gender == 2) {
                     $female++;
                 } else {
                     $undefined++;

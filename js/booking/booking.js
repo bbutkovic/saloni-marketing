@@ -25,6 +25,8 @@ var service = '';
 var waiting_list = '';
 var discount_code = '';
 
+var selected_staff = [];
+
 $(document).ready(function() {
     if(typeof location_count != 'undefined' && location_count >= 1) {
         if(section === null) {
@@ -118,11 +120,22 @@ $(document).ready(function() {
     $('.staff-container').on('click', '#selectRandomStaff', function() {
         
         var selected_services = [];
-        var selected_staff = 'any';
+        var selected_staff_arr = [];
+        var selected_staff = [];
+
         var location_id = $('#locationId').val();
         $.each($('#serviceList input:checked'), function(index,val) {
             selected_services.push(val.name);
         });
+
+        //select random staff from dropdown
+        $('#selectSingleStaff option').each(function(index, value) {
+           if(value.value != 0) {
+               selected_staff_arr.push(value.value);
+           }
+        });
+
+        selected_staff.push({'staff':selected_staff_arr[Math.floor(Math.random() * selected_staff_arr.length)]});
 
         $.ajax({
             type: 'post',
@@ -271,11 +284,9 @@ function clientSelectLocation(id) {
                     loyalty_status = data.client_loyalty.status;
 
                     if(data.client_loyalty.type == 1) {
-                        console.log('neje');
                         max_amount = data.client_loyalty.max_amount;
                         loyalty_status = data.client_loyalty.status;
                     } else if(data.client_loyalty.type == 2) {
-                        console.log('nije');
                         $('#freeServices').removeClass('hidden').css('display', 'block');
                         $.each(data.client_loyalty.free_groups.group, function(index, value) {
                             $('#freeServices').append('<optgroup id="'+index+'Group" label="'+index+'"></optgroup>');
@@ -284,7 +295,6 @@ function clientSelectLocation(id) {
                             });
                         });
                     } else if (data.client_loyalty.type == 3) {
-                        console.log('je');
                         $.each(data.client_loyalty.all_discounts, function(index, value) {
                             $('.loyalty-free-groups').append('<li>' + value.discount + '%' + ' (' + value.points + ' ' + points_trans + ')</li>');
                         });
@@ -560,21 +570,21 @@ function getStaffSchedule() {
     $('.client-loader').removeClass('hidden');
     $('.booking-process').addClass('muted');
     var service = [];
-    var any_staff = $('#anyStaff').val();
+    var any_staff = selected_staff;
     $('.booking-step-staff').css('display', 'none');
     $('.booking-step-time').css('display', 'block');
     $('.booking-step.step-2').html('<i class="fa fa-check"></i>');
     $('.step-3').removeClass('disabled');
     $('.step-3').addClass('active');
     $('.available-time').remove();
-    
+
     $.each($('#serviceList input:checked'), function(index,val) {
         service.push(val.name);
     });
     
     var staff = [];
     if(staff_selection === 0) {
-        if(any_staff) {
+        if(typeof any_staff != 'undefined' && any_staff.length > 0) {
             staff = 'all';
         } else {
             $.each($('.staff-wrap select'), function() {
@@ -633,7 +643,6 @@ function calculatePoints() {
             data: {'services':services},
             success: function(data) {
                 if(data.status === 1) {
-                    console.log(data.points);
                     points_awarded = data.points;
                     $('#awardedPoints').val(data.points);
                     $('#awardedPointsClient').val(data.points);
@@ -801,6 +810,7 @@ function resetButtons() {
 function bookingProceed() {
     if($('#clientBookingCheck').val() != '1') {
         if($('#selectClient').val() != '') {
+
             var client_id = $('#selectClient').val();
             var service = [];
             $.each($('#serviceList input:checked'), function(index,val) {
@@ -856,7 +866,6 @@ function bookingProceed() {
         $('.booking-step.step-3').html('<i class="fa fa-check"></i>');
         $('.client-submit-info').css('display', 'block');
         $('.appended-value').each(function() {
-            console.log(849);
             $(this).css('display', 'none');
         });
         if(!$('.booking-custom-field').length) {

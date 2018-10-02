@@ -1,8 +1,13 @@
 @extends('main')
 
+@section('styles')
+    {{ HTML::style('css/plugins/jasny/jasny-bootstrap.min.css') }}
+@endsection
+
 @section('scripts')
     {{ HTML::script('js/salon/salonInfo.js') }}
     {{ HTML::script('js/payments/integrations.js') }}
+    {{ HTML::script('js/plugins/jasny/jasny-bootstrap.min.js') }}
 @endsection
 
 @section('content')
@@ -157,11 +162,24 @@
                                         <div class="ibox-title">
                                             <h3 class="text-center">Salon logo</h3>
                                             <div class="row">
-                                                <img class="salon-logo-img" @if(isset($salon->logo)) ? src="{{ URL::to('/').'/images/salon-logo/'.$salon->logo }}" : src="{{ URL::to('/').'/images/user_placeholder.png' }}" @endif>
-                                                <label class="text-center" id="new-image-label" for="image-file">{{ trans('salon.update_salon_logo') }}</label>
-                                                <div class="image-container">
-                                                    <input class="image-file" id="salonLogo" type="file" name="salon_logo">
-                                                    <label tabindex="0" for="salonLogo" class="image-change">{{ trans('salon.select_file') }}</label>
+                                                <img class="salon-logo-img @if($salon->logo == null) hidden @endif" src="{{ URL::to('/').'/images/salon-logo/'.$salon->logo }}">
+                                                <div class="form-group m-l m-r">
+                                                    <label for="salonLogo">{{ trans('salon.location_photo') }}</label>
+                                                    <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                                        <span class="input-group-addon btn btn-default btn-file">
+                                                            <span class="fileinput-new">{{ trans('salon.select_file') }}</span>
+                                                            <input type="file" name="salon_logo" id="salonLogo">
+                                                        </span>
+                                                        <div class="form-control" data-trigger="fileinput">
+                                                            <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                                            <span class="fileinput-filename">{{ $salon->logo }}</span>
+                                                        </div>
+                                                        @if(isset($salon->logo) && $salon->logo != null)
+                                                        <div id="deleteSalonImage" class="input-group-addon btn btn-danger">
+                                                            <i class="fa fa-trash"></i>
+                                                        </div>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -178,7 +196,7 @@
                             {{ Form::close() }}
                         </div>
                     </div>
-                    
+
                     <div id="tab-2" class="tab-pane">
                         <div class="panel-body">
 
@@ -270,7 +288,7 @@
 
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -279,6 +297,9 @@
     <script>
         var salon_info_route = '{{ route('updateSalon') }}';
         var billing_info_route = '{{ route('postBillingInfo') }}';
+        var swal_alert = '{{ trans("salon.are_you_sure") }}';
+        var swal_cancel = '{{ trans("salon.cancel") }}';
+        var swal_confirm = '{{ trans("salon.confirm_booking") }}';
     </script>
 
     @if(session('active_tab'))

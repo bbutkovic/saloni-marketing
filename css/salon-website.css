@@ -7,7 +7,7 @@ html {
 }
 
 .header-wrap {
-    width: 750px;
+    width: 900px;
     margin: 0 auto;
 }
 
@@ -18,7 +18,6 @@ html {
     -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
     -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.26);
-
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -44,7 +43,7 @@ html {
 }
 
 .header-logo img {
-    width: 100px;
+    width: 75px;
     height: auto;
 }
 
@@ -97,7 +96,6 @@ html {
     
     .header-logo {
         position: relative;
-        width: 120px;
         padding-right: 20px;
     }
     
@@ -128,18 +126,11 @@ html {
 
 
 @media screen and (min-width: 1200px) {
-    .header-wrap {
-        width: 900px;
-    }
-    
-    .header-logo {
-        width: 120px;
-    }
     
     .navbar-main li a {
         padding: 10px 30px !important;
     }
-    
+
     .navbar-main li:nth-child(2) a {
         padding-left: 42px !important;
     }
@@ -158,6 +149,10 @@ html {
     
     .navbar-right li a {
         padding: 10px 20px !important;
+    }
+
+    .navbar-main li .header-social-icons {
+        padding: 10px !important;
     }
     
 }
@@ -599,16 +594,18 @@ footer p {
     background: none;
     font-family: 'Montserrat';
     font-size: 1rem;
-    margin: 0 .3rem;
+    margin: .3rem;
     padding: .5rem .8rem;
 }
 
 .service-category-btn.active {
-    background: #fff;
+    background: #333;
+    color: #fff;
 }
 
 .service-category-btn:hover {
-    background: #fff;
+    background: rgba(0,0,0,.5);
+    color: #fff;
     transition: 150ms all ease-in-out;
 }
 
@@ -620,8 +617,7 @@ footer p {
 
 @media screen and (min-width: 768px) {
     .services-wrap {
-        width: 75%;
-        max-width: 600px;
+        width: 80%;
     }
 }
 
@@ -637,7 +633,7 @@ footer p {
 
 .service span {
     display: block;
-    background-color: #F5F5F5;
+    background-color: #fff;
     z-index: 99;
 }
 
@@ -1364,4 +1360,16 @@ button {
 .container-text {
     width: 50%;
     margin: 0 auto;
+}
+
+#products {
+    background: #F5F5F5;
+}
+
+.header-wrap .fa {
+    font-size: 18px;
+}
+
+.social-icon .fa {
+    font-size: 1.2rem;
 }

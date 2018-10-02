@@ -40,8 +40,7 @@
                         @if($salon->client_fields->gender === 1)
                         <div class="col-lg-6 form-group">
                             <label for="gender">{{ trans('salon.gender') }}</label>
-                            <select name="gender" class="form-control">
-                                <option value="0" selected disabled>{{ trans('salon.gender') }}</option>
+                            <select name="gender" id="gender" class="form-control">
                                 <option value="1">{{ trans('salon.male') }}</option>
                                 <option value="2">{{ trans('salon.female') }}</option>
                             </select>

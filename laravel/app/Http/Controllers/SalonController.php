@@ -174,11 +174,14 @@ class SalonController extends Controller
 
             $services = $this->salon_repo->getServices($location->id);
 
+            $service_list = $this->salon_repo->getServiceList($location->id);
+
             $location_staff = User::where('location_id', $location->id)->get();
 
             $group_services_arr = [];
             $subgroup_services_arr = [];
             $categories = Category::where('location_id', $location->id)->get();
+            $no_group_services_arr = [];
 
             foreach($categories as $category) {
                 foreach($category->group as $group) {
@@ -202,11 +205,23 @@ class SalonController extends Controller
                         }
                     }
                 }
+                $no_group_services = Service::where('location_id', $location->id)->where('category', $category->id)->where('group', null)->orderBy('order', 'ASC')->get();
+                foreach($no_group_services as $no_group_service) {
+                    $no_group_services_arr[] = [
+                        'category_id' => $category->id,
+                        'group_id' => null,
+                        'service_id' => $no_group_service->id,
+                        'name' => $no_group_service->service_details->name,
+                        'order'=> $no_group_service->order
+                    ];
+                }
             }
 
             $colors = $this->salon_repo->getColors($location);
 
-            return view('salon.salonService', ['salon' => $salon, 'location' => $location, 'location_staff' => $location_staff, 'colors' => $colors, 'category_list' => $services['categories'], 'group_services' => $group_services_arr, 'subgroup_services' => $subgroup_services_arr]);
+            return view('salon.salonService', ['salon' => $salon, 'location' => $location, 'service_list' => $service_list['service_list'],
+                'location_staff' => $location_staff, 'colors' => $colors, 'category_list' => $services['categories'], 'group_services' => $group_services_arr,
+                'subgroup_services' => $subgroup_services_arr, 'no_group_services' => $no_group_services_arr]);
         }
 
         return redirect()->back()->with('error_message', trans('salon.no_locations_added'));
@@ -738,11 +753,21 @@ class SalonController extends Controller
     public function importServices(Request $request) {
 
         $import = $this->salon_repo->importServices($request->all());
-        return $import;
+
         if($import['status'] === 1) {
             return redirect()->back()->with('success_message', trans('salon.services_imported'));
         }
 
         return redirect()->back()->with('error_message', trans('salon.import_failed'));
+    }
+
+    public function deleteSalonImage() {
+        $image = $this->salon_repo->deleteSalonImage();
+        return ['status' => $image['status'], 'message' => $image['message']];
+    }
+
+    public function deleteLocationImage() {
+        $image = $this->salon_repo->deleteLocationImage();
+        return ['status' => $image['status'], 'message' => $image['message']];
     }
 }

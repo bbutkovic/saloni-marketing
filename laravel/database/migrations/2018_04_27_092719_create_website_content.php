@@ -19,17 +19,19 @@ class CreateWebsiteContent extends Migration
             $table->foreign('salon_id')->references('id')->on('salons')->onDelete('cascade');
             $table->text('company_introduction')->nullable();
             $table->text('website_service_text')->nullable();
+            $table->text('website_products_text')->nullable();
             $table->text('website_booking_text')->nullable();
-            $table->text('website_about_text')->nullable();
             $table->text('terms_and_conditions')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('twitter_link')->nullable();
             $table->string('instagram_link')->nullable();
             $table->string('pinterest_link')->nullable();
+            $table->boolean('display_booking_btn')->default(0);
             $table->string('book_btn_text')->nullable();
             $table->string('book_btn_bg')->nullable();
             $table->string('book_btn_color')->nullable();
             $table->string('about-image')->nullable();
+            $table->boolean('display_pricing')->default(1);
         });
     }
 

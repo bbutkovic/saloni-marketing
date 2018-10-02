@@ -38,31 +38,31 @@
                                         <input type="hidden" name="date" id="startDate">
                                         <td>
                                             <select name="work_start" class="form-control time-select">
-                                                @foreach($time_list as $mtime=>$time)
-                                                <option value="{{$mtime}}">{{ $time }}</option>
+                                                @foreach($time_list['Monday'] as $mtime=>$time)
+                                                    <option value="{{$time}}">{{ $time }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>
                                             <select name="work_end" class="form-control time-select">
-                                                @foreach($time_list as $mtime=>$time)
-                                                <option value="{{$mtime}}">{{ $time }}</option>
+                                                @foreach($time_list['Monday'] as $mtime=>$time)
+                                                    <option value="{{$time}}">{{ $time }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>
                                             <select name="lunch_start" class="form-control time-select">
                                                 <option value="0">{{ trans('salon.not_defined') }}</option>
-                                                @foreach($time_list as $mtime=>$time)
-                                                <option value="{{$mtime}}">{{ $time }}</option>
+                                                @foreach($time_list['Monday'] as $mtime=>$time)
+                                                    <option value="{{$time}}">{{ $time }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td>
                                             <select name="lunch_end" class="form-control time-select">
                                                 <option value="0">{{ trans('salon.not_defined') }}</option>
-                                                @foreach($time_list as $mtime=>$time)
-                                                <option value="{{$mtime}}">{{ $time }}</option>
+                                                @foreach($time_list['Monday'] as $mtime=>$time)
+                                                    <option value="{{$time}}">{{ $time }}</option>
                                                 @endforeach
                                             </select>
                                         </td>

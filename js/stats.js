@@ -16,8 +16,9 @@ $(document).ready(function() {
 function changeStatsDate() {
     start_date = $('.start-date-picker').val();
     end_date = $('.end-date-picker').val();
-
-    if(start_date != '' && end_date != '') {
+    var date1 = new Date(start_date);
+    var date2 = new Date(end_date);
+    if(date1 != '' && date2 != '' && date1.getTime() <= date2.getTime()) {
         $.ajax({
             type: 'post',
             url: ajax_url + 'ajax/change-stats-date',
@@ -34,5 +35,7 @@ function changeStatsDate() {
                 }
             }
         });
+    } else {
+        toastr.error(invalid_dates);
     }
 }

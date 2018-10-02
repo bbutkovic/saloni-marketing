@@ -940,7 +940,6 @@ class BookingRepository {
         $current_date = new \DateTime("now", new \DateTimeZone($salon->time_zone));
 
         foreach($user_selection as $selection) {
-
             $booking_list = Booking::where('staff_id', $selection['employee_id'])->where('booking_date', $selected_date)->count();
 
             $employee = $employees[$selection['employee_id']];
@@ -964,11 +963,14 @@ class BookingRepository {
                 array($service_start, $service_end, $service_start, $service_end))->count();
 
             if($booking_list != 0) {
-                if (($selected_date != date('Y-m-d') && $current_date->format('H:i:s') >= $service_start) || !($service_start >= $employee_start_work && $service_end <= $employee_end_work && $bookings == $booking_list) || !($service_end <= $employee_lunch_start || $service_start >= $employee_lunch_end)) {
+                if (!((($selected_date === $current_date->format('Y-m-d') && $service_start >= $current_date->format('H:i:s')) || $selected_date != $current_date->format('Y-m-d')) &&
+                    (($service_start >= $employee_start_work && $service_end <= $employee_end_work && $bookings == $booking_list) && ($service_end <= $employee_lunch_start || $service_start >= $employee_lunch_end)))) {
                     $check_time = false;
                 }
             } else {
-                if (($selected_date === date('Y-m-d') && $current_date->format('H:i:s') >= $service_start) || !($service_start >= $employee_start_work && $service_end <= $employee_end_work) || !($service_end <= $employee_lunch_start || $service_start >= $employee_lunch_end)) {
+                if (!((($selected_date === $current_date->format('Y-m-d') && $service_start >= $current_date->format('H:i:s') || $selected_date != $current_date->format('Y-m-d')) &&
+                        (($service_start >= $employee_start_work && $service_end <= $employee_end_work) && ($service_end <= $employee_lunch_start || $service_start >= $employee_lunch_end))))
+                ) {
                     $check_time = false;
                 }
             }
@@ -981,13 +983,11 @@ class BookingRepository {
                 'from' => date('H:i', strtotime($start_time)),
                 'to' => date('H:i', strtotime('+'.$serv_dur_hour.' hour +'.$serv_dur_mins. ' minutes', strtotime($service_start)))
             ];
-            
-            $start_time = date('H:i', strtotime('+'.$booking_slot.' minutes', strtotime($start_time)));
-            
+
+            $start_time = date('H:i:s', strtotime('+'.$booking_slot.' minutes', strtotime($start_time)));
+
         } else {
-        
-            $start_time = date('H:i', strtotime('+5 minutes', strtotime($start_time)));
-            
+            $start_time = date('H:i:s', strtotime('+5 minutes', strtotime($start_time)));
         }
 
         if($service_end <= $end_time) {
@@ -1004,64 +1004,100 @@ class BookingRepository {
 
         $location_obj = Location::find($location);
         $salon = Salons::find($location_obj->salon_id);
+        $service_arr = [];
 
-        foreach($groups as $group) {
-
-            $subgroups_array = [];
-            $services_array = [];
-            
-            $group_services = Service::where('location_id', $location)->where('category', $category->id)->where('group', $group->id)->orderBy('order', 'ASC')->get();
-
-            foreach($group_services as $group_service) {
-
-                if($group_service->service_staff->isNotEmpty()) {
-                    if($group->id === $group_service->group) {
-
-                        if ($location_obj->happy_hour === 1) {
-                            $current_date = new \DateTime("now", new \DateTimeZone($salon->time_zone));
-                            $current_day = $current_date->format('l');
-                            $current_time = $current_date->format('H:i');
-                            $base_price = $group_service->service_details->base_price;
-
-                            foreach($location_obj->happy_hour_location as $happy_hour_day) {
-                                if($happy_hour_day->day === $current_day && $current_time >= $happy_hour_day->start && $current_time <= $happy_hour_day->end) {
-                                    $discount = '0.'.$location_obj->happy_hour_discount;
-                                    $discount_price = $base_price * $discount;
-                                    $end_price = $base_price - $discount_price;
-                                } else {
-                                    $end_price = $base_price;
+        if(isset($groups) && $groups->isNotEmpty()) {
+            foreach($groups as $group) {
+                $subgroups_array = [];
+                $services_array = [];
+                $group_services = Service::where('location_id', $location)->where('category', $category->id)->where('group', $group->id)->orderBy('order', 'ASC')->get();
+                foreach($group_services as $group_service) {
+                    if($group_service->service_staff->isNotEmpty()) {
+                        if($group->id === $group_service->group) {
+                            if ($location_obj->happy_hour === 1) {
+                                $current_date = new \DateTime("now", new \DateTimeZone($salon->time_zone));
+                                $current_day = $current_date->format('l');
+                                $current_time = $current_date->format('H:i');
+                                $base_price = $group_service->service_details->base_price;
+                                foreach($location_obj->happy_hour_location as $happy_hour_day) {
+                                    if($happy_hour_day->day === $current_day && $current_time >= $happy_hour_day->start && $current_time <= $happy_hour_day->end) {
+                                        $discount = '0.'.$location_obj->happy_hour_discount;
+                                        $discount_price = $base_price * $discount;
+                                        $end_price = $base_price - $discount_price;
+                                    } else {
+                                        $end_price = $base_price;
+                                    }
                                 }
+                            } else {
+                                $end_price = $group_service->service_details->base_price;
                             }
-
-                        } else {
-                            $end_price = $group_service->service_details->base_price;
+                            if($group_service->sub_group != null) {
+                                $subgroup_id = $group_service->service_subgroup->id;
+                                $subgroup_name = $group_service->service_subgroup->name;
+                            } else {
+                                $subgroup_id = null;
+                                $subgroup_name = null;
+                            }
+                            $service_arr[$group->id][] = [
+                                'group_name'=> $group->name,
+                                'service'=> [
+                                    'service_id' => $group_service->id,
+                                    'subgroup_id' => $subgroup_id,
+                                    'subgroup_name' =>$subgroup_name,
+                                    'service_name' => $group_service->service_details->name,
+                                    'service_price' => $end_price
+                                ]
+                            ];
                         }
-                        
-                        if($group_service->sub_group != null) {
-                            $subgroup_id = $group_service->service_subgroup->id;
-                            $subgroup_name = $group_service->service_subgroup->name;
-                        } else {
-                            $subgroup_id = null;
-                            $subgroup_name = null;
-                        }
-                        
-                        $service_arr[$group->id][] = [
-                            'group_name'=> $group->name,
-                            'service'=> [
-                                'service_id' => $group_service->id,
-                                'subgroup_id' => $subgroup_id,
-                                'subgroup_name' =>$subgroup_name,
-                                'service_name' => $group_service->service_details->name,
-                                'service_price' => $end_price
-                            ]
-                        ];
                     }
-                    
                 }
-                
+            }
+        } else {
+            $services = Service::where('location_id', $location)->where('category', $category->id)->where('group', null)->orderBy('order', 'ASC')->get();
+            foreach($services as $service) {
+                if($service->service_staff->isNotEmpty()) {
+                    if ($location_obj->happy_hour === 1) {
+                        $current_date = new \DateTime("now", new \DateTimeZone($salon->time_zone));
+                        $current_day = $current_date->format('l');
+                        $current_time = $current_date->format('H:i');
+                        $base_price = $service->service_details->base_price;
+
+                        foreach($location_obj->happy_hour_location as $happy_hour_day) {
+                            if($happy_hour_day->day === $current_day && $current_time >= $happy_hour_day->start && $current_time <= $happy_hour_day->end) {
+                                $discount = '0.'.$location_obj->happy_hour_discount;
+                                $discount_price = $base_price * $discount;
+                                $end_price = $base_price - $discount_price;
+                            } else {
+                                $end_price = $base_price;
+                            }
+                        }
+
+                    } else {
+                        $end_price = $service->service_details->base_price;
+                    }
+
+                    if($service->sub_group != null) {
+                        $subgroup_id = $service->service_subgroup->id;
+                        $subgroup_name = $service->service_subgroup->name;
+                    } else {
+                        $subgroup_id = null;
+                        $subgroup_name = null;
+                    }
+
+                    $service_arr[0][] = [
+                        'group_name'=> null,
+                        'service'=> [
+                            'service_id' => $service->id,
+                            'subgroup_id' => $subgroup_id,
+                            'subgroup_name' =>$subgroup_name,
+                            'service_name' => $service->service_details->name,
+                            'service_price' => $end_price
+                        ]
+                    ];
+                }
             }
         }
-        
+
         return $service_arr;
     }
     
@@ -1359,7 +1395,7 @@ class BookingRepository {
                         'id' => $booking_single->id,
                         'service' => $booking_single->service->service_details->name,
                         'service_id' => $booking_single->service_id,
-                        'price' => $booking_single->service->service_details->base_price . ' ' . $salon->currency,
+                        'price' => $booking_single->service->service_details->base_price . ' ' . $salon->salon_currency->code,
                         'date' => $booking_single->booking_date,
                         'start' => $booking_single->start,
                         'end' => $booking_single->booking_end,
@@ -1372,7 +1408,7 @@ class BookingRepository {
                     'id' => $booking->id,
                     'service' => $booking->service->service_details->name,
                     'service_id' => $booking->service_id,
-                    'price' => $booking->service->service_details->base_price . ' ' . $salon->salon_currency,
+                    'price' => $booking->service->service_details->base_price . ' ' . $salon->salon_currency->code,
                     'date' => $booking->booking_date,
                     'start' => $booking->start,
                     'end' => $booking->booking_end,
@@ -1393,21 +1429,23 @@ class BookingRepository {
         try {
 
             $bookings = [];
-            $start_date = $stats_date['start_date'];
-            $end_date = $stats_date['end_date'];
+            $start_date = date('Y-m-d', strtotime($stats_date['start_date']));
+            $end_date = date('Y-m-d', strtotime($stats_date['end_date']));
+
             $month_list = $this->getMonthCount($start_date, $end_date);
 
             $location = Location::find(Auth::user()->location_id);
-            $booking_list = Booking::where('location_id', $location->id)->where('created_at', '>=', $start_date)->where('created_at', '<', $end_date)->groupBy('type_id')->get();
+            $booking_list = Booking::where('location_id', $location->id)->where('booking_date', '>=', $start_date)->where('booking_date', '<=', $end_date)->groupBy('type_id')->get();
 
             $month_list_complete = [];
 
-            while($start_date < $end_date) {
+            while($start_date <= $end_date) {
                 $i = date('n', strtotime($start_date));
 
                 $cancelled_amount = 0;
                 $completed_amount = 0;
                 $completed_income = 0;
+                $total_amount = 0;
 
                 if (array_key_exists($i, $months)) {
                     $month_list_complete[] = $months[$i];
@@ -1417,17 +1455,19 @@ class BookingRepository {
                     $month = date('n', strtotime($booking->created_at));
 
                     if($month == $i) {
+                        $total_amount++;
                         if($booking->booking_details->status == 'status_cancelled') {
-                            $cancelled_amount ++;
+                            $cancelled_amount++;
                         } else if ($booking->booking_details->status === 'status_complete' || $booking->booking_details->status === 'status_paid') {
                             $completed_income += $booking->pricing->price;
-                            $completed_amount ++;
+                            $completed_amount++;
                         }
                     }
 
                 }
 
                 $bookings[$i] = [
+                    'total' => $total_amount,
                     'completed' => $completed_amount,
                     'cancelled' => $cancelled_amount,
                     'income' => $completed_income
@@ -1462,14 +1502,16 @@ class BookingRepository {
             $salon = Salons::find(Auth::user()->salon_id);
 
             $current_date = new \DateTime("now", new \DateTimeZone($salon->time_zone));
-
             $booking = Booking::where('location_id', Auth::user()->location_id)
-                              ->where('booking_date', '>=', $current_date->format('Y-m-d'))
-                              ->where('start', '>=', $current_date->format('H:i'))
+                              ->where(DB::raw('concat(booking_date," ",start)') , '>=' , $current_date->format('Y-m-d H:i:s'))
+                              ->whereHas('booking_details', function($query) {
+                                  $query->where('status', '!=', 'status_cancelled');
+                              })
+                              ->orderBy('booking_date', 'ASC')
                               ->first();
 
             return ['status' => 1, 'booking' => $booking];
-
+            //year(`created_at`) = ? && month(`created_at`) = ?', array(date('Y'), date('m')))
         } catch (Exception $exc) {
             return ['status' => 0, 'message' => $exc->getMessage()];
         }

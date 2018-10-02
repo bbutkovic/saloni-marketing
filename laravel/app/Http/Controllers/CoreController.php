@@ -183,15 +183,15 @@ class CoreController extends Controller
                 $stats_date = $this->pos_repo->getStatsDate($location);
                 if($stats_date['status'] === 1) {
                     $monthly_bookings = $this->booking_repo->getMonthlyBookings($stats_date['starts_date'], $month_list);
-
                     $month_list_complete = $monthly_bookings['month_list'];
                 }
 
                 $next_booking = $this->booking_repo->getNextBooking();
+
                 $today_bookings = $this->booking_repo->getTodaysBookings();
                 $today_bookings_amount = count($today_bookings['bookings']);
 
-                $new_clients = $this->client_repo->getNewClients();
+                $new_clients = $this->client_repo->getNewClients($stats_date['starts_date']);
 
                 if($monthly_bookings['status'] === 1) {
                     $monthly_booking_stats = $monthly_bookings['bookings'];

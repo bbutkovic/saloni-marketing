@@ -464,6 +464,7 @@ input[type="radio"]:focus{
 
 .salon-logo-img {
   display: block;
+  width: 200px;
   margin: 20px auto;
 }
 
@@ -1725,4 +1726,12 @@ td.day.disabled {
 .delete-slider-image {
   display: inline;
   margin-left: 10px;
+}
+
+.service-no-group .fa {
+  color: #2f4050;
+}
+
+.clients-table tr td {
+  cursor: default;
 }

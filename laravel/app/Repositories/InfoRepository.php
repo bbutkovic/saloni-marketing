@@ -327,6 +327,30 @@ class InfoRepository {
         return $hours_list;
         
     }
+
+    public function getSalonHoursList($salon_id) {
+        $salon = Salons::find($salon_id);
+        $location = Location::find(Auth::user()->location_id);
+
+        $hours_list = [];
+
+        if($salon->time_format === 'time-24') {
+            $time_format = "H:i";
+        } else {
+            $time_format = "g:i a";
+        }
+
+        foreach($location->work_hours as $hours) {
+            $start_time = strtotime($hours->start_time);
+            $end_time = strtotime($hours->closing_time);
+            while($start_time <= $end_time) {
+                $hours_list[$hours->dayname][] = date($time_format, $start_time);
+                $start_time = strtotime('+15 minutes', $start_time);
+            }
+        }
+
+        return $hours_list;
+    }
     
     public function getBusinessTypes() {
         

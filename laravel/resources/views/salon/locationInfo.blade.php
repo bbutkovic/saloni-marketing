@@ -176,7 +176,7 @@
                                         <div class="ibox-title">
                                             <h3 class="text-center">Logo</h3>
                                             <div class="row">
-                                                <img class="salon-logo-img" @if(isset($location->location_extras->location_photo)) ? src="{{ URL::to('/').'/images/location-logo/'.$location->location_extras->location_photo }}" : src="{{ URL::to('/').'/images/user_placeholder.png' }}" @endif>
+                                                <img class="salon-logo-img @if($location->location_extras->location_photo == null) hidden @endif" src="{{ URL::to('/').'/images/location-logo/'.$location->location_extras->location_photo }}">
                                                 <div class="form-group m-l m-r">
                                                     <label for="location_photo">{{ trans('salon.location_photo') }}</label>
                                                     <div class="fileinput fileinput-new input-group" data-provides="fileinput">
@@ -186,8 +186,13 @@
                                                         </span>
                                                         <div class="form-control" data-trigger="fileinput">
                                                             <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                                            <span class="fileinput-filename"></span>
+                                                            <span class="fileinput-filename">{{ $location->location_extras->location_photo }}</span>
                                                         </div>
+                                                        @if(isset($location->location_extras->location_photo) && $location->location_extras->location_photo != null)
+                                                            <div id="deleteLocationImage" class="input-group-addon btn btn-danger">
+                                                                <i class="fa fa-trash"></i>
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -638,6 +643,8 @@
     </div>
     @endif
     <script>
+        var swal_confirm = '{{ trans("salon.confirm_booking") }}';
+        var swal_cancel = '{{ trans("salon.cancel") }}';
         var prompt = '{{ trans('salon.are_you_sure') }}';
         var delete_desc = '{{ trans('salon.delete_desc') }}';
         var delete_location = '{{ trans('salon.delete_location') }}';

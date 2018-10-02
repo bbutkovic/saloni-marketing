@@ -15,7 +15,7 @@
     
     {{ HTML::script('js/jquery-3.1.1.min.js') }}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyColmGdPetW0zIga7qqyByHrll4kMzJVJE"></script>
-    
+
     <script type="text/javascript">
         var ajax_url = '<?php echo URL::to('/'); ?>/';
     </script>
@@ -31,33 +31,43 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            @if($salon->logo != null)
             <div class="header-logo">
                 <a href="{{ URL::to('/').'/'.$salon->unique_url }}">
                     <img src="{{ URL::to('/').'/images/salon-logo/'.$salon->logo }}" alt="{{ $salon->business_name }}">
                 </a>
             </div>
+            @endif
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-main nav-header">
                 <li class="active">
-                    <li><a class="page-scroll" href="{{ URL::to('/').'/'.$salon->unique_url }}">{{ trans('salon.home') }}</a></li>
-                    <li><a class="page-scroll" href="#about">{{ trans('salon.about') }}</a></li>
-                    <li><a class="page-scroll" href="#news">{{ trans('salon.news') }}</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('salon.locations') }} <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        @foreach($salon->locations as $location)
-                        <li class="dropdown-link"><a href="{{ URL::to('/').'/'.$salon->unique_url.'/'.$location->unique_url }}">{{ $location->location_name }}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right nav-header">
-                <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                <li><a class="page-scroll" href="{{ URL::to('/').'/'.$salon->unique_url }}">{{ trans('salon.home') }}</a></li>
+                <li><a class="page-scroll" href="{{ route('salonBlog', $salon->unique_url) }}">{{ trans('salon.news') }}</a></li>
+                @if(count($salon->locations) > 1)
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('salon.locations') }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @foreach($salon->locations as $location)
+                                <li class="dropdown-link"><a href="{{ URL::to('/').'/'.$salon->unique_url.'/'.$location->unique_url }}">{{ $location->location_name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+                @if(isset($salon->website_content) && $salon->website_content->display_booking_btn != 0)
+                    <li>
+                        <a href="{{ route('clientBooking', $salon->unique_url) }}" id="bookNowBtn" style="background-color: {{ $salon->website_content->book_btn_bg }}; color: {{ $salon->website_content->book_btn_color }}">{{ $salon->website_content->book_btn_text }}</a>
+                    </li>
+                @endif
+                @if($salon->website_content->facebook_link != null)
+                    <li><a class="header-social-icons" href="{{ $salon->website_content->facebook_link }}"><i class="fa fa-facebook-f"></i></a></li>
+                @endif
+                @if($salon->website_content->twitter_link != null)
+                    <li><a class="header-social-icons" href="{{ $salon->website_content->twitter_link }}"><i class="fa fa-twitter"></i></a></li>
+                @endif
+                @if($salon->website_content->instagram_link != null)
+                    <li><a class="header-social-icons" href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
+                @endif
             </ul>
         </div>
       </div>

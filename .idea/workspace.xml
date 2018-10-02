@@ -2,48 +2,66 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01ff23c6-207c-4038-9520-1cb6b99b2820" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/laravel/resources/views/partials/services/importServices.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/plugins/images/close.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/plugins/images/loading.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/plugins/images/next.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/plugins/images/prev.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/app/Repositories/FacebookRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/resources/views/website/admin/websiteSliderSettings.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/laravel/resources/views/website/admin/websiteTextboxSettings.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/salon-website.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/salon-website.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ajax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/booking/booking.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/booking/booking.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/booking/bookingSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/booking/bookingSettings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/campaigns/facebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/campaigns/facebook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/marketing/campaign.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/marketing/campaign.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/plugins/datepicker/datepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/plugins/datepicker/datepicker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/salon/salonInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/salon/salonInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/salon/salonService.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/salon/salonService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/staff-schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/staff-schedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/stats.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/stats.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/website/salonWebsite.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/website/salonWebsite.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/website/websiteSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/website/websiteSettings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Console/Kernel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/BookingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/BookingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/CoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/CoreController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/FacebookController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/FacebookController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/MarketingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/MarketingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/SalonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/SalonController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/StaffController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/StaffController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Http/Controllers/WebsiteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Http/Controllers/WebsiteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/app/Models/Salons.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/Salons.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Models/Location.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Models/Location.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Repositories/BookingRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Repositories/BookingRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Repositories/ClientRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Repositories/ClientRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Repositories/InfoRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Repositories/InfoRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Repositories/SalonRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Repositories/SalonRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/app/Repositories/StaffRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Repositories/StaffRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/app/Repositories/WebsiteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/app/Repositories/WebsiteRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2018_04_05_095455_create_service_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2018_04_05_095455_create_service_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2018_04_27_092719_create_website_content.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2018_04_27_092719_create_website_content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2018_05_02_111912_create_cronjob_checks.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2018_05_02_111912_create_cronjob_checks.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/database/migrations/2018_05_22_093349_create_website_images.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/database/migrations/2018_05_22_093349_create_website_images.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/lang/en/salon.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/lang/en/salon.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/lang/hr/salon.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/lang/hr/salon.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/booking/clients.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/booking/clients.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/views/campaigns/facebook.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/campaigns/facebook.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/resources/views/gdpr/privacyPolicyEN.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/gdpr/privacyPolicy.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/resources/views/menu/superAdmin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/menu/superAdmin.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/resources/views/partials/booking/clientSelectService.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/partials/booking/clientSelectService.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/clients/clientProfile.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/core/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/core/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/menu/salon.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/menu/salon.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/partials/booking/addNewClient.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/partials/booking/addNewClient.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/partials/editSchedule.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/partials/editSchedule.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/views/partials/schedule/addSchedule.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/partials/schedule/addSchedule.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/partials/services/newService.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/partials/services/newService.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/salon/clientProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/salon/clientProfile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/salon/locationInfo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/salon/locationInfo.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/salon/marketing/campaign.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/salon/marketing/campaign.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/salon/marketingSettings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/salon/marketingSettings.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/views/salon/salonInfo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/salon/salonInfo.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/views/salon/salonService.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/salon/salonService.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/resources/views/staff/staffProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/staff/staffProfile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/clientBooking.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/clientBooking.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/staff/staffRosters.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/staff/staffRosters.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/blog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/admin/blog.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/blogPost.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/blogPost.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/salonBlog.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/salonBlog.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/websiteIndex.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/websiteIndex.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/websiteLocation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/websiteLocation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/websiteSettings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/websiteSettings.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel/resources/views/website/websiteSettings.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/resources/views/website/admin/websiteSettings.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/laravel/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/laravel/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,40 +75,77 @@
     <pharConfigPath>$PROJECT_DIR$/laravel/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="salon.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/resources/lang/en/salon.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23759">
+              <caret line="1033" column="37" selection-start-line="1033" selection-start-column="37" selection-end-line="1033" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="salon.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/resources/lang/hr/salon.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="662">
+              <caret line="1033" column="40" selection-start-line="1033" selection-start-column="40" selection-end-line="1033" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laravel/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="230" column="31" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="websiteSettings.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/admin/websiteSettings.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getlocationserv</find>
-      <find>back</find>
-      <find>staffSelected</find>
-      <find>appended-</find>
-      <find>staffselected</find>
-      <find>roster</find>
-      <find>locationh</find>
-      <find>copylo</find>
-      <find>submit-sch</find>
-      <find>service_arr</find>
-      <find>return $service_arr;</find>
-      <find>getServiceList</find>
-      <find>manage</find>
-      <find>schedule</find>
-      <find>staff</find>
-      <find>main</find>
-      <find>cont</find>
+      <find>logo</find>
       <find>content</find>
-      <find>update</find>
-      <find>location</find>
-      <find>location_id</find>
-      <find>privacyPolicy</find>
-      <find>getprivacy</find>
-      <find>contentfor</find>
-      <find>privacypolicy</find>
-      <find>priva</find>
-      <find>privacy</find>
-      <find>website_co</find>
-      <find>slider text</find>
-      <find>slider_</find>
+      <find>new_clients</find>
+      <find>webImage</find>
+      <find>uploaded-images</find>
+      <find>slider</find>
+      <find>promo</find>
+      <find>slider_promo</find>
+      <find>website</find>
+      <find>blog</find>
+      <find>'blog'</find>
+      <find>'website'</find>
+      <find>website_blog</find>
+      <find>check</find>
+      <find>textb</find>
+      <find>textbox</find>
+      <find>getblo</find>
+      <find>blogpost</find>
+      <find>resi</find>
+      <find>Image</find>
+      <find>deleteblogpost</find>
+      <find>delete</find>
+      <find>booking/get</find>
+      <find>getbooking</find>
+      <find>curre</find>
+      <find>gender</find>
+      <find>header-wrap</find>
+      <find>header-logo</find>
+      <find>hej</find>
+      <find>console.log</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\js</dir>
@@ -106,57 +161,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/CalendarRepository.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/booking/clients.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/partials/booking/selectTime.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/website/websiteLocation.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/salon/locationInfo.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/core/dashboard.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/partials/payment/invoiceModal.blade.php" />
-        <option value="$PROJECT_DIR$/js/pos/posSaves.js" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/PosRepository.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/lang/en/gdpr.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/lang/hr/gdpr.php" />
-        <option value="$PROJECT_DIR$/css/alt-page.css" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/privacyPolicy.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/composer.json" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/menu/salon.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/clients/clientAppointments.blade.php" />
-        <option value="$PROJECT_DIR$/js/campaigns/facebook.js" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/campaigns/facebook.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/FacebookController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/InfoRepository.php" />
         <option value="$PROJECT_DIR$/laravel/resources/views/staff/staffProfile.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/salon/salonService.blade.php" />
-        <option value="$PROJECT_DIR$/css/custom.css" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/partials/services/importServices.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/SalonRepository.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/SalonController.php" />
-        <option value="$PROJECT_DIR$/js/salon/salonService.js" />
-        <option value="$PROJECT_DIR$/laravel/database/migrations/2018_05_02_111912_create_cronjob_checks.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Console/Kernel.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/js/plugins/datepicker/datepicker.js" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/PosRepository.php" />
         <option value="$PROJECT_DIR$/js/ajax.js" />
-        <option value="$PROJECT_DIR$/js/staff-schedule.js" />
         <option value="$PROJECT_DIR$/laravel/resources/views/partials/schedule/addSchedule.blade.php" />
-        <option value="$PROJECT_DIR$/js/main.js" />
-        <option value="$PROJECT_DIR$/laravel/resources/lang/en/salon.php" />
-        <option value="$PROJECT_DIR$/js/booking/booking.js" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/partials/editSchedule.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/SalonController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/SalonRepository.php" />
         <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/StaffController.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/staff/staffManagement.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/BookingController.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Repositories/BookingRepository.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/staff/staffRosters.blade.php" />
         <option value="$PROJECT_DIR$/laravel/database/migrations/2018_04_27_092719_create_website_content.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/salon/marketingSettings.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/StaffRepository.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/MarketingController.php" />
+        <option value="$PROJECT_DIR$/js/booking/bookingSettings.js" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/salon/marketing/campaign.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/database/migrations/2018_07_03_105413_create_marketing_campaign.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/BookingController.php" />
+        <option value="$PROJECT_DIR$/js/booking/booking.js" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/CoreController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/ClientRepository.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/core/dashboard.blade.php" />
+        <option value="$PROJECT_DIR$/js/stats.js" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/salon/salonInfo.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/salon/locationInfo.blade.php" />
+        <option value="$PROJECT_DIR$/js/salon/salonInfo.js" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/websiteSettings.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/menu/salon.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/routes/web.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/admin/websiteSliderSettings.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/admin/websiteTextboxSettings.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/WebsiteController.php" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/WebsiteRepository.php" />
+        <option value="$PROJECT_DIR$/js/website/websiteSettings.js" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/admin/blog.blade.php" />
+        <option value="$PROJECT_DIR$/js/calendar.js" />
+        <option value="$PROJECT_DIR$/laravel/app/Repositories/BookingRepository.php" />
+        <option value="$PROJECT_DIR$/css/custom.css" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/booking/clients.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/lang/en/salon.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/lang/hr/salon.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/salon/clientProfile.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/websiteLocation.blade.php" />
         <option value="$PROJECT_DIR$/css/salon-website.css" />
         <option value="$PROJECT_DIR$/js/website/salonWebsite.js" />
-        <option value="$PROJECT_DIR$/laravel/routes/web.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/CoreController.php" />
-        <option value="$PROJECT_DIR$/js/website/websiteSettings.js" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/website/websiteSettings.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/gdpr/privacyPolicy.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/app/Http/Controllers/WebsiteController.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/website/clientBooking.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/views/partials/booking/clientSelectService.blade.php" />
-        <option value="$PROJECT_DIR$/laravel/resources/lang/hr/salon.php" />
         <option value="$PROJECT_DIR$/laravel/resources/views/website/websiteIndex.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/salonBlog.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/blogPost.blade.php" />
+        <option value="$PROJECT_DIR$/laravel/resources/views/website/admin/websiteSettings.blade.php" />
       </list>
     </option>
   </component>
@@ -284,6 +339,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,7 +350,97 @@
             <path>
               <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
               <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
               <item name="laravel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="clients" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaloniMarketing" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="website" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SaloniMarketing" type="b2602c69:ProjectViewProjectNode" />
@@ -306,25 +452,29 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/ncerovs/PhpstormProjects/SaloniMarketing/laravel/app/Repositories/WebsiteRepository.php" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/gfos" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\css\plugins\images" />
+      <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\laravel\resources\views\website\admin" />
+      <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\js\plugins\datepicker" />
       <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\laravel\resources\views\salon\loyalty" />
       <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\css\plugins\img" />
-      <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\css\plugins" />
-      <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\js\plugins\ionslider" />
-      <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\css\plugins\ionslider" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ncerovs\PhpstormProjects\SaloniMarketing\js\salon" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -412,25 +562,41 @@
       <workItem from="1536490943154" duration="2107000" />
       <workItem from="1536565357484" duration="18286000" />
       <workItem from="1536739013249" duration="618000" />
-      <workItem from="1536741943154" duration="285000" />
+      <workItem from="1536741943154" duration="13710000" />
+      <workItem from="1536830150822" duration="124000" />
+      <workItem from="1536830317520" duration="123000" />
+      <workItem from="1536852206727" duration="158000" />
+      <workItem from="1537213571611" duration="72000" />
+      <workItem from="1537784426570" duration="8650000" />
+      <workItem from="1537796863533" duration="4424000" />
+      <workItem from="1537805368684" duration="1486000" />
+      <workItem from="1537953635616" duration="12909000" />
+      <workItem from="1538037444733" duration="3846000" />
+      <workItem from="1538047657761" duration="7367000" />
+      <workItem from="1538124989783" duration="8479000" />
+      <workItem from="1538136154937" duration="243000" />
+      <workItem from="1538211302519" duration="2486000" />
+      <workItem from="1538381597090" duration="15800000" />
+      <workItem from="1538471315569" duration="2010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272122000" />
+    <option name="totallyTimeSpent" value="353724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.32668883" />
+      <window_info anchor="bottom" id="File Transfer" order="9" weight="0.3255814" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32890365" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32779622" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.3296875" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23081024" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18070363" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -457,352 +623,327 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/clients/loyaltyPoints.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="37" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="20" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/salon/locationInfo.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3473">
-          <caret line="35" column="20" lean-forward="true" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/clients.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="46" lean-forward="true" selection-start-line="7" selection-start-column="46" selection-end-line="7" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/clients/clientAppointments.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/main.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="114" column="22" selection-start-line="114" selection-start-column="8" selection-end-line="114" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/campaigns/facebook.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1449">
-          <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/campaigns/facebook.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="57" column="87" selection-start-line="57" selection-start-column="87" selection-end-line="57" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/FacebookController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="140" column="5" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Models/Salons.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Models/Salon/CustomFields.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/partials/services/newCategory.blade.php">
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/salon/marketing/campaign.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="74" selection-end-column="6" />
+        <state relative-caret-position="524">
+          <caret line="237" column="34" selection-start-line="237" selection-start-column="34" selection-end-line="237" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/calendar.js">
+    <entry file="file://$PROJECT_DIR$/js/booking/bookingSettings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2852">
-          <caret line="124" column="103" selection-start-line="121" selection-start-column="23" selection-end-line="124" selection-end-column="103" />
+        <state relative-caret-position="2070">
+          <caret line="90" column="45" selection-start-line="90" selection-start-column="45" selection-end-line="90" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/custom.css">
+    <entry file="file://$PROJECT_DIR$/laravel/database/migrations/2018_07_03_105413_create_marketing_campaign.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39261">
-          <caret line="1707" column="13" selection-start-line="1707" selection-start-column="13" selection-end-line="1707" selection-end-column="13" />
+        <state relative-caret-position="575">
+          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Models/Salon/Service.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/MarketingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" column="36" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Models/Location.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/SalonController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="681" lean-forward="true" selection-start-line="681" selection-end-line="681" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/SalonRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1113">
-          <caret line="1687" column="69" selection-start-line="1687" selection-start-column="69" selection-end-line="1687" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/salon/salonService.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/salon/salonService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="504" column="151" selection-start-line="504" selection-start-column="151" selection-end-line="504" selection-end-column="151" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/partials/services/importServices.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="77" selection-start-line="15" selection-start-column="77" selection-end-line="15" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/database/migrations/2018_05_02_111912_create_cronjob_checks.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="150" column="28" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/staff/staffProfile.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6417">
-          <caret line="279" column="138" selection-start-line="279" selection-start-column="138" selection-end-line="279" selection-end-column="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/ajax.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="348" column="67" selection-start-line="348" selection-start-column="67" selection-end-line="348" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="152" column="22" lean-forward="true" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/staff-schedule.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
-          <caret line="117" column="9" selection-start-line="117" selection-start-column="9" selection-end-line="117" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/partials/schedule/addSchedule.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="65" column="122" selection-start-line="65" selection-start-column="122" selection-end-line="65" selection-end-column="122" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/booking/booking.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="358" column="46" lean-forward="true" selection-start-line="358" selection-start-column="46" selection-end-line="358" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/staff/staffManagement.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="83" selection-start-line="5" selection-start-column="83" selection-end-line="5" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/StaffController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="43" column="73" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/BookingRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="972" column="17" lean-forward="true" selection-start-line="972" selection-start-column="17" selection-end-line="972" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/BookingController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="329" column="61" selection-start-line="329" selection-start-column="61" selection-end-line="329" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/blog.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="929">
-          <caret line="151" column="11" lean-forward="true" selection-start-line="113" selection-start-column="12" selection-end-line="151" selection-end-column="11" />
+        <state relative-caret-position="47">
+          <caret line="121" column="181" selection-start-line="121" selection-start-column="181" selection-end-line="121" selection-end-column="181" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/database/migrations/2018_04_27_092719_create_website_content.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="20" column="25" lean-forward="true" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+        <state relative-caret-position="170">
+          <caret line="21" column="62" lean-forward="true" selection-start-line="21" selection-start-column="62" selection-end-line="21" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/salon-website.css">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/StaffController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="791">
-          <caret line="1365" column="19" selection-start-line="1365" selection-start-column="19" selection-end-line="1365" selection-end-column="19" />
+        <state relative-caret-position="619">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/StaffRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11776">
-          <caret line="521" selection-start-line="521" selection-end-line="521" />
+        <state relative-caret-position="-24026">
+          <caret line="47" column="12" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/website/salonWebsite.js">
+    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/ClientRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3059">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="25" />
+        <state relative-caret-position="286">
+          <caret line="415" column="59" selection-start-line="415" selection-start-column="59" selection-end-line="415" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/website/websiteSettings.js">
+    <entry file="file://$PROJECT_DIR$/js/plugins/datepicker/bootstrap-datepicker.min.js" />
+    <entry file="file://$PROJECT_DIR$/js/plugins/datepicker/datepicker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state>
+          <caret line="17" column="63" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/gdpr/privacyPolicyHR.blade.php">
+    <entry file="file://$PROJECT_DIR$/js/booking/booking.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="494" column="56" lean-forward="true" selection-start-line="77" selection-start-column="4" selection-end-line="494" selection-end-column="56" />
+        <state relative-caret-position="297">
+          <caret line="704" column="16" selection-start-line="704" selection-start-column="12" selection-end-line="704" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/core/dashboard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4278">
+          <caret line="186" column="26" selection-start-line="186" selection-start-column="26" selection-end-line="186" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/stats.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="20" column="71" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7912">
-          <caret line="356" column="51" selection-start-line="356" selection-start-column="51" selection-end-line="356" selection-end-column="51" />
+        <state relative-caret-position="550">
+          <caret line="193" column="89" selection-start-line="193" selection-start-column="89" selection-end-line="193" selection-end-column="89" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/salon/salonInfo.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="164" column="94" lean-forward="true" selection-start-line="164" selection-start-column="94" selection-end-line="164" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/salon/salonInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="55" column="62" selection-start-line="55" selection-start-column="62" selection-end-line="55" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/salon/locationInfo.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="188" column="138" selection-start-line="188" selection-start-column="138" selection-end-line="188" selection-end-column="138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/menu/salonstaff.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/menu/salon.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="81" column="121" selection-start-line="81" selection-start-column="107" selection-end-line="81" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/admin/websiteSliderSettings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-69">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/SalonController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="716" column="42" selection-start-line="716" selection-start-column="42" selection-end-line="716" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/admin/websiteTextboxSettings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="35" column="30" lean-forward="true" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/SalonRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="275" column="20" lean-forward="true" selection-start-line="275" selection-start-column="20" selection-end-line="277" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/database/migrations/2018_05_18_105225_create_blog_post_images.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Models/Salon/BlogPost.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Models/Salon/BlogImages.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/WebsiteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="77" column="45" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/gdpr/privacyPolicy.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/websiteLocation.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="349" column="20" selection-start-line="349" selection-start-column="20" selection-end-line="349" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/salonBlog.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="165" column="20" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/clientBooking.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-117">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/partials/booking/clientSelectService.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="73" selection-start-line="2" selection-start-column="73" selection-end-line="2" selection-end-column="73" />
+        <state relative-caret-position="504">
+          <caret line="144" selection-start-line="144" selection-end-line="144" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/WebsiteRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1357">
-          <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
+        <state relative-caret-position="435">
+          <caret line="210" column="54" lean-forward="true" selection-start-line="210" selection-start-column="54" selection-end-line="210" selection-end-column="54" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/admin/blog.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="65" column="62" selection-start-line="65" selection-start-column="57" selection-end-line="65" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/website/websiteSettings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/CalendarController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/calendar/appointments.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/calendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="114" column="36" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Http/Controllers/BookingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="652" column="42" lean-forward="true" selection-start-line="652" selection-start-column="42" selection-end-line="652" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Models/Salons.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="68" column="34" selection-start-line="68" selection-start-column="20" selection-end-line="68" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/app/Repositories/BookingRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="1397" column="125" selection-start-line="1397" selection-start-column="125" selection-end-line="1397" selection-end-column="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/custom.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="1734" column="14" selection-start-line="1734" selection-start-column="14" selection-end-line="1734" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/booking/clients.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="56" column="98" selection-start-line="56" selection-start-column="98" selection-end-line="56" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/clients/clientProfile.blade.php" />
     <entry file="file://$PROJECT_DIR$/laravel/resources/lang/en/salon.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10350">
-          <caret line="450" column="21" selection-start-line="450" selection-start-column="21" selection-end-line="450" selection-end-column="21" />
+        <state relative-caret-position="23759">
+          <caret line="1033" column="37" selection-start-line="1033" selection-start-column="37" selection-end-line="1033" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/salon/clientProfile.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="791">
+          <caret line="203" column="37" selection-start-line="203" selection-start-column="37" selection-end-line="203" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/salon-website.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="154" column="20" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/resources/lang/hr/salon.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14398">
-          <caret line="626" column="55" selection-start-line="626" selection-start-column="55" selection-end-line="626" selection-end-column="55" />
+        <state relative-caret-position="662">
+          <caret line="1033" column="40" selection-start-line="1033" selection-start-column="40" selection-end-line="1033" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/website/salonWebsite.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/websiteLocation.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="64" column="24" selection-start-line="64" selection-start-column="24" selection-end-line="72" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/salonBlog.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="70" column="22" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="70" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/blogPost.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="791">
+          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/websiteIndex.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="150" column="10" selection-start-line="150" selection-start-column="10" selection-end-line="150" selection-end-column="10" />
+        <state relative-caret-position="354">
+          <caret line="63" column="20" lean-forward="true" selection-start-line="63" selection-start-column="20" selection-end-line="67" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/websiteSettings.blade.php">
+    <entry file="file://$PROJECT_DIR$/laravel/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="172" column="91" selection-start-line="172" selection-start-column="79" selection-end-line="172" selection-end-column="91" />
+        <state relative-caret-position="297">
+          <caret line="230" column="31" selection-start-line="230" selection-start-column="20" selection-end-line="230" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laravel/resources/views/website/admin/websiteSettings.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="11" lean-forward="true" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
         </state>
       </provider>
     </entry>

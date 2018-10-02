@@ -1079,21 +1079,19 @@ class SalonRepository {
         //if edit or creating new service
         if(isset($data['service_id'])) {
             $service = Service::find($data['service_id']);
-            
             $order = $service->order;
-            
         } else {
             $service = new Service;
-            
-            if(!isset($data['category_id']) || !isset($data['group_id'])) {
-                return ['status' => 0, 'message' => trans('salon.category_group_required')];
+            if(!isset($data['category_id'])) {
+                return ['status' => 0, 'message' => trans('salon.category_required')];
             }
-            
             //get highest order service
             if(isset($data['subgroup_id'])) {
                 $order = Service::where('location_id', $location)->where('sub_group', $data['subgroup_id'])->get()->max('order');
-            } else {
+            } else if (isset($data['group_id'])) {
                 $order = Service::where('location_id', $location)->where('group', $data['group_id'])->get()->max('order');
+            } else {
+                $order = Service::where('location_id', $location)->where('group', null)->get()->max('order');
             }
             
             if($order === null) {
@@ -1241,42 +1239,37 @@ class SalonRepository {
         $categories = Category::where('location_id', Auth::user()->location_id)->get();
 
         try {
-            
             foreach($categories as $category) {
                 foreach($category->group as $group) {
-                    
                     $order = 0;
-                    
                     foreach($services['order'] as $service_order) {
-                        
-                        if($group->id == $service_order['group'] && $service_order['subgroup'] == null) {
-                            
+                        if(isset($service_order['group']) && $group->id == $service_order['group'] && $service_order['subgroup'] == null) {
                             $order++;
-                            
                             $service = Service::find($service_order['id']);
                             $service->order = $order;
                             $service->save();
-                        
                         }
                     }
                         
                     foreach($group->subcategory as $subgroup) {
-                        
                         $order = 0;
-                        
                         foreach($services['order'] as $service_order) {
-                        
                             if($group->id == $service_order['group'] && $service_order['subgroup'] == $subgroup->id) {
-                                    
                                 $order++;
-                                
                                 $service = Service::find($service_order['id']);
                                 $service->order = $order;
                                 $service->save();
                             }
-                            
                         }
-                        
+                    }
+                }
+                $order = 0;
+                foreach($services['order'] as $service_no_group_order) {
+                    if(!isset($service_no_group_order['group'])) {
+                        $order++;
+                        $service = Service::find($service_no_group_order['id']);
+                        $service->order = $order;
+                        $service->save();
                     }
                 }
             }
@@ -1720,5 +1713,58 @@ class SalonRepository {
             return ['status' => 0, 'message' => $exc->getMessage()];
         }
     }
-    
+
+    public function getServiceList($location_id) {
+
+        try {
+            $service_list = [];
+            $location = Location::find($location_id);
+
+            foreach($location->services as $service) {
+                $category = Category::find($service->category);
+                $group = Group::find($service->group);
+                $service_list[] = [
+                    'id' => $service->id,
+                    'service_name' => $service->service_details->name,
+                    'category' => $category,
+                    'group' => $group,
+                    'allow_discounts' => $service->allow_discounts,
+                    'award_points' => $service->award_points,
+                    'points_awarded' => $service->points_awarded
+                ];
+            }
+            return ['status' => 1, 'service_list' => $service_list];
+        } catch (Exception $exc) {
+            return ['status' => 0, 'message' => $exc->getMessage()];
+        }
+
+    }
+
+    public function deleteSalonImage() {
+        try {
+            $salon = Salons::find(Auth::user()->salon_id);
+            if($salon->logo != null) {
+                unlink(public_path() . '/images/salon-logo/' . $salon->logo);
+                $salon->logo = '';
+                $salon->save();
+            }
+            return ['status' => 1, 'message' => trans('salon.deleted_successfully')];
+        } catch (Exception $exc) {
+            return ['status' => 0, 'message' => $exc->getMessage()];
+        }
+    }
+
+    public function deleteLocationImage() {
+        try {
+            $location = Location::find(Auth::user()->location_id);
+            if($location->location_extras->location_photo != null) {
+                unlink(public_path() . '/images/location-logo/' . $location->location_extras->location_photo);
+                $location->location_extras->location_photo = '';
+                $location->location_extras->save();
+            }
+            return ['status' => 1, 'message' => trans('salon.deleted_successfully')];
+        } catch (Exception $exc) {
+            return ['status' => 0, 'message' => $exc->getMessage()];
+        }
+    }
 }

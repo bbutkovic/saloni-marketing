@@ -225,6 +225,19 @@
                                 @endforeach
                             </select>
                         </div>
+                        {{--@foreach($custom_fields as $field)
+                        @if($field->field_type == 2)
+                        <div class="form-group">
+                            <label for="{{ $field->field_name }}">{{ $field->field_title }}</label>
+                            <select name="{{ $field->field_name }}" id="{{ $field->field_name }}" class="form-control selectpicker" multiple title="{{ $field->field_title }}">
+                                @foreach($field->select_options as $option)
+                                    <option value="{{ $option->option_value }}">{{ $option->option_value }}</option>
+                                @endforeach    
+                            </select>
+                        </div>
+                        @endif    
+                        @endforeach--}}
+                        
                         <div class="form-group">
                             <label for="loyaltyPoints">{{ trans('salon.with_loyalty_points') }}</label>
                             {{ Form::text('loyalty_points', null, array('id' => 'loyaltyPoints')) }}

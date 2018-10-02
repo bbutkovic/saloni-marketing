@@ -17,12 +17,12 @@
     <div class="wrapper wrapper-content">
         <div class="tabs-container">
             <ul class="nav nav-tabs">
-                <li id="tab-1-li" class=""><a data-toggle="tab" href="#tab-1">{{ trans('salon.templates') }}</a></li>
+                <li id="tab-1-li" class="active"><a data-toggle="tab" href="#tab-1">{{ trans('salon.templates') }}</a></li>
                 @if(!Auth::user()->hasRole('superadmin'))<li id="tab-2-li" class=""><a data-toggle="tab" href="#tab-2">{{ trans('salon.reminders') }}</a></li>@endif
-                <li id="tab-10-li" class="active"><a data-toggle="tab" href="#tab-10">{{ trans('salon.marketing_campaigns') }}</a></li>
+                <li id="tab-10-li"><a data-toggle="tab" href="#tab-10">{{ trans('salon.marketing_campaigns') }}</a></li>
             </ul>
             <div class="tab-content">
-                <div id="tab-1" class="tab-pane">
+                <div id="tab-1" class="tab-pane active">
                     <div class="panel-body">
                         <div class="ibox ibox-content">
                             <h5 class="text-muted">{{ trans('salon.templates_tab') }}</h5>
@@ -1014,7 +1014,7 @@
                     </div>
                 </div>
 
-                <div id="tab-10" class="tab-pane active">
+                <div id="tab-10" class="tab-pane">
                     <div class="panel-body">
                         <div class="ibox ibox-content">
                             <a href="{{ route('campaignCreation') }}"><button type="button" class="btn btn-default m-b">{{ trans('salon.add_new_campaign') }}</button></a>

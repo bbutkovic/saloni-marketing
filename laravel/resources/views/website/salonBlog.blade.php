@@ -31,17 +31,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            @if($salon->logo != null)
             <div class="header-logo">
                 <a href="{{ URL::to('/').'/'.$salon->unique_url }}">
                     <img src="{{ URL::to('/').'/images/salon-logo/'.$salon->logo }}" alt="{{ $salon->business_name }}">
                 </a>
             </div>
+            @endif
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-main nav-header">
                 <li class="active">
                     <li><a class="page-scroll" href="{{ URL::to('/').'/'.$salon->unique_url }}">{{ trans('salon.home') }}</a></li>
                     <li><a class="page-scroll" href="{{ route('salonBlog', $salon->unique_url) }}">{{ trans('salon.news') }}</a></li>
+                </li>
+                @if(count($salon->locations) > 1)
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('salon.locations') }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -50,13 +54,21 @@
                         @endforeach
                     </ul>
                 </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right nav-header">
-                <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                @endif
+                @if(isset($salon->website_content) && $salon->website_content->display_booking_btn != 0)
+                    <li>
+                        <a href="{{ route('clientBooking', $salon->unique_url) }}" id="bookNowBtn" style="background-color: {{ $salon->website_content->book_btn_bg }}; color: {{ $salon->website_content->book_btn_color }}">{{ $salon->website_content->book_btn_text }}</a>
+                    </li>
+                @endif
+                @if($salon->website_content->facebook_link != null)
+                    <li><a class="header-social-icons" href="{{ $salon->website_content->facebook_link }}"><i class="fa fa-facebook-f"></i></a></li>
+                @endif
+                @if($salon->website_content->twitter_link != null)
+                    <li><a class="header-social-icons" href="{{ $salon->website_content->twitter_link }}"><i class="fa fa-twitter"></i></a></li>
+                @endif
+                @if($salon->website_content->instagram_link != null)
+                    <li><a class="header-social-icons" href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
+                @endif
             </ul>
         </div>
       </div>
@@ -126,12 +138,19 @@
                     </div>
                 {{ Form::close() }}
             </div>
-            <p class="m-t-sm">{{ trans('salon.follow_us') }}</p>
+            @if($salon->website_content->facebook_link != null || $salon->website_content->twitter_link != null || $salon->website_content->instagram_link != null)
+                <p class="m-t-sm">{{ trans('salon.follow_us') }}</p>
+            @endif
             <ul class="list-inline social-icon">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                @if($salon->website_content->facebook_link != null)
+                    <li><a href="{{ $salon->website_content->facebook_link }}"><i class="fa fa-facebook-f"></i></a></li>
+                @endif
+                @if($salon->website_content->twitter_link != null)
+                    <li><a href="{{ $salon->website_content->twitter_link }}"><i class="fa fa-twitter"></i></a></li>
+                @endif
+                @if($salon->website_content->instagram_link != null)
+                    <li><a href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
+                @endif
             </ul>
         </div>
     </div>

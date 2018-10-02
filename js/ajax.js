@@ -345,6 +345,7 @@ function copyLocationHours(id) {
                var day = getDays(index);
                if(val.status != null) {
                   if(day == val.dayname) {
+                      console.log(val.start_time);
                       if(val.status == 'on') {
                           $('#checkbox'+day).prop('checked', true);
                       }

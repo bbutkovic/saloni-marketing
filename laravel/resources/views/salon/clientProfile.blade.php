@@ -65,6 +65,9 @@
                                         <div class="col-lg-6 form-group">
                                             <label for="gender">{{ trans('salon.gender') }}</label>
                                             <select name="gender" id="gender" class="form-control" required>
+                                                @if($client->gender != 1 && $client->gender != 2)
+                                                <option value="" selected>{{ trans('salon.select_gender') }}</option>
+                                                @endif
                                                 <option value="1" @if($client->gender === 1) selected @endif>{{ trans('salon.male') }}</option>
                                                 <option value="2" @if($client->gender === 2) selected @endif>{{ trans('salon.female') }}</option>
                                             </select>
@@ -202,7 +205,7 @@
                         <div class="panel-body">
                             <div class="ibox-content">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover d-table">
+                                    <table class="table table-bordered table-hover d-table clients-table">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">{{ trans('salon.service_name_tbl') }}</th>

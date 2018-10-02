@@ -4,11 +4,14 @@
     {{ HTML::style('css/plugins/jasny/jasny-bootstrap.min.css') }}
     {{ HTML::style('css/plugins/ionslider/ion.rangeSlider.css') }}
     {{ HTML::style('css/plugins/ionslider/ion.rangeSlider.skinFlat.css') }}
+    {{ HTML::style('css/plugins/datepicker/datepicker.css') }}
 @endsection
 
 @section('scripts')
+
     {{ HTML::script('js/plugins/ionslider/ion.rangeSlider.min.js') }}
     {{ HTML::script('js/plugins/jasny/jasny-bootstrap.min.js') }}
+    {{ HTML::script('js/plugins/datepicker/datepicker.js') }}
 @endsection
 
 <script>
@@ -37,8 +40,9 @@
 @section('content')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12">
-            <h2 class="section-heading pull-left">{{ trans('salon.facebook_campaigns') }}</h2>
+            <h2 class="section-heading pull-left">Facebook Marketing</h2>
         </div>
+        <a href="https://www.facebook.com/business/products/ads" class="m-l">Facebook marketing info</a>
     </div>
 
     <div id="facebookCampaigns" class="user-settings-wrapper">
@@ -67,6 +71,7 @@
                                     <div class="ibox-content">
                                         {{ Form::open(array('id' => 'newFacebookAdCampaign')) }}
                                             <div class="row">
+                                                {{--facebook campaign setup--}}
                                                 <div class="col-lg-6">
                                                     <h2 class="text-muted">{{ trans('salon.campaign_details') }}</h2>
                                                     <div class="form-group">
@@ -74,22 +79,78 @@
                                                         {{ Form::text('campaign_name', null, array('id' => 'campaignName', 'class' => 'form-control')) }}
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="campaignStart">{{ trans('salon.campaign_start') }}</label>
-                                                        {{ Form::text('campaign_start', null, array('id' => 'campaignStart', 'class' => 'form-control')) }}
+                                                        <label for="campaignObjective">{{ trans('salon.campaign_objective') }}</label>
+                                                        {{ Form::select('campaign_objective', ['BRAND_AWARENESS' => trans('salon.brand_awareness'), 'LINK_CLICKS' => trans('salon.link_clicks'), 'PAGE_LIKES' => trans('salon.page_likes')], 'LINK_CLICKS', array('id' => 'campaignObjective', 'class' => 'form-control')) }}
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="campaignEnd">{{ trans('salon.campaign_end') }}</label>
-                                                        {{ Form::text('campaign_end', null, array('id' => 'campaignEnd', 'class' => 'form-control')) }}
+                                                        <label for="campaignStatus">{{ trans('salon.campaign_status') }}</label>
+                                                        {{ Form::select('campaign_status', ['ACTIVE' => trans('salon.campaign_active'), 'PAUSED' => trans('salon.campaign_paused')], 'PAUSED', array('id' => 'campaignStatus', 'class' => 'form-control')) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h2 class="text-muted">{{ trans('salon.adset_details') }}</h2>
+                                                    <div class="form-group">
+                                                        <label for="adSetName">{{ trans('salon.adset_name') }}</label>
+                                                        {{ Form::text('adset_name', null, array('id' => 'adSetName', 'class' => 'form-control')) }}
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="campaignStart">{{ trans('salon.campaign_start') }}</label>
+                                                                {{ Form::text('campaign_start', null, array('id' => 'campaignStart', 'class' => 'form-control')) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="campaignEnd">{{ trans('salon.campaign_end') }}</label>
+                                                                {{ Form::text('campaign_end', null, array('id' => 'campaignEnd', 'class' => 'form-control')) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="campaignBudget">{{ trans('salon.campaign_budget') }} $ (USD)</label>
+                                                                {{ Form::text('campaign_budget', 10, array('id' => 'campaignBudget', 'class' => 'form-control')) }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label for="campaignBids">{{ trans('salon.campaign_bids') }} $ (USD)</label>
+                                                                {{ Form::text('campaign_bids', 0.2, array('id' => 'campaignBids', 'class' => 'form-control')) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <h2 class="text-muted">{{ trans('salon.campaign_audience') }}</h2>
+                                                    <small class="text-danger">{{ trans('salon.audience_location_info') }}</small>
+                                                    <div class="form-group">
+                                                        <label for="audienceCountries">{{ trans('salon.audience_countries') }} <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ trans('salon.audience_countries_desc') }}" data-original-title=""></i></label>
+                                                        {{ Form::text('audience_countries', null, array('id' => 'audienceCountries', 'class' => 'form-control')) }}
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="campaignBudget">{{ trans('salon.campaign_budget') }}</label>
-                                                        {{ Form::text('campaign_budget', null, array('id' => 'campaignBudget', 'class' => 'form-control')) }}
+                                                        <label for="audienceCities">{{ trans('salon.audience_cities') }} <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ trans('salon.audience_cities_desc') }}" data-original-title=""></i></label>
+                                                        {{ Form::text('audience_cities', null, array('id' => 'audienceCities', 'class' => 'form-control')) }}
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="campaignBids">{{ trans('salon.campaign_bids') }}</label>
-                                                        {{ Form::text('campaign_bids', null, array('id' => 'campaignBids', 'class' => 'form-control')) }}
+                                                        <label for="audienceMaxAge">{{ trans('salon.audience_age_range') }}</label>
+                                                        {{ Form::text('audience_age_range', null, array('id' => 'campaignAgeRange', 'class' => 'form-control')) }}
                                                     </div>
-                                                    <hr>
+                                                    <div class="form-group">
+                                                        <label for="audienceInterests">{{ trans('salon.audience_interests') }}  <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ trans('salon.audience_interests_desc') }}" data-original-title=""></i></label>
+                                                        {{ Form::text('audience_interests', null, array('id' => 'audienceInterests', 'class' => 'form-control')) }}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="audienceGender">{{ trans('salon.audience_gender') }}</label>
+                                                        {{ Form::select('audience_gender', [1 => trans('salon.male'), 2 => trans('salon.female'), '1, 2' => trans('salon.male_female')], '1, 2', array('id' => 'audienceGender', 'class' => 'form-control', 'required')) }}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h2 class="text-muted">{{ trans('salon.ad_design') }}</h2>
                                                     <div class="form-group">
                                                         <label for="adImage">{{ trans('salon.ad_image') }}</label>
                                                         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
@@ -103,20 +164,22 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <h2 class="text-muted">{{ trans('salon.campaign_audience') }}</h2>
                                                     <div class="form-group">
-                                                        <label for="audienceLocation">{{ trans('salon.audience_location') }}</label>
-                                                        {{ Form::text('audience_location', null, array('id' => 'audienceLocation', 'class' => 'form-control')) }}
+                                                        <label for="facebookPageID">{{ trans('salon.facebook_page_id') }}</label>
+                                                        <a href="https://www.labnol.org/internet/find-facebook-page-id-profile/6909/">{{ trans('salon.how_to_get_pageid') }}</a>
+                                                        {{ Form::text('facebook_page_id', null, array('id' => 'facebookPageID', 'class' => 'form-control', 'required')) }}
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="audienceMaxAge">{{ trans('salon.audience_age_range') }}</label>
-                                                        {{ Form::text('audience_age_range', null, array('id' => 'campaignAgeRange', 'class' => 'form-control')) }}
+                                                        <label for="redirectLink">{{ trans('salon.redirect_link') }}</label>
+                                                        {{ Form::text('redirect_link', URL::to('/') . '/' . $salon->unique_url, array('id' => 'redirectLink', 'class' => 'form-control', 'required')) }}
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="audienceGender">{{ trans('salon.audience_gender') }}</label>
-                                                        {{ Form::select('audience_gender', [1 => trans('salon.male'), 2 => trans('salon.female'), '1, 2' => trans('salon.male_female')], null, array('id' => 'audienceGender', 'class' => 'form-control', 'required')) }}
+                                                        <label for="adTitle">{{ trans('salon.ad_title') }}</label>
+                                                        {{ Form::text('ad_title', null, array('id' => 'adTitle', 'class' => 'form-control', 'required')) }}
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="adMsg">{{ trans('salon.ad_message') }}</label>
+                                                        {{ Form::text('ad_message', null, array('id' => 'adMsg', 'class' => 'form-control', 'required')) }}
                                                     </div>
                                                 </div>
                                             </div>

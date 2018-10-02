@@ -25,13 +25,24 @@ class WebsiteController extends Controller {
 
         $salon = Salons::find(Auth::user()->salon_id);
 
-        $global_images = $this->website_repo->getGlobalImages();
+        return view('website.admin.websiteSettings', ['salon' => $salon]);
+    }
 
+    public function websiteSliderSettings() {
+
+        $salon = Salons::find(Auth::user()->salon_id);
+
+        $global_images = $this->website_repo->getGlobalImages();
         $location_slider = $this->website_repo->getSliderImages();
 
-        return view('website.websiteSettings', ['salon' => $salon, 'global_images' => $global_images, 'slider_arr' => $location_slider]);
+        return view('website.admin.websiteSliderSettings', ['salon' => $salon, 'global_images' => $global_images, 'slider_arr' => $location_slider]);
     }
-    
+
+    public function websiteTextboxSettings() {
+        $salon = Salons::find(Auth::user()->salon_id);
+        return view('website.admin.websiteTextboxSettings', ['salon' => $salon]);
+    }
+
     public function getSalonWebsite($unique_url) {
         
         $salon = Salons::where('unique_url', $unique_url)->first();
@@ -44,7 +55,7 @@ class WebsiteController extends Controller {
             
             $location_markers = [];
             
-            $blog_posts = BlogPost::where('salon_id', $salon->id)->take(4)->orderBy('id', 'DESC')->get();
+            $blog_posts = BlogPost::where('salon_id', $salon->id)->take(4)->orderBy('created_at', 'DESC')->get();
 
             $location = Location::where('salon_id', $salon->id)->first();
 
@@ -64,7 +75,7 @@ class WebsiteController extends Controller {
                     'unique_url' => $location->unique_url
                 ];
             }
-    
+
             return view('website.websiteIndex', ['salon' => $salon, 'location' => $location, 'open_hours' => $location_hours, 'categories' => $cat_list, 'website_content' => $website_content, 'location_markers' => $location_markers, 'latest_news' => $blog_posts]);
             
         }
@@ -126,10 +137,12 @@ class WebsiteController extends Controller {
     public function getWebsiteBlog() {
         
         if($salon = Salons::find(Auth::user()->salon_id)) {
+
+            App::setLocale($salon->country);
             
-            $blog_posts = BlogPost::where('salon_id', $salon->id)->get();
-            
-            return view('website.blog', ['salon' => $salon, 'blog_posts' => $blog_posts]);
+            $blog_posts = BlogPost::where('salon_id', $salon->id)->orderBy('created_at', 'DESC')->get();
+
+            return view('website.admin.blog', ['salon' => $salon, 'blog_posts' => $blog_posts]);
             
         }
         
@@ -160,13 +173,13 @@ class WebsiteController extends Controller {
     public function getBlogPost($salon, $blog) {
         
         $salon = Salons::where('unique_url', $salon)->first();
+
+        App::setLocale($salon->country);
         
         $blog_post_list = BlogPost::where('salon_id', $salon->id)->take(20)->get();
         
         $blog_post = BlogPost::where('unique_url', $blog)->first();
-        
-        $blog_post_arr = [];
-        
+
         if($blog_post != null) {
             
             return view('website.blogPost', ['salon' => $salon, 'all_posts' => $blog_post_list, 'blog_post' => $blog_post]);
@@ -204,10 +217,12 @@ class WebsiteController extends Controller {
     public function getSalonBlog($salon_url) {
         
         $salon = Salons::where('unique_url', $salon_url)->first();
+
+        App::setLocale($salon->country);
         
         if($salon != null) {
             
-            $recent_posts = BlogPost::where('salon_id', $salon->id)->take(2)->get();
+            $recent_posts = BlogPost::where('salon_id', $salon->id)->take(2)->orderBy('created_at', 'DESC')->get();
             
             return view('website.salonBlog', ['salon' => $salon, 'recent_posts' => $recent_posts]);
             
@@ -295,6 +310,8 @@ class WebsiteController extends Controller {
     public function getClientBooking($salon, $location = null) {
 
         $salon = Salons::where('unique_url', $salon)->first();
+
+        App::setLocale($salon->country);
 
         $website_content = WebsiteContent::where('salon_id', $salon->id)->first();
 

@@ -51,12 +51,28 @@
                 <ul class="nav navbar-nav navbar-main nav-header">
                     <li class="active">
                         <li><a class="page-scroll" href="{{ URL::to('/').'/'.$salon->unique_url }}">{{ trans('salon.home') }}</a></li>
+                        @if(isset($website_content) && $website_content->website_service_text != null)
                         <li><a class="page-scroll" href="#services">{{ trans('salon.services') }}</a></li>
+                        @endif
+                        @if(isset($website_content) && $website_content->display_pricing === 1)
+                        <li><a class="page-scroll" href="#pricing">{{ trans('salon.pricing') }}</a></li>
+                        @endif
+                        @if(isset($website_content) && $website_content->website_products_text != null)
+                        <li><a class="page-scroll" href="#products">{{ trans('salon.products') }}</a></li>
+                        @endif
                         <li><a class="page-scroll" href="#gallery">{{ trans('salon.gallery') }}</a></li>
                         <li><a href="{{ route('clientBooking', [$salon->unique_url, $selected_location->unique_url]) }}" id="bookNowBtn" style="background-color: {{ $salon->website_content->book_btn_bg }}; color: {{ $salon->website_content->book_btn_color }}">{{ $salon->website_content->book_btn_text }}</a></li>
+                        @if($salon->website_content->facebook_link != null)
+                            <li><a class="header-social-icons" href="{{ $salon->website_content->facebook_link }}"><i class="fa fa-facebook-f"></i></a></li>
+                        @endif
+                        @if($salon->website_content->twitter_link != null)
+                            <li><a class="header-social-icons" href="{{ $salon->website_content->twitter_link }}"><i class="fa fa-twitter"></i></a></li>
+                        @endif
+                        @if($salon->website_content->instagram_link != null)
+                            <li><a class="header-social-icons" href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
+                        @endif
                     </li>
                 </ul>
-
             </div>
           </div>
         </div>
@@ -75,25 +91,46 @@
             </div>
         </div>
     </section>
-    
+
+    @if(isset($website_content) && $website_content->website_service_text != null)
     <section id="services" class="section-services">
         <div class="container">
+            <h1 class="section-heading text-uppercase text-center">{{ trans('salon.services') }}</h1>
+            <p class="services-description text-center">
+                {!! $website_content->website_service_text !!}
+            </p>
+        </div>
+    </section>
+    @endif
+
+    @if(isset($website_content) && $website_content->display_pricing === 1)
+    <section id="pricing" class="section-pricing">
+        <div class="container">
             <div class="services-heading-wrap">
-                <h1 class="section-heading pull-left text-uppercase">{{ trans('salon.services') }}</h1>
-                <div class="category-selection pull-right">
+                <h1 class="section-heading text-uppercase text-center">{{ trans('salon.pricing') }}</h1>
+                <div class="category-selection text-center">
                     @foreach($categories as $category)
-                    <button type="button" class="service-category-btn" data-category="{{ $category->id }}">{{ $category->name }}</button>
+                        <button type="button" class="service-category-btn" data-category="{{ $category->id }}">{{ $category->name }}</button>
                     @endforeach
                 </div>
             </div>
-            <p class="services-description">
-                {!! $website_content->website_service_text !!}
-            </p>
             <div class="services-wrap">
             </div>
         </div>
     </section>
-    
+    @endif
+
+    @if(isset($website_content) && $website_content->website_products_text != null)
+    <section id="products" class="section-products" @if($website_content->display_pricing != 1) style="background-color: #fff" @endif>
+        <div class="container">
+            <div class="products-heading-wrap">
+                <h1 class="section-heading text-uppercase text-center">{{ trans('salon.products') }}</h1>
+            </div>
+            {!! $website_content->website_products_text !!}
+        </div>
+    </section>
+    @endif
+
     <section id="info" class="section-alt">
         <div class="location-info-wrap container">
             @if($selected_location->location_extras->accessible_for_disabled === 1)
@@ -193,9 +230,6 @@
                     @if($salon->website_content->instagram_link != null)
                         <li><a href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
                     @endif
-                    @if($salon->website_content->pinterest_link != null)
-                        <li><a href="{{ $salon->website_content->pinterest_link }}"><i class="fa fa-pinterest-p"></i></a></li>
-                    @endif
                 </ul>
             </div>
         </div>
@@ -215,6 +249,7 @@
 
 <script>
     var location_id = '{{ $selected_location->id }}';
+    var services_for_location = null;
     function initializeMap() {
 
         var zoom = 18;

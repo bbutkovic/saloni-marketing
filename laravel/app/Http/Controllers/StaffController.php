@@ -144,9 +144,9 @@ class StaffController extends Controller {
                 }
 
                 $week = $this->info_repo->getWeekDays();
-        
-                $time_list = $this->info_repo->getHoursList($user->salon_id);
-                
+
+                $time_list = $this->info_repo->getSalonHoursList($user->salon_id);
+
                 $services = Service::where('location_id', $user->location_id)->get();
                 $service_staff = ServiceStaff::where('user_id', $user->id)->get();
                 

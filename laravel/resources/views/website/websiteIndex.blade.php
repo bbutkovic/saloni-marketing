@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 </head>
 
-<body id="page-top" class="landing-page no-skin-config" data-lang="{{ $salon->country }}">
+<body id="home" class="landing-page no-skin-config" data-lang="{{ $salon->country }}">
     <nav class="header-navigation navbar navbar-default navbar-fixed-top">
         <div class="header-wrap">
             <div class="navbar-header">
@@ -36,8 +36,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-main nav-header">
                     <li class="active">
-                        <li><a class="page-scroll" href="{{ URL::to('/').'/'.$salon->unique_url }}">{{ trans('salon.home') }}</a></li>
-                        <li><a class="page-scroll" href="{{ route('salonBlog', $salon->unique_url) }}">{{ trans('salon.news') }}</a></li>
+                        <li><a class="page-scroll" href="#home">{{ trans('salon.home') }}</a></li>
+                        @if($latest_news->isNotEmpty())<li><a class="page-scroll" href="{{ route('salonBlog', $salon->unique_url) }}">{{ trans('salon.news') }}</a></li>@endif
                     </li>
                     @if(count($salon->locations) > 1)
                     <li class="dropdown">
@@ -50,12 +50,31 @@
                     </li>
                     @else
                         <li><a class="page-scroll" href="#about">{{ trans('salon.about_salon') }}</a></li>
+                        @if(isset($salon->website_content) && $salon->website_content->website_service_text === 1)
                         <li><a class="page-scroll" href="#services">{{ trans('salon.services') }}</a></li>
+                        @endif
+                        @if(isset($salon->website_content) && $salon->website_content->display_pricing === 1)
+                            <li><a class="page-scroll" href="#pricing">{{ trans('salon.pricing') }}</a></li>
+                        @endif
+                        @if(isset($salon->website_content) && $salon->website_content->website_products_text != null)
+                            <li><a class="page-scroll" href="#products">{{ trans('salon.products') }}</a></li>
+                        @endif
                         <li><a class="page-scroll" href="#contact">{{ trans('salon.contact') }}</a></li>
                     @endif
+                    @if(isset($salon->website_content) && $salon->website_content->display_booking_btn != 0)
                     <li>
                         <a href="{{ route('clientBooking', $salon->unique_url) }}" id="bookNowBtn" style="background-color: {{ $salon->website_content->book_btn_bg }}; color: {{ $salon->website_content->book_btn_color }}">{{ $salon->website_content->book_btn_text }}</a>
                     </li>
+                    @endif
+                    @if($salon->website_content->facebook_link != null)
+                        <li><a class="header-social-icons" href="{{ $salon->website_content->facebook_link }}"><i class="fa fa-facebook-f"></i></a></li>
+                    @endif
+                    @if($salon->website_content->twitter_link != null)
+                        <li><a class="header-social-icons" href="{{ $salon->website_content->twitter_link }}"><i class="fa fa-twitter"></i></a></li>
+                    @endif
+                    @if($salon->website_content->instagram_link != null)
+                        <li><a class="header-social-icons" href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
+                    @endif
                 </ul>
             </div>
           </div>
@@ -77,7 +96,7 @@
                     <h3>{{ $salon->slider_promos[$key]->title }}</h3>
                     <p>{{ $salon->slider_promos[$key]->text }}</p>
                     <br />
-                    @if(isset($salon->slider_promos[$key]) && $salon->slider_promos[$key]->include_btn === 1)
+                    @if($salon->website_content->display_booking_btn && isset($salon->slider_promos[$key]) && $salon->slider_promos[$key]->include_btn === 1)
                     <a href="{{ route('clientBooking', $salon->unique_url) }}"><button type="button" class="book-now-btn" style="background-color: {{ $salon->website_content->book_btn_bg }}; color: {{ $salon->website_content->book_btn_color }}">{{ $salon->website_content->book_btn_text }}</button></a>
                     @endif
                 </div>
@@ -113,7 +132,7 @@
             <div class="col-sm-6 col-sm-push-6">
                 <div id="salonLocationsMap"></div>
             </div>
-            <div class="col-sm-6 col-sm-pull-6 open-hours-wrap">
+            <div class="col-sm-6 col-sm-pull-6">
                 <h3 class="text-center">{{ trans('salon.open_hours') }}</h3>
                 @foreach($open_hours as $hour)
                     <span class="location-hours"><h2>{{ trans('salon.'.$hour->dayname) }}</h2><h3>@if($hour->start_time != '00:00' && $hour->closing_time != '00:00'){{ $hour->start_time }} - {{ $hour->closing_time }}@else {{ trans('salon.salon_closed') }}@endif</h3></span>
@@ -122,23 +141,45 @@
         </div>
     </section>
 
+    @if(isset($website_content) && $website_content->web_service_text != null)
     <section id="services" class="section-services">
         <div class="container">
+            <h1 class="section-heading text-uppercase text-center">{{ trans('salon.services') }}</h1>
+            <p class="services-description text-center">
+                {!! $website_content->website_service_text !!}
+            </p>
+        </div>
+    </section>
+    @endif
+
+    @if(isset($website_content) && $website_content->display_pricing === 1)
+    <section id="pricing" class="section-pricing">
+        <div class="container">
             <div class="services-heading-wrap">
-                <h1 class="section-heading pull-left text-uppercase">{{ trans('salon.services') }}</h1>
-                <div class="category-selection pull-right">
+                <h1 class="section-heading text-uppercase text-center">{{ trans('salon.pricing') }}</h1>
+                <div class="category-selection text-center">
                     @foreach($categories as $category)
                         <button type="button" class="service-category-btn" data-category="{{ $category->id }}">{{ $category->name }}</button>
                     @endforeach
                 </div>
             </div>
-            <p class="services-description">
-                {{ $website_content->website_service_text }}
-            </p>
             <div class="services-wrap">
             </div>
         </div>
     </section>
+    @endif
+
+    @if(isset($website_content) && $website_content->website_products_text != null)
+    <section id="products" class="section-products">
+        <div class="container">
+            <div class="products-heading-wrap">
+                <h1 class="section-heading text-uppercase text-center">{{ trans('salon.products') }}</h1>
+            </div>
+            {!! $website_content->website_products_text !!}
+        </div>
+    </section>
+    @endif
+
     @else
     <section id="locations" class="gray-section">
         <div id="salonLocationsMap"></div>
@@ -218,8 +259,8 @@
                         </div>
                     {{ Form::close() }}
                 </div>
-                @if($salon->website_content->facebook_link != null || $salon->website_content->twitter_link != null || $salon->website_content->instagram_link != null || $salon->website_content->pinterest_link != null)
-                <p class="m-t-sm">{{ trans('salon.follow_us') }}</p>
+                @if($salon->website_content->facebook_link != null || $salon->website_content->twitter_link != null || $salon->website_content->instagram_link != null)
+                    <p class="m-t-sm">{{ trans('salon.follow_us') }}</p>
                 @endif
                 <ul class="list-inline social-icon">
                     @if($salon->website_content->facebook_link != null)
@@ -230,9 +271,6 @@
                     @endif
                     @if($salon->website_content->instagram_link != null)
                         <li><a href="{{ $salon->website_content->instagram_link }}"><i class="fa fa-instagram"></i></a></li>
-                    @endif
-                    @if($salon->website_content->pinterest_link != null)
-                        <li><a href="{{ $salon->website_content->pinterest_link }}"><i class="fa fa-pinterest-p"></i></a></li>
                     @endif
                 </ul>
             </div>
@@ -255,6 +293,7 @@
     <script>
         var locations_lat_lng = [];
         var location_id = null;
+        var services_for_location = @if(count($salon->locations) < 2) {{ $salon->locations[0]->id }} @else null @endif;
         var privacy_policy = '{{ route('privacyPolicy', $salon->unique_ur) }}';
         var ajax_url = '<?php echo URL::to('/'); ?>/';
 

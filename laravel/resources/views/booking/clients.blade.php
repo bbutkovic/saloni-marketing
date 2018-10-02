@@ -53,8 +53,8 @@
                                 <tbody class="clients-table staff-table">
                                     @foreach($clients as $client)
                                     <tr class="staff-info">
-                                        <td>{{ $client->first_name }}</td>
-                                        <td>{{ $client->last_name }}</td>
+                                        <td><a href="{{ route('viewClientProfile', $client->id) }}">{{ $client->first_name }}</a></td>
+                                        <td><a href="{{ route('viewClientProfile', $client->id) }}">{{ $client->last_name }}</a></td>
                                         <td>{{ $client->email }}</td>
                                         <td>{{ $client->phone }}</td>
                                         <td>{{ $client->address }}</td>

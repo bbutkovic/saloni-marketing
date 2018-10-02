@@ -281,57 +281,50 @@ class BookingController extends Controller
 
         $schedule_list = [];
         $selected_days = [];
+
         if($request->staff != 'all' && count($request->staff) > 0) {
             foreach($request->staff as $staff_id) {
                 if($user = User::find($staff_id)) {
-
                     $schedule = $this->staff_repo->createSchedule($user, $duration);
-
-                    if($booking_options->multiple_staff != 0) {
-                        $schedule_list[] = $schedule;
-                    }
-
+                    $schedule_list[] = $schedule;
                 }
             }
 
-            if($booking_options->multiple_staff != 0) {
-                foreach($schedule_list as $val) {
-                    foreach($val as $sch) {
-                        if($sch['date']['date'] === $selected_date) {
-                            $selected_days[$sch['date']['user_id']] = $sch['timetable'];
-                        }
+            foreach($schedule_list as $val) {
+                foreach($val as $sch) {
+                    if($sch['date']['date'] === $selected_date) {
+                        $selected_days[$sch['date']['user_id']] = $sch['timetable'];
                     }
                 }
-
-                $service_index = 0;
-                $user_selection = [];
-                $services_array = [];
-                foreach($request->service as $service_selected) {
-                    $service_array = explode('-', $service_selected);
-                    $service_id = $service_array[1];
-
-                    $user_selection[] = [
-                        'service_id' => $service_id,
-                        'employee_id' => $request->staff[$service_index]
-                    ];
-                    $service_obj = Service::find($service_id);
-
-                    $services_array[$service_id] = [
-                        'name' => $service_obj->service_details->name,
-                        'duration' => $service_obj->service_details->service_length
-                    ];
-
-                    $service_index++;
-                }
-
-                $available_times_array = [];
-                $start_time = date('H:i:s', strtotime($selected_days[$user_selection[0]['employee_id']]['start']));
-                $end_time = date('H:i:s', strtotime($this->booking_repo->getMaxEndWorkHour($user_selection, $selected_days)));
-                $selected_day = $this->booking_repo->getAvailableTimes($selected_date, $user_selection, $selected_days, $services_array, $start_time, $end_time, $available_times_array);
-
-            } else {
-                $selected_day = $this->booking_repo->getBookingSchedule($request->location, $user, $request->selected_date, $schedule, $request->service);
             }
+
+            $service_index = 0;
+            $user_selection = [];
+            $services_array = [];
+            foreach($request->service as $service_selected) {
+                $service_array = explode('-', $service_selected);
+                $service_id = $service_array[1];
+
+                $user_selection[] = [
+                    'service_id' => $service_id,
+                    'employee_id' => $request->staff[$service_index]
+                ];
+                $service_obj = Service::find($service_id);
+
+                $services_array[$service_id] = [
+                    'name' => $service_obj->service_details->name,
+                    'duration' => $service_obj->service_details->service_length
+                ];
+
+                $service_index++;
+            }
+
+            $available_times_array = [];
+
+            $start_time = date('H:i:s', strtotime($selected_days[$user_selection[0]['employee_id']]['start']));
+
+            $end_time = date('H:i:s', strtotime($this->booking_repo->getMaxEndWorkHour($user_selection, $selected_days)));
+            $selected_day = $this->booking_repo->getAvailableTimes($selected_date, $user_selection, $selected_days, $services_array, $start_time, $end_time, $available_times_array);
 
             return $selected_day;
 
@@ -341,7 +334,6 @@ class BookingController extends Controller
             $selected_day = $this->booking_repo->getBookingSchedule($request->location, $user = null, $request->selected_date, $schedule, $request->service);
 
             return $selected_day;
-
         }
 
         return ['status' => 0, 'message' => trans('salon.user_not_found')];

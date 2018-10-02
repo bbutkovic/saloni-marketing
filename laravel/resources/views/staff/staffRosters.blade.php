@@ -44,11 +44,11 @@
                                                             <td>{{ $schedule['user']['first_name'] }} {{ $schedule['user']['last_name'] }}</td>
                                                             @if(count($schedule['schedule']) > 0)
                                                             @foreach($schedule['schedule'] as $work_hours)
-                                                                @if($work_hours['work_start'] != 'Not scheduled' && $work_hours['work_start'] != 'vacation' && $work_hours['work_start'] != '00:00')
+                                                                @if(($work_hours['work_start'] != 'Not scheduled' && $work_hours['work_start'] != 'Nije postavljen') && $work_hours['work_start'] != 'vacation' && ($work_hours['work_start'] != '00:00' && $work_hours['work_end'] != '00:00'))
                                                                 <td>{{ $work_hours['work_start'] }} to {{ $work_hours['work_end'] }}</td>
                                                                 @elseif ($work_hours['work_start'] != 'Not scheduled' && $work_hours['work_start'] == 'vacation')
                                                                 <td>{{ trans('salon.vacation') }}</td>
-                                                                @elseif ($work_hours['work_start'] == '00:00')
+                                                                @elseif ($work_hours['work_start'] == '00:00' && $work_hours['work_end'] == '00:00')
                                                                 <td>{{ trans('salon.not_scheduled') }}</td>
                                                                 @else
                                                                 <td>{{ trans('salon.not_scheduled') }}</td>

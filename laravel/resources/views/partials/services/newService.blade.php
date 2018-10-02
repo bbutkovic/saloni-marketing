@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group text-center group-block">
                         <label for="group_id">{{ trans('salon.select_group') }}</label>
-                        <select name="group_id" class="form-control modal-select select-group" id="selectGroup" required>
+                        <select name="group_id" class="form-control modal-select select-group" id="selectGroup">
                         </select>
                     </div>
                     <div class="form-group text-center subgroup-block">

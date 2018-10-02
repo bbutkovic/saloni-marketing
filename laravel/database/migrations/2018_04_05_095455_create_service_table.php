@@ -20,7 +20,7 @@ class CreateServiceTable extends Migration
             $table->unsignedInteger('category');
             $table->foreign('category')->references('id')->on('service_category')->onDelete('cascade');
             $table->unsignedInteger('group');
-            $table->foreign('group')->references('id')->on('service_group')->onDelete('cascade');
+            $table->foreign('group')->nullable();
             $table->integer('sub_group')->nullable();
             $table->smallInteger('order');
             $table->boolean('award_points');

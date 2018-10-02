@@ -75,7 +75,7 @@ class StaffRepository {
             $user_extras->phone_number = $data['phone'];
             $user_extras->address = $data['address'];
             $user_extras->city = $data['city'];
-            $user_extras->photo = isset($image_name) ? '/images/profile/'.$image_name : '/images/user_placeholder.png';
+            $user_extras->photo = isset($image_name) ? '/images/profile/'.$image_name : $user_extras->photo;
             $user_extras->save();
 
             return ['status' => 1, 'message' => trans('salon.updated_successfuly')];

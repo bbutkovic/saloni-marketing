@@ -8,7 +8,9 @@ use App\Models\Salon\MarketingCampaign;
 use App\Repositories\ClientRepository;
 use App\Repositories\InfoRepository;
 use App\Repositories\MarketingRepository;
-use App\Models\{Location};
+use App\Models\{
+    Location, Salon\CustomFields
+};
 use App\Models\Marketing\Reminders;
 use App\Models\Salon\Vouchers;
 
@@ -115,7 +117,9 @@ class MarketingController extends Controller
 
         $templates = $this->marketing_repo->getMarketingTemplates($location, true);
 
-        return view('salon.marketing.campaign', ['location' => $location, 'vouchers' => $vouchers, 'templates' => $templates, 'labels' => $labels, 'referrals' => $referrals, 'time_list' => $time_list, 'staff' => $staff]);
+        $custom_fields = CustomFields::where('location_id', $location->id)->get();
+
+        return view('salon.marketing.campaign', ['location' => $location, 'vouchers' => $vouchers, 'templates' => $templates, 'labels' => $labels, 'custom_fields' => $custom_fields, 'referrals' => $referrals, 'time_list' => $time_list, 'staff' => $staff]);
     }
 
     public function createNewCampaign(Request $request) {

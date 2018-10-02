@@ -17,9 +17,9 @@ class UserController extends Controller
 {
     protected $repo;
 
-    public function __construct() {
-        $this->repo = new UserRepository;
-        $this->calendar_repo = new CalendarRepository;
+    public function __construct(UserRepository $user, CalendarRepository $calendar) {
+        $this->repo = $user;
+        $this->calendar_repo = $calendar;
     }
 
     public function postRegister(Request $request) {
@@ -56,7 +56,7 @@ class UserController extends Controller
             return redirect()->route('signin')->with('error_message', trans('salon.terms_not_accepted'));
 
         } else {
-            if($request->consent === 1 || $request->consent === 'on') {
+            if($request->consent == 1 || $request->consent === 'on') {
                 $validator = Validator::make($request->all(), User::$user_rules);
 
                 if ($validator->fails()) {
@@ -103,7 +103,7 @@ class UserController extends Controller
     public function saveSalonUser(Request $request)
     {
         $data["email"] = $request->input("email");
-        
+
         $this->repo->createSalonUser($data);
     }
 
@@ -118,9 +118,9 @@ class UserController extends Controller
                 return redirect()->route('signin')->with('error_message', trans('auth.verification_error'));
 
             } else if($user->email_verified === 1) {
-                
+
                 return redirect()->route('signin')->with('warning_message', trans('auth.email_already_verified'));
-                
+
             }
             //reset remember_token and activate user
 
@@ -141,49 +141,49 @@ class UserController extends Controller
         //authenticate user if user is active
         if(!isset($request->type)) {
             if(Auth::attempt(array('email' => $request->email, 'password' => $request->password, 'email_verified' => 1))) {
-                
+
                 $user = Auth::user();
-                
+
                 $user_lang = $user->language;
                 $lang_iso = Languages::find($user_lang);
-                
+
                 Session::put('language', $lang_iso->language_iso);
 
                 if(Auth::user()->hasRole('user')) {
                     return redirect()->route('clientAppointments');
                 }
                 return redirect('dashboard');
-                
+
             }
-    
+
             return back()->withInput()->with('error_message', trans('auth.login_error'));
         } else {
             if(Auth::attempt(array('email' => $request->email, 'password' => $request->password, 'email_verified' => 1))) {
-                
+
                 $user = Auth::user();
-                
+
                 $user_lang = $user->language;
                 $lang_iso = Languages::find($user_lang);
-                
+
                 Session::put('language', $lang_iso->language_iso);
-    
+
                 return ['status' => 1, trans('auth.login_success')];
-                
+
             }
-    
+
             return ['status' => 0, trans('auth.login_error')];
         }
     }
 
     public function logout() {
-        
+
         Auth::logout();
         Session::flush();
-        
+
         return redirect()->route('signin');
-        
+
     }
-    
+
     public function redirectToProvider($provider) {
 
         if($_GET['code']) {
@@ -197,9 +197,9 @@ class UserController extends Controller
         }
 
         return Socialite::driver($provider)->redirect();
-        
+
     }
-    
+
     public function handleProviderCallback($provider) {
 
         $user = Socialite::driver($provider)->user();
@@ -209,11 +209,11 @@ class UserController extends Controller
         Auth::login($authUser, true);
 
         return redirect('dashboard');
-        
+
     }
-    
+
     public function findOrCreateUser($user, $provider) {
-        
+
         $authUser = User::where($provider . '_id', $user->id)->first();
 
         if ($authUser != null) {
@@ -224,15 +224,15 @@ class UserController extends Controller
                 return $authUser;
             }
         }
-        
+
         $saveUser = $this->repo->socialSignUp($user, $provider);
-        
+
         return $saveUser;
-        
+
     }
-    
+
     public function addNewUser(Request $request) {
-        
+
         if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('alonadmin')) {
             $user_data = $request->all();
             $saveUser = $this->repo->createNewUser($user_data);
@@ -242,44 +242,44 @@ class UserController extends Controller
             }
         }
     }
-    
+
     public function changePermission(Request $request) {
         $result = $this->repo->changeUserPermissions($request["roleID"],$request["permName"],$request["action"]);
 
         return ["status"=>1];
     }
-    
+
     public function updateUserAccount(Request $request) {
-        
+
         if($user = User::find($request->user_id)) {
             $update_user = $this->repo->updateAccount($user, $request->all());
-            
+
             if($update_user['status'] === 1) {
                 return redirect()->back()->with('success_message', trans('salon.updated_successfuly'));
             }
         }
-        
+
         return redirect()->back()->with('error_message', trans('salon.error_updating'));
-        
+
     }
-    
+
     public function updateUserPicture(Request $request) {
-        
+
         if($user = User::find($request->user_id)) {
-            
+
             $profile_picture = $this->repo->updateAvatar($user, $request->all());
 
             if($profile_picture['status'] === 1) {
                 return redirect()->back()->with('success_message', trans('salon.updated_successfuly'));
             }
         }
-        
+
         return redirect()->back()->with('error_message', trans('salon.error_updating'));
-        
+
     }
-    
+
     public function submitPin(Request $request) {
-        
+
         $user = Auth::user();
         if($user->pin === $request->pin) {
 
@@ -288,9 +288,9 @@ class UserController extends Controller
                 return redirect()->back()->with('success_message', trans('salon.welcome'));
             }
         }
-        
+
         return redirect()->back()->with('error_message', trans('salon.wrong_pin'));
-    
+
     }
 
     public function deleteUserAccount(Request $request) {

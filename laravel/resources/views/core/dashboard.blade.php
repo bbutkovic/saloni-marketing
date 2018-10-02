@@ -28,9 +28,9 @@
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row date-picker m-b">
                     <div class="input-group date-group">
-                        <input type="text" class="form-control start-date-picker" value="{{ date('m/d/Y', strtotime($stats_date['start_date'])) }}">
+                        <input type="text" class="form-control start-date-picker" value="{{ date('d M Y', strtotime($stats_date['start_date'])) }}">
                         <div class="input-group-addon">to</div>
-                        <input type="text" class="form-control end-date-picker" value="{{ date('m/d/Y', strtotime($stats_date['end_date'])) }}">
+                        <input type="text" class="form-control end-date-picker" value="{{ date('d M Y', strtotime($stats_date['end_date'])) }}">
                     </div>
                 </div>
                 <div class="row">
@@ -173,16 +173,23 @@
     var swal_desc = '{{ trans("salon.location_desc") }}';
     var swal_with_location = '{{ trans("salon.create_location") }}';
     var swal_without_location = '{{ trans("salon.without_location") }}';
+    var invalid_dates = '{{ trans("salon.invalid_dates") }}';
     var completed_bookings = [];
     var cancelled_bookings = [];
     var completed_income = [];
+    var total_bookings = [];
     var months = [];
 
-    $('.start-date-picker').datepicker({});
-    $('.end-date-picker').datepicker({});
+    $('.start-date-picker').datepicker({
+        format: "dd M yyyy"
+    });
+    $('.end-date-picker').datepicker({
+        format: "dd M yyyy"
+    });
 
     @if($monthly_bookings != 'undefined')
     @foreach($monthly_bookings as $booking)
+        total_bookings.push({{ $booking['total'] }});
         completed_bookings.push({{ $booking['completed'] }});
         cancelled_bookings.push({{ $booking['cancelled'] }});
         completed_income.push({{ $booking['income'] }});
@@ -191,7 +198,7 @@
     @foreach($month_list as $month)
         months.push('{{ $month }}');
     @endforeach
-    console.log(months);
+
     var moneyData = {
         labels: months,
         datasets: [
@@ -217,6 +224,12 @@
         labels: months,
         datasets: [
             {
+                label: "{{ trans('salon.total_bookings') }}",
+                backgroundColor: "rgba(26,179,148,1)",
+                pointBorderColor: "#fff",
+                data: total_bookings
+            },
+            {
                 label: "{{ trans('salon.completed_bookings') }}",
                 backgroundColor: "rgba(26,179,148,1)",
                 pointBorderColor: "#fff",
@@ -234,7 +247,14 @@
     };
 
     var barOptions = {
-        responsive: true
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     };
 
     var ctx2 = document.getElementById("monthlyBookingsChart").getContext("2d");

@@ -76,11 +76,15 @@
         
         @if(Auth::user()->can('manage-website'))
         <li>
-            <a href="#"><i class="fa fa-globe"></i><span class="nav-label m-l">{{ trans('salon.website_blog') }}<span class="fa fa-angle-left arrow"></span></span></a>
+            <a href="#"><i class="fa fa-globe"></i><span class="nav-label m-l">{{ trans('salon.website') }}<span class="fa fa-angle-left arrow"></span></span></a>
             <ul class="nav nav-second-level collapse">
-                <li><a href="{{ route('websiteSettings') }}"><span class="nav-label">{{ trans('salon.salon_website') }}</span></a></li>
-                <li><a href="{{ route('manageBlog') }}"><span class="nav-label">{{ trans('salon.salon_blog') }}</span></a></li>
+                <li><a href="{{ route('websiteSettings') }}"><span class="nav-label">{{ trans('salon.website_content_settings') }}</span></a></li>
+                <li><a href="{{ route('websiteSliderSettings') }}"><span class="nav-label">{{ trans('salon.website_images') }}</span></a></li>
+                <li><a href="{{ route('websiteTextboxSettings') }}"><span class="nav-label">{{ trans('salon.slider_promotions') }}</span></a></li>
             </ul>
+        </li>
+        <li>
+            <a href="{{ route('manageBlog') }}"><i class="fa fa-pencil"></i><span class="nav-label m-l">{{ trans('salon.blog') }}</span></a>
         </li>
         @endif
         
@@ -98,13 +102,12 @@
 
         @if(Auth::user()->can('manage-marketing'))
         <li>
-            <a href="{{ route('marketingSettings') }}"><i class="fa fa-envelope"></i><span class="nav-label m-l">{{ trans('salon.marketing') }}</span></a>
+            <a href="#"><i class="fa fa-bar-chart-o"></i><span class="nav-label m-l">{{ trans('salon.marketing') }}<span class="fa fa-angle-left arrow"></span></span></a>
+            <ul class="nav nav-second-level collapse">
+                <li><a href="{{ route('marketingSettings') }}"><span class="nav-label">{{ trans('salon.autopilot_marketing') }}</span></a></li>
+                <li><a href="{{ route('facebookCampaigns') }}"><span class="nav-label">Facebook marketing</span></a></li>
+            </ul>
         </li>
-            @if(Auth::user()->email == 'nikola.cerovski@gmail.com')
-            <li>
-                <a href="{{ route('facebookCampaigns') }}"><i class="fa fa-facebook"></i><span class="nav-label m-l">{{ trans('salon.facebook_campaigns') }}</span></a>
-            </li>
-            @endif
         @endif
     
     @endif

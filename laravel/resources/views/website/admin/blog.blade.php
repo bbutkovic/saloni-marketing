@@ -12,7 +12,6 @@
 
 @section('scripts-footer')
 {{ HTML::script('js/website/websiteSettings.js') }}
-{{ HTML::script('js/googlemaps.js') }}
 @endsection
 
 @section('content')
@@ -67,12 +66,12 @@
                                     {{ Form::open(array('route' => 'submitBlog', 'files' => 'true')) }}
                                         <div class="form-group">
                                             <label for="postTitle">{{ trans('salon.blog_post_title') }}*</label>
-                                            {{ Form::text('post_title', null, array('id' => 'postTitle', 'class' => 'form-control')) }}
+                                            {{ Form::text('post_title', null, array('id' => 'postTitle', 'class' => 'form-control', 'required')) }}
                                         </div>
                                         
                                         <div class="form-group">
                                             <label for="postDescription">{{ trans('salon.blog_post_description') }}*</label>
-                                            {{ Form::text('post_description', null, array('id' => 'postDescription', 'class' => 'form-control')) }}
+                                            {{ Form::text('post_description', null, array('id' => 'postDescription', 'class' => 'form-control', 'required')) }}
                                         </div>
                                                 
                                         <div class="form-group">
@@ -91,7 +90,7 @@
                                                         
                                         <div class="form-group">
                                             <label for="summernote">{{ trans('salon.blog_post_content') }}*</label>
-                                            <textarea id="summernote" name="editordata"></textarea>
+                                            <textarea id="summernote" name="editordata" required></textarea>
                                             <input name="image" type="file" id="upload" class="hidden" onchange="">
                                         </div>
                                         <button type="submit" class="btn btn-success m-t m-b submit-post-btn" disabled>{{ trans('salon.submit_blog') }}</button>
@@ -112,7 +111,12 @@
         
         $(document).ready(function() {
             tinymce.init({
-                selector: "textarea",
+                selector: 'textarea',
+                setup: function (editor) {
+                    editor.on('change', function (e) {
+                        editor.save();
+                    });
+                },
                 theme: "modern",
                 paste_data_images: true,
                 plugins: [

@@ -12,10 +12,13 @@ $(document).ready(function() {
     if(typeof location_id != undefined && location_id != null) {
         getServicesForLocation(location_id);
     }
+    if(typeof services_for_location != undefined && services_for_location != null) {
+        getServicesForLocation(services_for_location);
+    }
     
     $('.service-category-btn').on('click', function() {
         var category = $(this).data('category');
-        
+
         $('.service-category-btn').each(function() {
             $(this).removeClass('active');
         });
@@ -190,18 +193,19 @@ function getServicesForLocation(location_id) {
         type: 'get',
         url: ajax_url + 'ajax/location/' + location_id + '/services',
         success: function(data) {
-            console.log(data);
             $.each(data.services, function(index, value) {
-                console.log(value.name);
                $('.services-wrap').append('<div id="service' + index + '" class="service" data-category="' + index + '"></div>');
 
                $.each(value, function(i, v) {
-                  $('#service' + index).append('<p class="service-dotted"><span class="service-name">' + v.name + '</span><span class="service-price">' + v.price + '</span></p><p class="service-description">' + v.desc + '</p>'); 
+                  $('#service' + index).append('<div class="service-pricing-wrap col-lg-6"><p class="service-dotted"><span class="service-name">' + v.name + '</span><span class="service-price">' + v.price + '</span></p><p class="service-description">' + v.desc + '</p></div>');
                });
                
             });
-            
-            $('.services-wrap').find('>:first-of-type').addClass('active');
+            var categories =  document.getElementsByClassName('service-category-btn');
+            if(typeof categories !== 'undefined' && categories.length > 0) {
+                categories[0].classList.add('active');
+                categories[0].click();
+            }
         }
     });
 }

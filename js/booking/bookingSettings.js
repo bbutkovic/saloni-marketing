@@ -74,7 +74,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'post',
-            url: new_field_route,
+            url: update_fields_route,
             beforeSend: function (request) {
                 return request.setRequestHeader('X-CSRF-Token', $("meta[name='_token']").attr('content'));
             },
@@ -88,21 +88,7 @@ $(document).ready(function() {
             success: function (data) {
                 unsaved = false;
                 if (data.status === 1) {
-                    $('.staff-table').append('<tr id="field-' + data.field.id + '" data-id="' + data.field.id + '">' +
-                        '<td>' + data.field.field_title + '</td>' +
-                        '<td><input type="checkbox" class="js-switch switcher-new' + data.field.id + '" name="input_status[' + data.field.id + ']" checked></td>' +
-                        '<td><a href="#" data-id="' + data.field.id + '" data-name="' + data.field.id + '" class="open-edit-modal">' +
-                        '<i class="fa fa-pencil table-profile"></i></a>' +
-                        '<a href="#" data-id="' + data.field.id + '" data-name="' + data.field.field_title + '" onclick="deleteField(' + data.field.id + ')">' +
-                        '<i class="fa fa-trash table-delete"></i></a></td></tr>');
-                    var switcher = Array.prototype.slice.call(document.querySelectorAll('.switcher-new'+ data.field.id));
-
-                    switcher.forEach(function(html) {
-                        var switchery = new Switchery(html);
-                    });
-
-                    $('#newFieldModal').modal('hide');
-                    toastr.success(data.message);
+                    window.location.reload();
                 } else {
                     toastr.error(data.message);
                 }

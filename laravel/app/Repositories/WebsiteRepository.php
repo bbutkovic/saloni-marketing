@@ -9,6 +9,8 @@ use App\Models\Salon\{BlogPost,BlogImages};
 use App\Models\Website\{WebsiteContent,WebsiteImages,SliderTextBox};
 use App\Models\Salons;
 use DB;
+use Intervention\Image\ImageManagerStatic as Image;
+
 
 class WebsiteRepository {
     
@@ -70,9 +72,11 @@ class WebsiteRepository {
             $content = WebsiteContent::where('salon_id', Auth::user()->salon_id)->first();
             $content->company_introduction = isset($data['company_introduction']) ? $data['company_introduction'] : null;
             $content->website_service_text = isset($data['website_service']) ? $data['website_service'] : null;
+            $content->website_products_text = isset($data['website_products']) ? $data['website_products'] : null;
             $content->website_booking_text = isset($data['website_booking']) ? $data['website_booking'] : null;
-            $content->website_about_text = isset($data['website_about']) ? $data['website_about'] : null;
             $content->terms_and_conditions = isset($data['terms_and_conditions']) ? $data['terms_and_conditions'] : null;
+            $content->display_booking_btn = $data['display_booking_btn'];
+            $content->display_pricing = $data['display_pricing'];
             $content->book_btn_text = isset($data['button_text']) ? $data['button_text'] : null;
             $content->book_btn_bg = isset($data['button_bg']) ? $data['button_bg'] : null;
             $content->book_btn_color = isset($data['button_text_color']) ? $data['button_text_color'] : null;
@@ -202,12 +206,19 @@ class WebsiteRepository {
             }
             
             if(isset($blog_data['featured_image'])) {
-                //delete old featured image and upload new one (if user is doing update with set ftr image)
-                
+                $featured_image = Image::make($blog_data['featured_image']);
+                /*if($featured_image->width() > 500) {
+                    $featured_image->resize(500, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    if ($featured_image->height() > 100) {
+                        $featured_image->crop(500, 250);
+                    }
+                }*/
                 $mime_type = $blog_data['featured_image']->getClientOriginalExtension();
                 $ftr_image_name = substr(md5(rand()), 0, 15). '.' . $mime_type;
-                $blog_data['featured_image']->move(public_path() . '/images/salon-websites/blog-images/', $ftr_image_name);
-                
+                $featured_image->save(public_path() . '/images/salon-websites/blog-images/' . $ftr_image_name);
+
                 if(isset($blog_data['post_id'])) {
                     $old_image = public_path().'/images/salon-websites/blog-images/'.$blog_post->featured_image;
                     unlink($old_image);
@@ -247,6 +258,14 @@ class WebsiteRepository {
         try {
             
             if($blog_post = BlogPost::find($id)) {
+
+                if($blog_post->featured_image != null) {
+                    unlink(public_path() . '/images/salon-websites/blog-images/' . $blog_post->featured_image);
+                }
+
+                foreach($blog_post->post_images as $image) {
+                    unlink(public_path() . '/images/salon-websites/blog-images/' . $image->image_name);
+                }
                 
                 $blog_post->delete();
                 

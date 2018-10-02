@@ -52,6 +52,25 @@
                                                 <li class="dd-item" data-id="{{ $category->id }}">
                                                     <div class="dd-handle" style="background-color: {{ $category->cat_color }}; color: #fff">{{ $category->name }}</div>
                                                     <ol class="dd-list">
+                                                        <li class="dd-item" data-id="null">
+                                                            <div class="dd-handle">{{ trans('salon.without_group') }}</div>
+                                                            <ol class="dd-list">
+                                                                @foreach($no_group_services as $service_no_group)
+                                                                    @if($service_no_group['category_id'] === $category->id)
+                                                                    <li class="dd-item service-no-group" data-id="{{ $service_no_group['service_id'] }}">
+                                                                        <div class="dd-handle">
+                                                                            <p class="pull-left">{{ $service_no_group['name'] }}</p>
+                                                                            <div class="pull-right">
+                                                                                <a href="#" onclick="editService({{ $service_no_group['service_id'] }})" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ trans('salon.edit_service') }}"><i class="fa fa-pencil"></i></a>
+                                                                                <a href="#" onclick="editStaff({{ $service_no_group['service_id'] }})" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ trans('salon.add_staff_to_service') }}"><i class="fa fa-users"></i></a>
+                                                                                <a href="#" onclick="deleteServiceById({{ $service_no_group['service_id'] }})" data-toggle="tooltip" data-placement="top" title="" data-original-title="{{ trans('salon.delete_service') }}"><i class="fa fa-trash"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    @endif
+                                                                @endforeach
+                                                            </ol>
+                                                        </li>
                                                         @foreach($category->group as $group)
                                                         <li class="dd-item" data-id="{{ $group->id }}">
                                                             <div class="dd-handle" style="background-color: {{ $group->group_color }}; color: #fff">{{ $group->name }}</div>
@@ -160,6 +179,14 @@
                         				    @endforeach
                     					@endif
                 					    @endforeach
+                                        <li class="p1 mb1 dd-handle"><strong>{{ trans('salon.without_group') }}</strong> ({{ $category->name }})</li>
+                                            @foreach($no_group_services as $service)
+                                                @if($service['category_id'] === $category->id)
+                                                    <ul class="js-sortable-inner-connected list list-reset mb0 py1">
+                                                        <li class="p1 mb1 item dd-handle" data-subgroup="null" data-id="{{ $service['service_id'] }}"><span class="js-inner-handle px1"><i class="fa fa-arrows-v drag-indicator"></i></span>{{ $service['name'] }}</li>
+                                                    </ul>
+                                                @endif
+                                            @endforeach
                 					@endforeach
                 				    </ul>
                 				    
@@ -186,17 +213,17 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($location->services as $service)
+                                            @foreach($service_list as $service)
                                                 <tr>
-                                                    <td class="text-center">{{ $service->service_details->name }} <br> ({{ $service->service_category->name . ' - ' . $service->service_group->name }})</td>
+                                                    <td class="text-center">{{ $service['service_name'] }} <br> {{ $service['category']['name'] }} {{ !empty($service['group']) ? ' - ' .  $service['group']['name'] : '' }}</td>
                                                     <td class="text-center">
-                                                        <input class="service-discounts" @if($service->allow_discounts === 1) checked @endif type="checkbox" name="{{ $service->id }}">
+                                                        <input class="service-discounts" @if($service['allow_discounts'] === 1) checked @endif type="checkbox" name="{{ $service['id'] }}">
                                                     </td>
                                                     <td class="text-center">
-                                                        <input class="service-points-check" @if($service->award_points === 1) checked @endif type="checkbox" name="{{ $service->id }}">
+                                                        <input class="service-points-check" @if($service['award_points'] === 1) checked @endif type="checkbox" name="{{ $service['id'] }}">
                                                     </td>
                                                     <td class="text-center">
-                                                        <input type="text" name="{{ $service->id }}" @if(isset($service->points_awarded)) value="{{ $service->points_awarded }}" @else value="0" @endif id="servicePoints{{ $service->id }}" class="form-control service-points">
+                                                        <input type="text" name="{{ $service['id'] }}" @if(isset($service['points_awarded'])) value="{{ $service['points_awarded'] }}" @else value="0" @endif id="servicePoints{{ $service['id'] }}" class="form-control service-points">
                                                     </td>
                                                 </tr>
                                             @endforeach

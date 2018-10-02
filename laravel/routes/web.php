@@ -154,6 +154,9 @@ Route::group(['middleware' => 'authUser'], function() {
 
             Route::post('salon/payment/update', ['uses' => 'PaymentController@updateSalonPayment']);
 
+            Route::get('salon/salon-image/delete', ['uses' => 'SalonController@deleteSalonImage']);
+
+            Route::get('salon/location-image/delete', ['uses' => 'SalonController@deleteLocationImage']);
         });
 
         Route::group(['middleware' => 'manageLocations'], function() {
@@ -302,6 +305,10 @@ Route::group(['middleware' => 'authUser'], function() {
 
            Route::get('website/settings', ['as' => 'websiteSettings', 'uses' => 'WebsiteController@websiteSettings']);
 
+           Route::get('website/slider', ['as' => 'websiteSliderSettings', 'uses' => 'WebsiteController@websiteSliderSettings']);
+
+            Route::get('website/textbox', ['as' => 'websiteTextboxSettings', 'uses' => 'WebsiteController@websiteTextboxSettings']);
+
            Route::post('website/set-url', ['uses' => 'WebsiteController@setWebsiteUrl']);
 
            Route::post('website/content/update', ['uses' => 'WebsiteController@saveWebsiteContent']);
@@ -329,6 +336,8 @@ Route::group(['middleware' => 'authUser'], function() {
            Route::post('website/slider-promo/update', ['as' => 'updateSliderPromo', 'uses' => 'WebsiteController@updateSliderPromo']);
 
            Route::post('website/update-slider', ['uses' => 'WebsiteController@updateSliderImages']);
+
+           Route::get('website/slider-text/{count}', ['uses' => 'WebsiteController@getSliderTextbox']);
 
         });
 

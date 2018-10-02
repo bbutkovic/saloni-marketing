@@ -4,6 +4,8 @@ $(document).ready(function() {
         var el = $(this);
         var image_id = $(this).data('id');
         var status = $(this).is(':checked') ? 1 : 0;
+        var changed = true;
+
         $.ajax({
             type: 'post',
             dataType: 'json',
@@ -24,23 +26,40 @@ $(document).ready(function() {
         });
     });
 
+    $('#activateBookingBtn').on('change', function() {
+        var status = $(this).is(':checked') ? 1 : 0;
+        if(status === 1) {
+            $('#bookingButtonSection').removeClass('hidden');
+        } else {
+            $('#bookingButtonSection').addClass('hidden');
+        }
+    });
+
     $('#aboutImageUpload').on('change', function() {
         readIMG(this);
     });
 
     var submit_form = $('#contentForm');
     submit_form.on('submit', function(ev) {
-       ev.preventDefault();
+        ev.preventDefault();
         tinyMCE.triggerSave();
 
         var company_introduction = $('#companyIntroduction').val();
         var website_service = $('#websiteServiceText').val();
+        var website_products = $('#websiteProductsText').val();
         var website_booking = $('#websiteBookingText').val();
-        var website_about = $('#websiteAboutText').val();
         var terms_and_conditions = $('#termsAndConditions').val();
-        var btn_text = $('#buttonText').val();
-        var btn_bg = $('#spectrumBackground').val();
-        var btn_text_color = $('#spectrumText').val();
+        var display_pricing = $('#displayPricing').is(':checked') ? 1 : 0;
+        var display_booking_btn = $('#activateBookingBtn').is(':checked') ? 1 : 0;
+        if(display_booking_btn === 1) {
+            var btn_text = $('#buttonText').val();
+            var btn_bg = $('#spectrumBackground').val();
+            var btn_text_color = $('#spectrumText').val();
+            if(btn_text === '' || btn_bg === '' || btn_text_color === '') {
+                toastr.error(button_info_required);
+                return false;
+            }
+        }
 
         $.ajax({
             type: 'post',
@@ -49,7 +68,7 @@ $(document).ready(function() {
             beforeSend: function(request) {
                 return request.setRequestHeader('X-CSRF-Token', $("meta[name='_token']").attr('content'));
             },
-            data: {'company_introduction':company_introduction,'website_service':website_service,'website_booking':website_booking,'website_about':website_about,'terms_and_conditions':terms_and_conditions,'button_text':btn_text,'button_bg':btn_bg,'button_text_color':btn_text_color},
+            data: {'company_introduction':company_introduction,'display_booking_btn':display_booking_btn,'display_pricing':display_pricing,'website_service':website_service,'website_booking':website_booking,'website_products':website_products,'terms_and_conditions':terms_and_conditions,'button_text':btn_text,'button_bg':btn_bg,'button_text_color':btn_text_color},
             success: function(data) {
                 unsaved = false;
                 if(data.status === 1) {
@@ -128,8 +147,7 @@ $(document).ready(function() {
     
     $('input[name="featured_image"]').on('change', function() {
         var fileUpload = document.getElementById('featuredImageUpload');
-        console.log(fileUpload);
- 
+
         //Check whether the file is valid Image.
         var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(.jpg|.png|.gif)$");
         if (regex.test(fileUpload.value.toLowerCase())) {
@@ -182,8 +200,9 @@ $(document).ready(function() {
             "emoticons template paste textcolor colorpicker textpattern"
         ],
         toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-        toolbar2: "print preview media | forecolor backcolor emoticons",
+        toolbar2: "print preview media | forecolor backcolor emoticons | fontsizeselect fontselect",
         image_advtab: true,
+        font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
         file_picker_callback: function(callback, value, meta) {
             if (meta.filetype == 'image') {
                 $('#upload').trigger('click');
@@ -219,8 +238,9 @@ $(document).ready(function() {
             "emoticons template paste textcolor colorpicker textpattern"
         ],
         toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-        toolbar2: "print preview media | forecolor backcolor emoticons",
+        toolbar2: "print preview media | forecolor backcolor emoticons | fontsizeselect fontselect",
         image_advtab: true,
+        font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
         file_picker_callback: function(callback, value, meta) {
             if (meta.filetype == 'image') {
                 $('#upload').trigger('click');
@@ -256,8 +276,9 @@ $(document).ready(function() {
             "emoticons template paste textcolor colorpicker textpattern"
         ],
         toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-        toolbar2: "print preview media | forecolor backcolor emoticons",
+        toolbar2: "print preview media | forecolor backcolor emoticons | fontsizeselect fontselect",
         image_advtab: true,
+        font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
         file_picker_callback: function(callback, value, meta) {
             if (meta.filetype == 'image') {
                 $('#upload').trigger('click');
@@ -283,7 +304,7 @@ $(document).ready(function() {
     });
 
     tinymce.init({
-        selector: "#websiteAboutText",
+        selector: "#websiteProductsText",
         theme: "modern",
         paste_data_images: true,
         plugins: [
@@ -293,8 +314,9 @@ $(document).ready(function() {
             "emoticons template paste textcolor colorpicker textpattern"
         ],
         toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-        toolbar2: "print preview media | forecolor backcolor emoticons",
+        toolbar2: "print preview media | forecolor backcolor emoticons | fontsizeselect fontselect",
         image_advtab: true,
+        font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
         file_picker_callback: function(callback, value, meta) {
             if (meta.filetype == 'image') {
                 $('#upload').trigger('click');
@@ -330,8 +352,9 @@ $(document).ready(function() {
             "emoticons template paste textcolor colorpicker textpattern"
         ],
         toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-        toolbar2: "print preview media | forecolor backcolor emoticons",
+        toolbar2: "print preview media | forecolor backcolor emoticons | fontsizeselect fontselect",
         image_advtab: true,
+        font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats',
         file_picker_callback: function(callback, value, meta) {
             if (meta.filetype == 'image') {
                 $('#upload').trigger('click');
@@ -357,14 +380,6 @@ $(document).ready(function() {
     });
     
 });
-
-function checkCounter(counter) {
-    if(counter >= 3) {
-        $('.select-global-image').each(function() {
-            $(this).prop('disabled', true);
-        });
-    }
-}
 
 function deleteBlogPost(id) {
     
@@ -483,8 +498,42 @@ function readIMG(input) {
 
         reader.onload = function (e) {
             $('.about-image-placeholder').css('background-image', 'url("'+e.target.result+'")');
-        }
+        };
         $('.about-image-placeholder').addClass('active');
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var target = $(e.target).attr("href");
+    if(target == '#tab-3' && changed) {
+        swal({
+            title: changed_slider,
+            type: "warning",
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+            confirmButtonColor: "#52B3D9",
+            confirmButtonText: reload_page,
+            closeOnConfirm: true,
+        }, function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    method: 'post',
+                    url: ajax_url + 'website/slider-image/delete',
+                    beforeSend: function(request) {
+                        return request.setRequestHeader('X-CSRF-Token', $("meta[name='_token']").attr('content'));
+                    },
+                    data: {'id':id},
+                    success: function(data) {
+                        if(data.status === 1) {
+                            toastr.success(data.message);
+                            $('#webImage'+id).remove();
+                        } else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            }
+        });
+    }
+});
